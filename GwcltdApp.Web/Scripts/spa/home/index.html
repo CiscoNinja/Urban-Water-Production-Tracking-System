@@ -1,0 +1,58 @@
+﻿<hr />
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-primary" id="panelLatestProductions">
+            <div class="panel-heading">
+                <h3 class="panel-title">Recent Productions</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-if="loadingProductions">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4">
+                        <i class="fa fa-refresh fa-5x fa-spin"></i> <label class="label label-primary">Loading Productions...</label>
+                    </div>
+                    <div class="col-xs-4"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 movie" ng-repeat="production in latestProductions">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>{{production.DayToRecord | date: 'longDate'}}</strong>
+                            <strong class="pull-right">{{production.WSystemCode}}</strong>
+                        </div>
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <div><small>{{production.Comment | limitTo: 25}}...</small></div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            Day Actual:
+                            <strong class="pull-right" style="color:deepskyblue">{{production.DailyActual | number}}m&sup3/d</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-success" id="panelMovieGenres">
+            <div class="panel-heading">
+                <h3 class="panel-title">Recent Productions Chart</h3>
+            </div>
+
+            <div class="panel-body">
+                <div ng-if="loadingSummary">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4"><i class="fa fa-refresh fa-5x fa-spin"></i> <label class="label label-primary">Loading Productions..</label></div>
+                    <div class="col-xs-4"></div>
+                </div>
+                <div id="summary-bar"></div>
+            </div>
+            <div class="panel-footer">
+                <p class="text-center"><a ng-href="#/productions/add" class="btn btn-default">Record New Production</a></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿<hr />
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h5>{{production.DayToRecord | date: 'longDate'}}</h5>
+            </div>
+            <div class="panel-body" ng-if="!loadingProduction">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">{{production.DayToRecord | date: 'longDate'}}</h4>
+                        Date Recorded: <label>{{production.DateCreated | date: 'longDate'}}</label><br />
+                        Option: <label>{{production.Option}}</label><br />
+                        Water Type: <label>{{production.OptionType}}</label><br />
+                        Day Actual: <label>{{production.DailyActual | number}}</label>m&sup3/d<br />
+                        Comments: <label>{{production.Comment}}</label><br />
+                        <label class="label label-info">{{production.WSystem}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer clearfix" ng-if="!loadingProduction">
+                <div class="pull-right">
+                    <a ng-href="#/productions/edit/{{production.ID}}" class="btn btn-default">Edit production <i class="fa fa-pencil-square pull-right"></i></a>
+                </div>
+            </div>
+            <div ng-if="loadingProduction">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Loading production data...</label>
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
