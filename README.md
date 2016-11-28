@@ -1,13 +1,13 @@
 **Frameworks - Libraries**
 
-ASP.NET Web API
-Entity Framework
-Autofac
-Automapper
-FluentValidation
-AngularJS
-Bootstrap 3
-3rd part libraries
+* ASP.NET Web API
+* Entity Framework
+* Autofac
+* Automapper
+* FluentValidation
+* AngularJS
+* Bootstrap 3
+* 3rd part libraries
 
 
 **Installation instructions**
