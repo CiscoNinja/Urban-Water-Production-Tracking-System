@@ -16,9 +16,9 @@ Bootstrap 3
  2. Rebuild solution
  3. Change the connection strings inside the GwcltdApp.Data/App.config and   GwcltdApp.Web/Web.config according to your development environment
  4. Open Package Manager Console and
-   Select GwcltdApp.Data as Default project (in package manager console) and run the following   commands
+   Select GwcltdApp.Data as Default project (in package manager console) and run the following commands
    
-   * add-migration "initial"
-   * update-database -verbose  this will run the seed method i created to test the app
+     * add-migration "initial"
+     * update-database -verbose  this will run the seed method i created to test the app
    
 5. Run GwcltdApp.Web application
