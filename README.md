@@ -19,6 +19,6 @@ Bootstrap 3
    Select GwcltdApp.Data as Default project (in package manager console) and run the following commands
    
    * add-migration "initial"
-   * update-database -verbose - this will run the seed method i created to test the app
+   * update-database -verbose  this will run the seed method i created to test the app
    
 **5.**Run GwcltdApp.Web application
