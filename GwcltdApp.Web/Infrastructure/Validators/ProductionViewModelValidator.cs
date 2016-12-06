@@ -23,8 +23,20 @@ namespace GwcltdApp.Web.Infrastructure.Validators
             RuleFor(production => production.DailyActual).GreaterThan(0)
                 .WithMessage("please enter a value");
 
+            RuleFor(production => production.FRPH).GreaterThan(0)
+                .WithMessage("please enter a value");
+
+            RuleFor(production => production.FRPS).GreaterThan(0)
+                .WithMessage("please enter a value");
+
+            RuleFor(production => production.TFPD).GreaterThan(0)
+                .WithMessage("please enter a value");
+
+            RuleFor(production => production.NTFPD).GreaterThan(0)
+                .WithMessage("please enter a value");
+
             RuleFor(production => production.DateCreated).NotNull()
-                .WithMessage("please select a today's date");
+                .WithMessage("please select today's date");
 
             RuleFor(production => production.DayToRecord).NotNull()
                .WithMessage("please select date");

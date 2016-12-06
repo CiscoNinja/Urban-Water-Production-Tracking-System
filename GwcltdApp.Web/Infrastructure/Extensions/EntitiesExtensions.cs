@@ -15,6 +15,10 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
             production.DailyActual = productionVm.DailyActual;
             production.DateCreated = productionVm.DateCreated;
             production.DayToRecord = productionVm.DayToRecord;
+            production.FRPH = productionVm.FRPH;
+            production.FRPS = productionVm.FRPS;
+            production.TFPD = productionVm.TFPD;
+            production.NTFPD = productionVm.NTFPD;
             production.OptionId = productionVm.OptionId;
             production.OptionTypeId = productionVm.OptionTypeId;
             production.WSystemId = productionVm.WSystemId;

@@ -15,6 +15,10 @@ namespace GwcltdApp.Data.Configurations
             Property(pc => pc.DateCreated).IsRequired();
             Property(pc => pc.DayToRecord).IsRequired();
             Property(pc => pc.DailyActual).IsRequired();
+            Property(pc => pc.FRPH).IsRequired();
+            Property(pc => pc.FRPS).IsRequired();
+            Property(pc => pc.TFPD).IsRequired();
+            Property(pc => pc.NTFPD).IsRequired();
             Property(pc => pc.Comment).IsOptional().HasMaxLength(2000);
             Property(o => o.OptionId).IsRequired();
             Property(ot => ot.OptionTypeId).IsRequired();

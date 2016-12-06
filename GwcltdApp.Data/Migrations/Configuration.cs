@@ -82,13 +82,13 @@ namespace GwcltdApp.Data.Migrations
         private WSystem[] GenerateWSystems()
         {
             WSystem[] wsystem = new WSystem[] {
-                new WSystem() { Name = "Kpong New", Code = "S01"},
-                new WSystem() { Name = "Kpong Old", Code = "S02" },
-                new WSystem() { Name = "Keseve/Adafoa", Code = "S03" },
-                new WSystem() { Name = "Tahal", Code = "S04"  },
-                new WSystem() { Name = "China Ghezhouba", Code = "S05"  },
-                new WSystem() { Name = "Siemens", Code = "S06"  },
-                new WSystem() { Name = "Desalination", Code = "S07"  },
+                new WSystem() { Name = "Kpong New", Code = "S01", Capacity = 181818},
+                new WSystem() { Name = "Kpong Old", Code = "S02", Capacity = 38636 },
+                new WSystem() { Name = "Keseve/Adafoa", Code = "S03", Capacity = 1363 },
+                new WSystem() { Name = "Tahal", Code = "S04", Capacity = 100},
+                new WSystem() { Name = "China Ghezhouba", Code = "S05", Capacity = 838 },
+                new WSystem() { Name = "Siemens", Code = "S06", Capacity = 0 },
+                new WSystem() { Name = "Desalination", Code = "S07", Capacity = 0 },
             };
 
             return wsystem;
@@ -115,7 +115,7 @@ namespace GwcltdApp.Data.Migrations
                 int numOfDays = DateTime.DaysInMonth(DateTime.Now.Year, i);
                 for (int j = 1; j <= numOfDays; j++)
                 {
-                    
+
                     int wsystemId = r.Next(1, 8);
                     int optionid = r.Next(7, 9);
                     int trtoptions = r.Next(9, 13); //takes optiontype from treated water option
@@ -125,6 +125,10 @@ namespace GwcltdApp.Data.Migrations
                         DateCreated = new DateTime(2016, i, j),
                         DayToRecord = new DateTime(2016, i, j),
                         DailyActual = 176400 + i + j + r.Next(1000, 7000),
+                        FRPH = r.Next(100, 500),
+                        FRPS = r.Next(-1, 1),
+                        TFPD = r.Next(60500, 100000),
+                        NTFPD = r.Next(-100, -1),
                         Comment = "Put your comments here.",
                         WSystemId = wsystemId,
                         OptionId = optionid,

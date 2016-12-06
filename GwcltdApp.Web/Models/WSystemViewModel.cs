@@ -13,6 +13,7 @@ namespace GwcltdApp.Web.Models
         public string Code { get; set; } //system code
         [Required]
         public string Name { get; set; } //system name
+        public int Capacity { get; set; }
 
         //public ICollection<ProductionViewModel> Productions { get; set; }
     }
