@@ -17,6 +17,7 @@ using GwcltdApp.Web.Infrastructure.Extensions;
 using GwcltdApp.Data.Extensions;
 using GwcltdApp.Web.DAL;
 using System.Globalization;
+using System.Data.Entity;
 
 namespace GwcltdApp.Web.Controllers
 {
@@ -201,7 +202,7 @@ namespace GwcltdApp.Web.Controllers
 
         [AllowAnonymous]
         [Route("{page:int=0}/{pageSize=3}/{filter?}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
+        public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, DateTime? filter1 = null, DateTime? filter2 = null, string filter = null)
         {
             int currentPage = page.Value;
             int currentPageSize = pageSize.Value;
@@ -212,19 +213,37 @@ namespace GwcltdApp.Web.Controllers
                 List<Production> productions = null;
                 int totalProductions = new int();
 
-                if (!string.IsNullOrEmpty(filter))
+                //if (!string.IsNullOrEmpty(filter) && !filter1.HasValue && !filter2.HasValue)
+                //{
+                //    productions = _productionsRepository.GetAll()
+                //        .Where(m => m.WSystem.Code.ToLower().Contains(filter.ToLower().Trim())
+                //        || m.WSystem.Name.ToLower().Contains(filter.ToLower().Trim())
+                //        || m.Option.Name.ToLower().Contains(filter.ToLower().Trim())
+                //        || m.OptionType.Name.ToLower().Contains(filter.ToLower().Trim()))
+                //        .OrderBy(m => m.DayToRecord)
+                //        .Skip(currentPage * currentPageSize)
+                //        .Take(currentPageSize)
+                //        .ToList();
+
+                //    totalProductions = _productionsRepository.GetAll()
+                //        .Where(m => m.WSystem.Code.ToLower().Contains(filter.ToLower().Trim())
+                //        || m.WSystem.Name.ToLower().Contains(filter.ToLower().Trim())
+                //        || m.Option.Name.ToLower().Contains(filter.ToLower().Trim())
+                //        || m.OptionType.Name.ToLower().Contains(filter.ToLower().Trim()))
+                //        .Count();
+                //}
+                //else 
+                if (filter1.HasValue && filter2.HasValue && string.IsNullOrEmpty(filter) )
                 {
-                    productions = _productionsRepository
-                        .FindBy(m => m.WSystem.Code.ToLower()
-                        .Contains(filter.ToLower().Trim()))
-                        .OrderBy(m => m.ID)
+                    productions = _productionsRepository.GetAll()
+                        .Where(m => DbFunctions.TruncateTime(m.DayToRecord) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.DayToRecord) <= DbFunctions.TruncateTime(filter2.Value))
+                        .OrderBy(m => m.DayToRecord)
                         .Skip(currentPage * currentPageSize)
                         .Take(currentPageSize)
                         .ToList();
 
-                    totalProductions = _productionsRepository
-                        .FindBy(m => m.WSystem.Name.ToLower()
-                        .Contains(filter.ToLower().Trim()))
+                    totalProductions = _productionsRepository.GetAll()
+                        .Where(m => DbFunctions.TruncateTime(m.DayToRecord) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.DayToRecord) <= DbFunctions.TruncateTime(filter2.Value))
                         .Count();
                 }
                 else

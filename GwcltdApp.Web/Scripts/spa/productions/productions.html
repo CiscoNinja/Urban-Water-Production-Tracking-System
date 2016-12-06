@@ -1,14 +1,32 @@
 ﻿<div class="row">
     <div class="panel panel-primary">
         <div class="panel-heading clearfix">
-            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Ghana Water Company Ltd.</h4>
-            <div class="input-group">
+            <h4 class="panel-title pull-left">From</h4>
+            <div class="panel-title pull-left col-md-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="leftDate" datepicker-popup="{{format}}" ng-model="filterLeft" is-open="datepicker.leftDate" datepicker-options="dateOptions" datepicker-append-to-body="true" close-text="Close" placeholder="Select lower date..."/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 'leftDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+            <h4 class="panel-title pull-left">To</h4>
+            <div class="panel-title pull-left col-md-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="rightDate" datepicker-popup="{{format}}" ng-model="filterRight" is-open="datepicker.rightDate" datepicker-options="dateOptions" datepicker-append-to-body="true" close-text="Close" placeholder="Select upper date..."/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openDatePicker($event,'rightDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+            <button class="btn btn-primary pull-left col-md-3" ng-click="search();">Search</button>
+            <!--<div class="input-group">
                 <input id="inputSearchProductions" type="search" ng-model="filterProductions" class="form-control shortInputSearch" placeholder="Filter, search productions..">
                 <div class="input-group-btn">
                     <button class="btn btn-primary" ng-click="search();"><i class="glyphicon glyphicon-search"></i></button>
                     <button class="btn btn-primary" ng-click="clearSearch();"><i class="glyphicon glyphicon-remove-sign"></i></button>
                 </div>
-            </div>
+            </div>-->
         </div>
 
         <div class="panel-body">
@@ -32,7 +50,7 @@
                             <br />
                             <daily-actual class="label-info">{{production.Comment | limitTo: 25}}...</daily-actual>
                         </div>
-                        
+
                     </div>
                     <br /><br />
                 </div>
