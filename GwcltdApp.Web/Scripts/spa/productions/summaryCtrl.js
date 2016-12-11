@@ -12,9 +12,12 @@
         $scope.waterType = "";
 
         function loadTable() {
-
+            $(document).on('click', '.btn', function (event) {
+                event.preventDefault();
+                var $this = $(this);
+                $scope.waterType = $(this).text();
+            });
             $scope.loadingStatistics = true;
-            $scope.waterType = $routeParams.id;
             apiService.get('/api/productions/summary/' + $routeParams.id, null,
             summaryLoadCompleted,
             summaryLoadFailed);
