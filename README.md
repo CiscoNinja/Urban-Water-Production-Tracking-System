@@ -7,6 +7,7 @@
 * FluentValidation
 * AngularJS
 * Bootstrap 3
+* PostSharp
 * 3rd part libraries
 
 
