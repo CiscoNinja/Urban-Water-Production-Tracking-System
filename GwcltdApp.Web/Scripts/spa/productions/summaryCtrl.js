@@ -8,6 +8,7 @@
     function summaryCtrl($scope, $routeParams, apiService, notificationService, $timeout) {
         $scope.loadTable = loadTable;
         $scope.loadingStatistics = true;
+        $scope.emptyStatistics = false;
         $scope.Summary = [];
         $scope.waterType = "";
 
@@ -29,8 +30,12 @@
 
         function summaryLoadCompleted(result) {
             $scope.Summary = result.data;
-
             $scope.loadingStatistics = false;
+            if (!$scope.Summary)
+            {
+                $scope.loadingStatistics = false;
+                $scope.emptyStatistics = true;
+            }
         }
 
         function summaryLoadFailed(response) {

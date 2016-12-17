@@ -207,6 +207,7 @@ namespace GwcltdApp.Web.Controllers
                         }
                     default:
                         {
+                            response = request.CreateResponse<string>(HttpStatusCode.OK, null);
                             break;
                         }
                         

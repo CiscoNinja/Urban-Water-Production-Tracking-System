@@ -15,7 +15,6 @@
         </div>
         <div class="panel-body">
             <div class="">
-                <div class="col-xs-12">
                     <div class="media">
                         <div class="media-body">
                             <!--<div class="container">-->
@@ -61,8 +60,16 @@
                             </div>
                             <!--</div>-->
                         </div>
-                    </div>
                 </div>
+            </div>
+            <div ng-if="emptyStatistics">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <br />
+                    <label class="label label-primary">Click Any Button Bellow to View Summary</label>
+                    <div class="bounce"><i class="fa fa-arrow-down fa-4x" style="position: center; "></i> </div>
+                </div>
+                <div class="col-xs-4"></div>
             </div>
             <div ng-if="loadingStatistics">
                 <div class="col-xs-4"></div>
