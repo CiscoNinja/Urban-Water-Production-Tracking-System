@@ -20,22 +20,22 @@ namespace GwcltdApp.Web.Infrastructure.Validators
             RuleFor(production => production.WSystemId).NotNull()
                 .WithMessage("Select a system");
 
-            RuleFor(production => production.DailyActual).NotNull()
+            RuleFor(production => production.DailyActual).GreaterThanOrEqualTo(0)
                 .WithMessage("please enter a value");
 
-            RuleFor(production => production.FRPH).NotNull()
+            RuleFor(production => production.FRPH).GreaterThanOrEqualTo(0)
                 .WithMessage("please enter a value");
 
-            RuleFor(production => production.FRPS).NotNull()
+            RuleFor(production => production.FRPS).GreaterThanOrEqualTo(0)
                 .WithMessage("please enter a value");
 
-            RuleFor(production => production.TFPD).NotNull()
+            RuleFor(production => production.TFPD).GreaterThanOrEqualTo(0)
                 .WithMessage("please enter a value");
 
             RuleFor(production => production.NTFPD).NotNull()
                 .WithMessage("please enter a value");
 
-            RuleFor(production => production.LOG).NotNull()
+            RuleFor(production => production.LOG).GreaterThanOrEqualTo(0)
                 .WithMessage("please enter a value");
 
             RuleFor(production => production.DateCreated).NotNull()
