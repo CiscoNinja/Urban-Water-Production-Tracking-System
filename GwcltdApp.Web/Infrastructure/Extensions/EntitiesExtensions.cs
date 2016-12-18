@@ -19,6 +19,7 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
             production.FRPS = productionVm.FRPS;
             production.TFPD = productionVm.TFPD;
             production.NTFPD = productionVm.NTFPD;
+            production.LOG = productionVm.LOG;
             production.OptionId = productionVm.OptionId;
             production.OptionTypeId = productionVm.OptionTypeId;
             production.WSystemId = productionVm.WSystemId;

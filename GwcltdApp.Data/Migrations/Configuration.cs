@@ -129,6 +129,7 @@ namespace GwcltdApp.Data.Migrations
                         FRPS = r.Next(-1, 1),
                         TFPD = r.Next(60500, 100000),
                         NTFPD = r.Next(-100, -1),
+                        LOG = r.Next(1, 100),
                         Comment = "Put your comments here.",
                         WSystemId = wsystemId,
                         OptionId = optionid,

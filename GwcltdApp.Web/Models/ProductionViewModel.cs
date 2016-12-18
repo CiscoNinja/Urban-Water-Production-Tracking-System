@@ -20,6 +20,7 @@ namespace GwcltdApp.Web.Models
         public int FRPS { get; set; }//flow rate per second
         public int TFPD { get; set; }//total flow per day
         public int NTFPD { get; set; }//negative total flow per day
+        public int LOG { get; set; }
         public string WSystem { get; set; }
         public string WSystemCode { get; set; }
         public int WSystemId { get; set; }

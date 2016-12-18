@@ -20,6 +20,7 @@ namespace GwcltdApp.Entities
         public int FRPS { get; set; }//flow rate per second
         public int TFPD { get; set; }//total flow per day
         public int NTFPD { get; set; }//negative total flow per day
+        public int LOG { get; set; }
         public int WSystemId { get; set; }
         public int OptionId { get; set; }
         public int OptionTypeId { get; set; }

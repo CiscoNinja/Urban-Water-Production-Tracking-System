@@ -35,6 +35,9 @@ namespace GwcltdApp.Web.Infrastructure.Validators
             RuleFor(production => production.NTFPD).GreaterThan(0)
                 .WithMessage("please enter a value");
 
+            RuleFor(production => production.LOG).GreaterThan(0)
+                .WithMessage("please enter a value");
+
             RuleFor(production => production.DateCreated).NotNull()
                 .WithMessage("please select today's date");
 
