@@ -22,13 +22,11 @@
                             <select ng-model="production.WSystemId" class="form-control black" ng-options="wsystem.ID as wsystem.Name for wsystem in wsystems" required></select>
                             <input type="hidden" name="WSystemId" ng-value="production.WSystemId" />
                         </div>
-
                         <div class="col-xs-4 col-sm-4 selectContainer">
                             <label class="control-label">Select Water Type</label>
                             <select ng-model="production.OptionId" class="form-control black" ng-options="option.ID as option.Name for option in options" required></select>
                             <input type="hidden" name="OptionId" ng-value="production.OptionId" />
                         </div>
-
                         <div class="col-xs-4 col-sm-4 selectContainer">
                             <label class="control-label">Select Type</label>
                             <select ng-model="production.OptionTypeId" class="form-control black" ng-options="optiontype.ID as optiontype.Name for optiontype in optiontypes" required></select>
@@ -40,7 +38,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-xs-4">
-                            <label class="control-label">Today's Date</label>
+                            <label class="control-label">Date of Entry</label>
                             <p class="input-group">
                                 <input type="text" class="form-control" name="todaysDate" datepicker-popup="{{format}}" ng-model="production.DateCreated" is-open="datepicker.todayDate" datepicker-options="dateOptions" ng-required="true" datepicker-append-to-body="true" close-text="Close"
                                        validate-on="blur" required required-message="'required'" />
@@ -63,17 +61,51 @@
 
                         <div class="col-xs-4">
                             <label class="control-label">Daily Actual</label>(m&sup3/d)
-                            <input class="form-control" type="text" ng-model="production.DailyActual" name="dailyactual"
+                            <input class="form-control" type="number" ng-model="production.DailyActual" name="dailyactual"
                                    validate-on="blur" required required-message="'required'">
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label class="control-label">Flow Rate</label>(m&sup3/h)
+                            <input class="form-control" type="number" ng-model="production.FRPH" name="frph"
+                                   validate-on="blur" required required-message="'required'">
+                        </div>
 
+                        <div class="col-xs-4">
+                            <label class="control-label">Flow Rate</label>(m&sup3/s)
+                            <input class="form-control" type="number" ng-model="production.FRPS" name="frps"
+                                   validate-on="blur" required required-message="'required'">
+                        </div>
+
+                        <div class="col-xs-4">
+                            <label class="control-label">Total Flow</label>(m&sup3)
+                            <input class="form-control" type="number" ng-model="production.TFPD" name="tfpd"
+                                   validate-on="blur" required required-message="'required'">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label class="control-label">Negative Flow</label>(m&sup3)
+                            <input class="form-control" type="number" ng-model="production.NTFPD" name="ntfpd"
+                                   validate-on="blur" required required-message="'required'">
+                        </div>
+                        <div class="col-xs-4">
+                            <label class="control-label">Log</label>
+                            <input class="form-control" type="number" ng-model="production.LOG" name="log"
+                                   validate-on="blur" required required-message="'required'">
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="control-label">Comments</label>
                     <textarea class="form-control" ng-model="production.Comment" name="comment" rows="3" />
                 </div>
-                <br/>
+                <br />
                 <div class="form-group col-xs-4">
                     <label class="control-label"></label>
                     <div class="">

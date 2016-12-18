@@ -13,6 +13,11 @@
                         Option: <label>{{production.Option}}</label><br />
                         Water Type: <label>{{production.OptionType}}</label><br />
                         Day Actual: <label>{{production.DailyActual | number}}</label>m&sup3/d<br />
+                        Flow Rate: <label>{{production.FRPH | number}}</label>m&sup3/h<br />
+                        Flow Rate: <label>{{production.FRPS | number}}</label>m&sup3/s<br />
+                        Total Flow: <label>{{production.TFPD | number}}</label>m&sup3<br />
+                        Negative Total Flow: <label>-{{production.NTFPD | number}}</label>m&sup3<br />
+                        Log: <label>{{production.LOG | number}}</label><br />
                         Comments: <label>{{production.Comment}}</label><br />
                         <label class="label label-info">{{production.WSystem}}</label>
                     </div>
