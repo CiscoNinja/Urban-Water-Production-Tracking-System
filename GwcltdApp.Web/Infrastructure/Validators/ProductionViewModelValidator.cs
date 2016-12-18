@@ -11,31 +11,31 @@ namespace GwcltdApp.Web.Infrastructure.Validators
     {
         public ProductionViewModelValidator()
         {
-            RuleFor(production => production.OptionId).GreaterThan(0)
+            RuleFor(production => production.OptionId).NotNull()
                 .WithMessage("Select a water option");
 
-            RuleFor(production => production.OptionTypeId).GreaterThan(0)
+            RuleFor(production => production.OptionTypeId).NotNull()
                 .WithMessage("Select an option type");
 
-            RuleFor(production => production.WSystemId).GreaterThan(0)
+            RuleFor(production => production.WSystemId).NotNull()
                 .WithMessage("Select a system");
 
-            RuleFor(production => production.DailyActual).GreaterThan(0)
+            RuleFor(production => production.DailyActual).NotNull()
                 .WithMessage("please enter a value");
 
-            RuleFor(production => production.FRPH).GreaterThan(0)
+            RuleFor(production => production.FRPH).NotNull()
                 .WithMessage("please enter a value");
 
-            RuleFor(production => production.FRPS).GreaterThan(0)
+            RuleFor(production => production.FRPS).NotNull()
                 .WithMessage("please enter a value");
 
-            RuleFor(production => production.TFPD).GreaterThan(0)
+            RuleFor(production => production.TFPD).NotNull()
                 .WithMessage("please enter a value");
 
-            RuleFor(production => production.NTFPD).GreaterThan(0)
+            RuleFor(production => production.NTFPD).NotNull()
                 .WithMessage("please enter a value");
 
-            RuleFor(production => production.LOG).GreaterThan(0)
+            RuleFor(production => production.LOG).NotNull()
                 .WithMessage("please enter a value");
 
             RuleFor(production => production.DateCreated).NotNull()

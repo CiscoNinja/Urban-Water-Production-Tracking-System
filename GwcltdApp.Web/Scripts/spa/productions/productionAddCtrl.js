@@ -94,7 +94,7 @@
             $event.stopPropagation();
 
             $scope.datepicker[dpicker] = true;
-        };
+        }
 
         function redirectToEdit() {
             $location.url('productions/edit/' + $scope.production.ID);
