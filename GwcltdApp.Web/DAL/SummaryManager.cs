@@ -82,7 +82,7 @@ namespace GwcltdApp.Web.DAL
                 //checkes if there is data for a system
                 bool systemHasValue = getWaterTable(itemcode, mnth, "Treated Water") > 0;
 
-                if (systemHasValue == true)
+                if (systemHasValue)
                 {
                     DateTime date = context.ProductionSet
                    .Where(x => x.WSystem.Code
