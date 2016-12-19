@@ -78,15 +78,26 @@ namespace GwcltdApp.Web.DAL
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                DateTime date = context.ProductionSet
-                    .Where(x => x.WSystem.Code
-                    == itemcode && x.DayToRecord.Month
-                    == mnth && x.Option.Name.Equals("Treated Water")).FirstOrDefault().DayToRecord;
+                double returnval = 0;
+                //checkes if there is data for a system
+                bool systemHasValue = getWaterTable(itemcode, mnth, "Treated Water") > 0;
 
-                return context.ProductionSet
-                    .Where(x => x.WSystem.Code
-                    == itemcode && x.DayToRecord.Month
-                    == mnth && x.Option.Name.Equals("Treated Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum() /  (double)DateTime.DaysInMonth(date.Year, mnth);
+                if (systemHasValue == true)
+                {
+                    DateTime date = context.ProductionSet
+                   .Where(x => x.WSystem.Code
+                   == itemcode && x.DayToRecord.Month
+                   == mnth && x.Option.Name.Equals("Treated Water")).FirstOrDefault().DayToRecord;
+
+                    var totalformonth = getWaterTable(itemcode, mnth, "Treated Water");
+
+                    if (totalformonth != 0)
+                    {
+                        returnval = totalformonth / (double)DateTime.DaysInMonth(date.Year, mnth);
+                    }
+                }
+                
+                return returnval;
             }
         }
         public static List<DateTime> GetAllDates()
