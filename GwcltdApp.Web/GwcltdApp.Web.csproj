@@ -167,6 +167,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Logging\AutoAudit 3.30a.sql" />
     <Content Include="Scripts\spa\account\registerCtrl.js" />
     <Content Include="Scripts\spa\account\register.html" />
     <Content Include="Scripts\spa\app.js" />
@@ -285,6 +286,7 @@
     <Content Include="Scripts\spa\modules\common.core.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="sms.ashx" />
+    <Content Include="Logging\AutoAuditSetup.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

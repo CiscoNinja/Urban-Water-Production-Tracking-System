@@ -36,28 +36,32 @@ namespace GwcltdApp.Web.DAL
                 {
                     res = (PlantLoss_metre(itemcode, mnth) / (double)raw)*100;
                 }
-                return res;
+                return Math.Round(res, 2, MidpointRounding.AwayFromZero);
             }
         }
-        public static int PlantLoss_metre(string itemcode, int mnth)
+        public static double PlantLoss_metre(string itemcode, int mnth)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                return context.ProductionSet
+                double ploss = context.ProductionSet
                     .Where(x => x.WSystem.Code
                     == itemcode && x.DayToRecord.Month
                     == mnth && x.Option.Name.Equals("Raw Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum()
                     - context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Month == mnth && x.Option.Name.Equals("Treated Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
+
+                return Math.Round(ploss, 2, MidpointRounding.AwayFromZero);
             }
         }
-        public static int getWaterTable(string itemcode, int mnth, string watertype)
+        public static double getWaterTable(string itemcode, int mnth, string watertype)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                return context.ProductionSet
+                double wlevel = context.ProductionSet
                     .Where(x => x.WSystem.Code
                     == itemcode && x.DayToRecord.Month
                     == mnth && x.Option.Name.Equals(watertype)).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
+
+                return Math.Round(wlevel, 2, MidpointRounding.AwayFromZero);
             }
         }
         public static double getPlantCap(string itemcode, int mnth, string systm)
@@ -71,7 +75,7 @@ namespace GwcltdApp.Web.DAL
                     res = (getDailyAverage(itemcode, mnth) / (double)syscapacity) * 100;
                 }
 
-                return res;
+                return Math.Round(res, 2, MidpointRounding.AwayFromZero);
             }
         }
         public static double getDailyAverage(string itemcode, int mnth)
@@ -97,7 +101,7 @@ namespace GwcltdApp.Web.DAL
                     }
                 }
                 
-                return returnval;
+                return Math.Round(returnval, 2, MidpointRounding.AwayFromZero);
             }
         }
         public static List<DateTime> GetAllDates()
