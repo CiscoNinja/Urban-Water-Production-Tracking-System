@@ -210,7 +210,6 @@ namespace GwcltdApp.Web.Controllers
                             response = request.CreateResponse<string>(HttpStatusCode.OK, null);
                             break;
                         }
-                        
                 }
                 
 
@@ -228,23 +227,56 @@ namespace GwcltdApp.Web.Controllers
             {
                 HttpResponseMessage response = null;
                 var allProductions = _productionsRepository.GetAll();
-                for (int i = 1; i <= 12; i++)
+
+                switch(id)
                 {
-                    DateTime monthvalue = new DateTime(2016, i, 1);
-                    string thismonth = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthvalue.Month);
+                    case "Treated Water":
+                        {
+                            for (int i = 1; i <= 12; i++)
+                            {
+                                DateTime monthvalue = new DateTime(2016, i, 1);
+                                string thismonth = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthvalue.Month);
 
-                    int system1Total = allProductions.Where(x => x.WSystem.Code == "S01" && x.DayToRecord.Month == monthvalue.Month && x.Option.Name == id).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
-                    int system2Total = allProductions.Where(x => x.WSystem.Code == "S02" && x.DayToRecord.Month == monthvalue.Month && x.Option.Name == id).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
-                    int system3Total = allProductions.Where(x => x.WSystem.Code == "S03" && x.DayToRecord.Month == monthvalue.Month && x.Option.Name == id).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
-                    int system4Total = allProductions.Where(x => x.WSystem.Code == "S04" && x.DayToRecord.Month == monthvalue.Month && x.Option.Name == id).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
-                    int system5Total = allProductions.Where(x => x.WSystem.Code == "S05" && x.DayToRecord.Month == monthvalue.Month && x.Option.Name == id).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
-                    int system6Total = allProductions.Where(x => x.WSystem.Code == "S06" && x.DayToRecord.Month == monthvalue.Month && x.Option.Name == id).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
-                    int system7Total = allProductions.Where(x => x.WSystem.Code == "S07" && x.DayToRecord.Month == monthvalue.Month && x.Option.Name == id).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
-                    graph.Add(thismonth, system1Total, system2Total, system3Total, system4Total, system5Total, system6Total, system7Total);
+                                var system1Total = SummaryManager.getWaterTable("S01",i,"Treated Water");
+                                var system2Total = SummaryManager.getWaterTable("S02", i, "Treated Water");
+                                var system3Total = SummaryManager.getWaterTable("S03", i, "Treated Water");
+                                var system4Total = SummaryManager.getWaterTable("S04", i, "Treated Water");
+                                var system5Total = SummaryManager.getWaterTable("S05", i, "Treated Water");
+                                var system6Total = SummaryManager.getWaterTable("S06", i, "Treated Water");
+                                var system7Total = SummaryManager.getWaterTable("S07", i, "Treated Water");
+                                graph.Add(thismonth, system1Total, system2Total, system3Total, system4Total, system5Total, system6Total, system7Total);
+                            }
+
+                            response = request.CreateResponse<MyDictionary1>(HttpStatusCode.OK, graph);
+                            break;
+                        }
+                    case "Plant Loss":
+                        {
+                            for (int i = 1; i <= 12; i++)
+                            {
+                                DateTime monthvalue = new DateTime(2016, i, 1);
+                                string thismonth = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthvalue.Month);
+
+                                var system1Total = SummaryManager.PlantLoss_percent("S01", i);
+                                var system2Total = SummaryManager.PlantLoss_percent("S02", i);
+                                var system3Total = SummaryManager.PlantLoss_percent("S03", i);
+                                var system4Total = SummaryManager.PlantLoss_percent("S04", i);
+                                var system5Total = SummaryManager.PlantLoss_percent("S05", i);
+                                var system6Total = SummaryManager.PlantLoss_percent("S06", i);
+                                var system7Total = SummaryManager.PlantLoss_percent("S07", i);
+                                graph.Add(thismonth, system1Total, system2Total, system3Total, system4Total, system5Total, system6Total, system7Total);
+                            }
+
+                            response = request.CreateResponse<MyDictionary1>(HttpStatusCode.OK, graph);
+                            break;
+                        }
+                        
+                    default:
+                        {
+                            response = request.CreateResponse<string>(HttpStatusCode.OK, null);
+                            break;
+                        }
                 }
-
-                response = request.CreateResponse<MyDictionary1>(HttpStatusCode.OK, graph);
-
                 return response;
             });
         }
@@ -269,18 +301,18 @@ namespace GwcltdApp.Web.Controllers
         public struct ChartData
         {
             public string month { get; set; }
-            public int S01 { get; set; }
-            public int S02 { get; set; }
-            public int S03 { get; set; }
-            public int S04 { get; set; }
-            public int S05 { get; set; }
-            public int S06 { get; set; }
-            public int S07 { get; set; }
+            public double S01 { get; set; }
+            public double S02 { get; set; }
+            public double S03 { get; set; }
+            public double S04 { get; set; }
+            public double S05 { get; set; }
+            public double S06 { get; set; }
+            public double S07 { get; set; }
         }
 
         public class MyDictionary1 : List<ChartData>
         {
-            public void Add(string key, int value1, int value2, int value3, int value4, int value5, int value6, int value7)
+            public void Add(string key, double value1, double value2, double value3, double value4, double value5, double value6, double value7)
             {
                 ChartData val = new ChartData();
                 val.month = key;
