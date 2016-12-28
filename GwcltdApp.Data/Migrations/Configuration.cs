@@ -26,7 +26,7 @@ namespace GwcltdApp.Data.Migrations
             //create roles
             context.RoleSet.AddOrUpdate(r => r.Name, GenerateRoles());
             //create productions
-            context.ProductionSet.AddOrUpdate(GenerateProductions());
+            //context.ProductionSet.AddOrUpdate(GenerateProductions());
 
             // username: chsakell, password: homecinema
             context.UserSet.AddOrUpdate(u => u.Email, new User[]{

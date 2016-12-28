@@ -14,13 +14,13 @@ namespace GwcltdApp.Web.Models
         public int ID { get; set; }
         public DateTime DateCreated { get; set; } //date of recording
         public DateTime DayToRecord { get; set; } //day value being recorded
-        public int DailyActual { get; set; }
+        public double DailyActual { get; set; }
         public string Comment { get; set; }
-        public int FRPH { get; set; }//flow rate per hour
-        public int FRPS { get; set; }//flow rate per second
-        public int TFPD { get; set; }//total flow per day
-        public int NTFPD { get; set; }//negative total flow per day
-        public int LOG { get; set; }
+        public double FRPH { get; set; }//flow rate per hour
+        public double FRPS { get; set; }//flow rate per second
+        public double TFPD { get; set; }//total flow per day
+        public double NTFPD { get; set; }//negative total flow per day
+        public double LOG { get; set; }
         public string WSystem { get; set; }
         public string WSystemCode { get; set; }
         public int WSystemId { get; set; }
