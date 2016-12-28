@@ -14,7 +14,7 @@
         $scope.waterOType = "";
 
         function loadCharts() {
-             $(document).on('click', '.btn', function (event) {
+            $(document).on('click', '.mybtn', function (event) {
                 event.preventDefault();
                 var $this = $(this);
                 $scope.waterOType = $(this).text();

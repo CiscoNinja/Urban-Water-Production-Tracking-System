@@ -18,9 +18,26 @@
                 <div class="col-xs-4"></div>
             </div>
         </div>
-        <div class="panel-footer">
-            <p style="float:left; margin-right: 2px"><a ng-href="#/productions/charts/Treated Water" class="btn btn-default">Treated Water</a></p>
-            <p class=""><a ng-href="#/productions/charts/Plant Loss" class="btn btn-default">% Plant Loss</a></p>
+        <div class="clearfix panel-footer">
+            <div col-xs-3 col-sm-3 >
+                <label class="control-label">Select Year</label>
+            </div>
+            <div class="col-xs-3 col-sm-3 selectContainer">
+                <select id="yearpicker" class="form-control black"></select>
+                <input type="hidden" name="WSystemId" ng-value="" />
+            </div>
+            <p style="float:left; margin-right: 2px"><a ng-href="#/productions/charts/Treated Water" class="mybtn btn btn-default">Treated Water</a></p>
+            <p style="float:left; margin-right: 2px"><a ng-href="#/productions/charts/Plant Loss" class="mybtn btn btn-default">% Plant Loss</a></p>
         </div>
     </div>
 </div>
+<script>
+    var userselection;
+    for (i = 2016 ; i < 2050; i++) {
+        if (userselection == i) {
+            $('#yearpicker').append($('<option/>').val(i).attr("selected", "selected").html(i));
+        } else {
+            $('#yearpicker').append($('<option/>').val(i).html(i));
+        }
+    }
+</script>
