@@ -34,6 +34,7 @@
                 loggedUser: {
                     username: user.username,
                     authdata: membershipData
+                    //log other user parameters here
                 }
             };
 

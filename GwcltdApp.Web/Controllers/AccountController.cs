@@ -56,7 +56,7 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         [Route("register")]
         [HttpPost]
         public HttpResponseMessage Register(HttpRequestMessage request, RegistrationViewModel user)
