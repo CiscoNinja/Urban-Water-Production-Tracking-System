@@ -7,9 +7,19 @@
     function rootCtrl($scope, $location, membershipService, $rootScope) {
 
         $scope.userData = {};
+        $scope.userSystems = { ID: 1 };
+        $scope.userstation = {};
         
         $scope.userData.displayUserInfo = displayUserInfo;
         $scope.logout = logout;
+
+        function wsystemsLoadCompleted(response) {
+            $scope.userSystems = response.data;
+        }
+
+        function stationLoadCompleted(response) {
+            $scope.userstation = response.data;
+        }
 
 
         function displayUserInfo() {
@@ -17,8 +27,10 @@
 
             if($scope.userData.isUserLoggedIn)
             {
+                membershipService.loadUserStation($rootScope.repository.loggedUser, stationLoadCompleted)
+                membershipService.loadWsystems(wsystemsLoadCompleted);
                 $scope.username = $rootScope.repository.loggedUser.username;
-                // catch all user parameters here
+                // save all user parameters here
             }
         }
 

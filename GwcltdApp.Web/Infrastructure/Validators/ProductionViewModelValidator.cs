@@ -20,6 +20,9 @@ namespace GwcltdApp.Web.Infrastructure.Validators
             RuleFor(production => production.WSystemId).NotNull()
                 .WithMessage("Select a system");
 
+            RuleFor(production => production.GwclStationId).NotNull()
+                .WithMessage("Select a station");
+
             RuleFor(production => production.DailyActual).GreaterThanOrEqualTo(0)
                 .WithMessage("please enter a value");
 

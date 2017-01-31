@@ -3,7 +3,7 @@
 
     app.factory('membershipService', membershipService);
 
-    membershipService.$inject = ['apiService', 'notificationService','$http', '$base64', '$cookieStore', '$rootScope'];
+    membershipService.$inject = ['apiService', 'notificationService', '$http', '$base64', '$cookieStore', '$rootScope'];
 
     function membershipService(apiService, notificationService, $http, $base64, $cookieStore, $rootScope) {
 
@@ -11,8 +11,30 @@
             login: login,
             register: register,
             saveCredentials: saveCredentials,
+            loadUserStation: loadUserStation,
+            loadWsystems: loadWsystems,
             removeCredentials: removeCredentials,
             isUserLoggedIn: isUserLoggedIn
+        }
+
+        function loadWsystems(completed) {
+            apiService.get('/api/wsystems/', null,
+            completed,
+            wsystemsLoadFailed);
+        }
+
+        function wsystemsLoadFailed(response) {
+            notificationService.displayError(response.data);
+        }
+
+        function loadUserStation(user, completed) {
+            apiService.get('/api/account/userstation/' + user.username, user,
+            completed,
+            stationLoadFailed);
+        }
+
+        function stationLoadFailed(response) {
+            notificationService.displayError(response.data);
         }
 
         function login(user, completed) {
@@ -46,7 +68,7 @@
             $rootScope.repository = {};
             $cookieStore.remove('repository');
             $http.defaults.headers.common.Authorization = '';
-        };
+        }
 
         function loginFailed(response) {
             notificationService.displayError(response.data);

@@ -21,7 +21,7 @@ using System.Data.Entity;
 
 namespace GwcltdApp.Web.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Super, Admin, User")]
     [RoutePrefix("api/productions")]
     public class ProductionsController : ApiControllerBase
     {
@@ -55,7 +55,7 @@ namespace GwcltdApp.Web.Controllers
         [Route("summary/{id}")]
         public HttpResponseMessage GetTable(HttpRequestMessage request, string id)
         {
-            var allsys = SummaryManager.GetAllSystems();
+            var allsys = SummaryManager.GetAllSystems();//change underying code to get systems from the logged in user's station
             List<GraphData> list = new List<GraphData>();
             var graph = new MyDictionary();
             return CreateHttpResponse(request, () =>
@@ -226,7 +226,7 @@ namespace GwcltdApp.Web.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var allProductions = _productionsRepository.GetAll();
+               // var allProductions = _productionsRepository.GetAll();
 
                 switch(id)
                 {
@@ -397,7 +397,7 @@ namespace GwcltdApp.Web.Controllers
                 //}
                 //else 
                 if (filter1.HasValue && filter2.HasValue && string.IsNullOrEmpty(filter) )
-                {
+                {//change code to get systems from the logged in user's station
                     productions = _productionsRepository.GetAll()
                         .Where(m => DbFunctions.TruncateTime(m.DayToRecord) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.DayToRecord) <= DbFunctions.TruncateTime(filter2.Value))
                         .OrderBy(m => m.DayToRecord)

@@ -12,6 +12,5 @@ namespace GwcltdApp.Entities
         public string SMS_TEXT { get; set; }
         public string SENDER_NUMBER { get; set; }
         public DateTime SENT_DT { get; set; }
-        public DateTime TS { get; set; }
     }
 }

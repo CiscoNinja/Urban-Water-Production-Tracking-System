@@ -28,6 +28,9 @@ namespace GwcltdApp.Web.Models
         public int OptionId { get; set; }
         public string OptionType { get; set; }
         public int OptionTypeId { get; set; }
+        public int GwclStationId { get; set; }
+        public string StationCode { get; set; }
+        public string GwclStation { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

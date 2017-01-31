@@ -18,15 +18,25 @@ namespace GwcltdApp.Services
         private readonly IEntityBaseRepository<User> _userRepository;
         private readonly IEntityBaseRepository<Role> _roleRepository;
         private readonly IEntityBaseRepository<UserRole> _userRoleRepository;
+        private readonly IEntityBaseRepository<GwclRegion> _gwclRegionRepository;
+        private readonly IEntityBaseRepository<GwclStation> _gwclStationRepository;
+        private readonly IEntityBaseRepository<UserRegion> _userRegionRepository;
+        private readonly IEntityBaseRepository<UserStation> _userStationRepository;
         private readonly IEncryptionService _encryptionService;
         private readonly IUnitOfWork _unitOfWork;
         #endregion
         public MembershipService(IEntityBaseRepository<User> userRepository, IEntityBaseRepository<Role> roleRepository,
-        IEntityBaseRepository<UserRole> userRoleRepository, IEncryptionService encryptionService, IUnitOfWork unitOfWork)
+        IEntityBaseRepository<UserRole> userRoleRepository, IEntityBaseRepository<GwclRegion> gwclRegionRepository,
+        IEntityBaseRepository<GwclStation> gwclStationRepository, IEntityBaseRepository<UserRegion> userRegionRepository,
+        IEntityBaseRepository<UserStation> userStationRepository, IEncryptionService encryptionService, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _roleRepository = roleRepository;
             _userRoleRepository = userRoleRepository;
+            _gwclRegionRepository = gwclRegionRepository;
+            _gwclStationRepository = gwclStationRepository;
+            _userRegionRepository = userRegionRepository;
+            _userStationRepository = userStationRepository;
             _encryptionService = encryptionService;
             _unitOfWork = unitOfWork;
         }
@@ -51,7 +61,7 @@ namespace GwcltdApp.Services
 
             return membershipCtx;
         }
-        public User CreateUser(string username, string email, string password, int[] roles)
+        public User CreateUser(string username, string email, string password, int gwclregion, int gwclstation, int[] roles)
         {
             var existingUser = _userRepository.GetSingleByUsername(username);
 
@@ -69,7 +79,10 @@ namespace GwcltdApp.Services
                 Email = email,
                 IsLocked = false,
                 HashedPassword = _encryptionService.EncryptPassword(password, passwordSalt),
-                DateCreated = DateTime.Now
+                DateCreated = DateTime.Now,
+                GwclRegionID = gwclregion,
+                GwclStationId = gwclstation,
+                RoleId = roles[0]
             };
 
             _userRepository.Add(user);
@@ -86,12 +99,36 @@ namespace GwcltdApp.Services
 
             _unitOfWork.Commit();
 
+            if (gwclregion > 0 )
+            {
+                addUserToRegion(user, gwclregion);
+            }
+
+            _unitOfWork.Commit();
+
+            if (gwclstation > 0)
+            {
+                addUserToStation(user, gwclstation);
+            }
+
+            _unitOfWork.Commit();
+
             return user;
         }
 
         public User GetUser(int userId)
         {
             return _userRepository.GetSingle(userId);
+        }
+
+        public User GetUserStation(string username)
+        {
+            return _userRepository.GetSingleByUsername(username);
+        }
+
+        public User GetUserRegion(string username)
+        {
+            return _userRepository.GetSingleByUsername(username);
         }
 
         public List<Role> GetUserRoles(string username)
@@ -125,6 +162,34 @@ namespace GwcltdApp.Services
                 UserId = user.ID
             };
             _userRoleRepository.Add(userRole);
+        }
+
+        private void addUserToRegion(User user, int regionId)
+        {
+            var gwclregion = _gwclRegionRepository.GetSingle(regionId);
+            if (gwclregion == null)
+                throw new ApplicationException("Region doesn't exist.");
+
+            var userRegion = new UserRegion()
+            {
+                GwclRegionId = gwclregion.ID,
+                UserId = user.ID
+            };
+            _userRegionRepository.Add(userRegion);
+        }
+
+        private void addUserToStation(User user, int stationId)
+        {
+            var gwclstation = _gwclStationRepository.GetSingle(stationId);
+            if (gwclstation == null)
+                throw new ApplicationException("Station doesn't exist.");
+
+            var userStation = new UserStation()
+            {
+                GwclStationId = gwclstation.ID,
+                UserId = user.ID
+            };
+            _userStationRepository.Add(userStation);
         }
 
         private bool isPasswordValid(User user, string password)

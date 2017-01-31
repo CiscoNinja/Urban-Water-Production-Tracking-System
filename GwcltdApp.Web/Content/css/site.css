@@ -216,6 +216,10 @@ ul.pagination > li
     font-size: large;
     background-color: white;
 }
+.userinfo1 {
+    font-size: large;
+    background-color: white;
+}
 
 /*Validation Errors*/
 .has-error .control-label {

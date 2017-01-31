@@ -33,3 +33,6 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+//[assembly: WebServiceAspect(AttributeTargetMembers = "regex:Return|Use", AttributeTargetAssemblies = "GwcltdApp.Web", AttributeTargetTypes = "GwcltdApp.Web.Controllers.*")]
+//[assembly: DatabaseAspect(AttributeTargetMembers = "Execute*", AttributeTargetAssemblies = "System.Data", AttributeTargetTypes = "System.Data.SqlClient.SqlCommand")]

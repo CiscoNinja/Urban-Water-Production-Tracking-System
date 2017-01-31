@@ -22,7 +22,12 @@ namespace GwcltdApp.Entities
         public string Salt { get; set; }
         public bool IsLocked { get; set; }
         public DateTime DateCreated { get; set; }
-
+        public int GwclRegionID { get; set; }
+        public int  GwclStationId { get; set; }
+        public virtual GwclStation GwclStation { get; set; }
+        public virtual GwclRegion GwclRegion { get; set; }
+        public int RoleId { get; set; }
+        public virtual Role Role { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

@@ -24,6 +24,7 @@ namespace GwcltdApp.Data.Configurations
             Property(o => o.OptionId).IsRequired();
             Property(ot => ot.OptionTypeId).IsRequired();
             Property(ws => ws.WSystemId).IsRequired();
+            Property(ws => ws.GwclStationId).IsRequired();
         }
     }
 }

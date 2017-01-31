@@ -9,7 +9,7 @@ namespace GwcltdApp.Web.DAL
 {
     public class SummaryManager
     {
-        public static List<WSystem> GetAllSystems()
+        public static List<WSystem> GetAllSystems()//change code to get systems from the logged in user's station
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {

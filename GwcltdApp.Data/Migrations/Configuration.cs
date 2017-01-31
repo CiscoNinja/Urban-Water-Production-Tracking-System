@@ -16,38 +16,97 @@ namespace GwcltdApp.Data.Migrations
 
         protected override void Seed(GwcltdAppContext context)
         {
-            //create options
-            //create options
-            context.OptionSet.AddOrUpdate(o => o.Name, GenerateOptions());
-            //create optiontypes
-            context.OptionTypeSet.AddOrUpdate(ot => ot.Name, GenerateOptionTypes());
-            //create systems
-            context.WSystemSet.AddOrUpdate(ws => ws.Name, GenerateWSystems());
-            //create roles
-            context.RoleSet.AddOrUpdate(r => r.Name, GenerateRoles());
+            //context.OptionSet.AddOrUpdate(o => o.Name, GenerateOptions());
+            //context.OptionTypeSet.AddOrUpdate(ot => ot.Name, GenerateOptionTypes());
+            //context.GwclAreaSet.AddOrUpdate(GenerateGwclAreas());
+            //context.GwclRegionSet.AddOrUpdate(GenerateGwclRegions());
+            //context.GwclStationSet.AddOrUpdate(GenerateGwclStations());
+            //context.WSystemSet.AddOrUpdate(ws => ws.Name, GenerateWSystems());
+            //////create roles
+            //context.RoleSet.AddOrUpdate(r => r.Name, GenerateRoles());
             //create productions
-            //context.ProductionSet.AddOrUpdate(GenerateProductions());
+            context.ProductionSet.AddOrUpdate(GenerateProductions());
 
             // username: chsakell, password: homecinema
-            context.UserSet.AddOrUpdate(u => u.Email, new User[]{
-                new User()
-                {
-                    Email="chsakells.blog@gmail.com",
-                    Username="chsakell",
-                    HashedPassword ="XwAQoiq84p1RUzhAyPfaMDKVgSwnn80NCtsE8dNv3XI=",
-                    Salt = "mNKLRbEFCH8y1xIyTXP4qA==",
-                    IsLocked = false,
-                    DateCreated = DateTime.Now
+            //context.UserSet.AddOrUpdate(u => u.Email, new User[]{
+            //    new User()
+            //    {
+            //        Email="chsakells.blog@gmail.com",
+            //        Username="chsakell",
+            //        HashedPassword ="XwAQoiq84p1RUzhAyPfaMDKVgSwnn80NCtsE8dNv3XI=",
+            //        Salt = "mNKLRbEFCH8y1xIyTXP4qA==",
+            //        IsLocked = false,
+            //        DateCreated = DateTime.Now,
+            //        GwclRegionID = 1
+            //    }
+            //});
+
+            // username: ciscomaria5, password: 3GoDsinone
+            //context.UserSet.AddOrUpdate(u => u.Email, new User[]{
+            //    new User()
+            //    {
+            //        Email="franciscokadzi@gmail.com",
+            //        Username="ciscomaria5",
+            //        HashedPassword ="QmedqmUmT7/IVhKm0J7sTcDAsiUkQSVmdIz0vMlA+H4=",
+            //        Salt = "aXdlHqpYS25mAYYSzn7Z+w==",
+            //        IsLocked = false,
+            //        DateCreated = DateTime.Now,
+            //        GwclRegionID = 1,
+            //        GwclStationId = 1,
+            //        RoleId = 1
+            //    }
+            //});
+
+            context.UserRoleSet.AddOrUpdate(new UserRole[] {
+                 new UserRole() {
+                     RoleId = 1, // admin
+                     UserId = 1  // chsakell
+                 }
+            });
+
+            context.UserRegionSet.AddOrUpdate(new UserRegion[] {
+                 new UserRegion() {
+                     GwclRegionId = 1,
+                     UserId = 1
+                 }
+             });
+
+            context.UserStationSet.AddOrUpdate(new UserStation[] {
+                 new UserStation() {
+                     GwclStationId = 1,
+                     UserId = 1
+                 }
+             });
+
+
+            //context.SystemProductionSet.AddOrUpdate(new SystemProduction[] {
+            //    new SystemProduction() {
+            //        ProductionId = 1,
+            //        WSystemId = 1
+            //    }
+            //});
+
+            context.StationSystemSet.AddOrUpdate(new StationSystem[] {
+                new StationSystem() {
+                    GwclStationId = 1,
+                    WSystemID = 1
                 }
             });
 
-            // // create user-admin for chsakell
-            context.UserRoleSet.AddOrUpdate(new UserRole[] {
-                new UserRole() {
-                    RoleId = 1, // admin
-                    UserId = 1  // chsakell
+            context.RegionStationSet.AddOrUpdate(new RegionStation[] {
+                new RegionStation() {
+                    GwclRegionId = 1,
+                    GwclStationId = 1
                 }
             });
+
+            context.AreaRegionSet.AddOrUpdate(new AreaRegion[] {
+                new AreaRegion() {
+                    GwclRegionId = 1,
+                    GwclAreaId = 1
+                }
+            });
+
         }
         private Option[] GenerateOptions()
         {
@@ -61,6 +120,32 @@ namespace GwcltdApp.Data.Migrations
             };
 
             return options;
+        }
+
+        private GwclArea[] GenerateGwclAreas()
+        {
+            GwclArea[] gwclareas = new GwclArea[] {
+                new GwclArea() { Name = "Kumasi", Code = "A01"}
+            };
+
+            return gwclareas;
+        }
+        private GwclRegion[] GenerateGwclRegions()
+        {
+            GwclRegion[] gwclregions = new GwclRegion[] {
+                new GwclRegion() { Name = "RegKumasi", Code = "PR01"}
+            };
+
+            return gwclregions;
+        }
+
+        private GwclStation[] GenerateGwclStations()
+        {
+            GwclStation[] gwclstations = new GwclStation[] {
+                new GwclStation() { Name = "Kpong", StationCode = "AA01"}
+            };
+
+            return gwclstations;
         }
 
         private OptionType[] GenerateOptionTypes()
@@ -99,6 +184,10 @@ namespace GwcltdApp.Data.Migrations
             Role[] _roles = new Role[]{
                 new Role()
                 {
+                    Name="Super"
+                },
+                new Role()
+                {
                     Name="Admin"
                 }
             };
@@ -117,9 +206,9 @@ namespace GwcltdApp.Data.Migrations
                 {
 
                     int wsystemId = r.Next(1, 8);
-                    int optionid = r.Next(7, 9);
-                    int trtoptions = r.Next(9, 13); //takes optiontype from treated water option
-                    int rawoption = r.Next(13, 17); //takes optiontype from raw water option
+                    int optionid = r.Next(1, 3);
+                    int trtoptions = r.Next(1, 5); //takes optiontype from treated water option
+                    int rawoption = r.Next(5, 9); //takes optiontype from raw water option
                     Production production = new Production()
                     {
                         DateCreated = new DateTime(2016, i, j),
@@ -133,8 +222,8 @@ namespace GwcltdApp.Data.Migrations
                         Comment = "Put your comments here.",
                         WSystemId = wsystemId,
                         OptionId = optionid,
-                        OptionTypeId = (optionid == 7) ? trtoptions : rawoption,
-
+                        OptionTypeId = (optionid == 1) ? trtoptions : rawoption,
+                        GwclStationId = 1
                     };
                     _productions.Add(production);
                 }

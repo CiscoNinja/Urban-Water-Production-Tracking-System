@@ -8,13 +8,22 @@
         <a class="navbar-brand active" href="#/">Ghana Water Company Ltd.</a>
     </div>
     <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
+        <!--<ul class="nav navbar-nav">
             <li><a href="#about">About<i class="fa fa-info-circle fa-fw pull-right"></i></a></li>
-        </ul>
+        </ul>-->
         <ul class="nav navbar-nav navbar-right">
-            <li class="userinfo"><a ng-if="userData.isUserLoggedIn" href="#/">{{username}}<i class="fa fa-user fa-fw"></i></a></li>
-            <li class="col-md-pull-1 bg-danger"><a ng-if="userData.isUserLoggedIn" href="" ng-click="logout();">Logout<i class="fa fa-sign-out fa-fw"></i></a></li>
-            <li class="col-md-pull-1 bg-success"><a ng-if="!userData.isUserLoggedIn" href="#/login">Login<i class="fa fa-sign-in fa-fw"></i></a></li>    
+            <li style="display:flex; align-items:center" ng-if="userData.isUserLoggedIn">
+                <a class="control-label">Region:</a>
+                <a class="userinfo">{{userstation.GwclRegion}}</a>
+                <a class="control-label">Station:</a>
+                <a class="userinfo">{{userstation.GwclStation}}</a>
+                <a class="control-label">System:</a>
+                <select ng-model="userSystem.ID" class="form-control black userinfo" ng-options="userSystem.ID as userSystem.Name for userSystem in userSystems" required></select>
+                <input type="hidden" name="ID" ng-value="userSystem.ID" />
+            </li>
+            <li class="userinfo1"><a ng-if="userData.isUserLoggedIn">{{username}}<i class="fa fa-user fa-fw"></i></a></li>
+            <li class="bg-danger"><a ng-if="userData.isUserLoggedIn" href="" ng-click="logout();">Logout<i class="fa fa-sign-out fa-fw"></i></a></li>
+            <li class="bg-success"><a ng-if="!userData.isUserLoggedIn" href="#/login">Login<i class="fa fa-sign-in fa-fw"></i></a></li>
         </ul>
     </div>
 </div>

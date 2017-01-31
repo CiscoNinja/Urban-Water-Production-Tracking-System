@@ -39,14 +39,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AreaRegion.cs" />
     <Compile Include="Error.cs" />
+    <Compile Include="GwclArea.cs" />
+    <Compile Include="GwclRegion.cs" />
+    <Compile Include="GwclStation.cs" />
+    <Compile Include="UserStation.cs" />
+    <Compile Include="WSystemPlantDowntime.cs" />
     <Compile Include="OptionType.cs" />
     <Compile Include="IEntityBase.cs" />
     <Compile Include="Option.cs" />
+    <Compile Include="PlantDowntime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Production.cs" />
+    <Compile Include="RegionStation.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="SMS_IN.cs" />
+    <Compile Include="StationSystem.cs" />
+    <Compile Include="SystemProduction.cs" />
+    <Compile Include="UserRegion.cs" />
     <Compile Include="WSystem.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserRole.cs" />

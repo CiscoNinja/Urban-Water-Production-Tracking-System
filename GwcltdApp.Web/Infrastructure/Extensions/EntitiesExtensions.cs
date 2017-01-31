@@ -25,6 +25,15 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
             production.WSystemId = productionVm.WSystemId;
         }
 
+        public static void UpdatePlantDowntime(this PlantDowntime plantdowntime, PlantDowntimeViewModel plantdowntimeVm)
+        {
+            plantdowntime.CurrentDate = plantdowntimeVm.CurrentDate;
+            plantdowntime.EndTime = plantdowntimeVm.EndTime;
+            plantdowntime.HoursDown = plantdowntimeVm.HoursDown ;
+            plantdowntime.Starttime = plantdowntimeVm.Starttime;
+            plantdowntime.WSystemId = plantdowntimeVm.WSystemId;
+        }
+
         //public static void UpdateCustomer(this Customer customer, CustomerViewModel customerVm)
         //{
         //    customer.FirstName = customerVm.FirstName;

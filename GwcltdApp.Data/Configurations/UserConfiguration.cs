@@ -18,6 +18,9 @@ namespace GwcltdApp.Data.Configurations
             Property(u => u.Salt).IsRequired().HasMaxLength(200);
             Property(u => u.IsLocked).IsRequired();
             Property(u => u.DateCreated);
+            Property(u => u.GwclRegionID).IsRequired();
+            Property(u => u.GwclStationId).IsRequired();
+            Property(u => u.RoleId).IsRequired();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using GwcltdApp.Data.Infrastructure;
+﻿using AutoMapper;
+using GwcltdApp.Data.Infrastructure;
 using GwcltdApp.Data.Repositories;
 using GwcltdApp.Entities;
 using GwcltdApp.Services;
@@ -14,7 +15,7 @@ using System.Web.Http;
 
 namespace GwcltdApp.Web.Controllers
 {
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles="Super, Admin")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiControllerBase
     {
@@ -56,7 +57,7 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Super")]
         [Route("register")]
         [HttpPost]
         public HttpResponseMessage Register(HttpRequestMessage request, RegistrationViewModel user)
@@ -71,7 +72,7 @@ namespace GwcltdApp.Web.Controllers
                 }
                 else
                 {
-                    Entities.User _user = _membershipService.CreateUser(user.Username, user.Email, user.Password, new int[] { 1 });
+                    Entities.User _user = _membershipService.CreateUser(user.Username, user.Email, user.Password, user.GwclRegionId, user.GwclStationId, new int[] { user.RoleId } );
 
                     if (_user != null)
                     {
@@ -82,6 +83,23 @@ namespace GwcltdApp.Web.Controllers
                         response = request.CreateResponse(HttpStatusCode.OK, new { success = false });
                     }
                 }
+
+                return response;
+            });
+        }
+
+        [AllowAnonymous]
+        [Route("userstation/{username}")]
+        [HttpGet]
+        public HttpResponseMessage logUserStation(HttpRequestMessage request, string username)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                var userstation = _membershipService.GetUserStation(username);
+                RegistrationViewModel regVM = Mapper.Map<User, RegistrationViewModel>(userstation);
+                response = request.CreateResponse<RegistrationViewModel>(HttpStatusCode.OK, regVM);
 
                 return response;
             });

@@ -24,7 +24,33 @@ namespace GwcltdApp.Web.Mappings
                 .ForMember(vm => vm.OptionTypeId, map => map.MapFrom(m => m.OptionType.ID))
                 .ForMember(vm => vm.WSystem, map => map.MapFrom(m => m.WSystem.Name))
                 .ForMember(vm => vm.WSystemCode, map => map.MapFrom(m => m.WSystem.Code))
+                .ForMember(vm => vm.WSystemId, map => map.MapFrom(m => m.WSystem.ID))
+                .ForMember(vm => vm.GwclStation, map => map.MapFrom(m => m.GwclStation.Name))
+                .ForMember(vm => vm.StationCode, map => map.MapFrom(m => m.GwclStation.StationCode))
+                .ForMember(vm => vm.GwclStationId, map => map.MapFrom(m => m.GwclStation.ID));
+
+            Mapper.CreateMap<PlantDowntime, PlantDowntimeViewModel>()
+                .ForMember(vm => vm.WSystem, map => map.MapFrom(m => m.WSystem.Name))
                 .ForMember(vm => vm.WSystemId, map => map.MapFrom(m => m.WSystem.ID));
+
+            Mapper.CreateMap<User, RegistrationViewModel>()
+                .ForMember(vm => vm.GwclRegion, map => map.MapFrom(m => m.GwclRegion.Name))
+                .ForMember(vm => vm.GwclStation, map => map.MapFrom(m => m.GwclStation.Name))
+                .ForMember(vm => vm.GwclRegionId, map => map.MapFrom(m => m.GwclRegion.ID))
+                .ForMember(vm => vm.GwclStationId, map => map.MapFrom(m => m.GwclStation.ID))
+                .ForMember(vm => vm.Role, map => map.MapFrom(m => m.Role.Name))
+                .ForMember(vm => vm.RoleId, map => map.MapFrom(m => m.Role.ID));
+
+            Mapper.CreateMap<GwclRegion, GwclRegionViewModel>()
+                .ForMember(vm => vm.GwclArea, map => map.MapFrom(m => m.GwclArea.Name))
+                .ForMember(vm => vm.GwclAreaID, map => map.MapFrom(m => m.GwclArea.ID));
+
+            Mapper.CreateMap<GwclStation, GwclStationViewModel>()
+                .ForMember(vm => vm.GwclRegion, map => map.MapFrom(m => m.GwclRegion.Name))
+                .ForMember(vm => vm.GwclRegionId, map => map.MapFrom(m => m.GwclRegion.ID));
+
+            Mapper.CreateMap<Role, RoleViewModel>()
+               .ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name));
 
             Mapper.CreateMap<Option, OptionViewModel>();
 

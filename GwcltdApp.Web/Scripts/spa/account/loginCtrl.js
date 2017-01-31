@@ -9,11 +9,12 @@
         $scope.pageClass = 'page-login';
         $scope.login = login;
         $scope.user = {};
+        
 
         function login() {
             membershipService.login($scope.user, loginCompleted)
         }
-
+        
         function loginCompleted(result) {
             if (result.data.success) {
                 membershipService.saveCredentials($scope.user);

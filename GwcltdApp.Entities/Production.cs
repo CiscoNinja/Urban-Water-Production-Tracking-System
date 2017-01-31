@@ -27,5 +27,7 @@ namespace GwcltdApp.Entities
         public virtual WSystem WSystem { get; set; }
         public virtual Option Option { get; set; }
         public virtual OptionType OptionType { get; set; }
+        public int GwclStationId { get; set; }
+        public virtual GwclStation GwclStation { get; set; }
     }
 }

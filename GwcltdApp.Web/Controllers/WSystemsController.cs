@@ -13,7 +13,7 @@ using System.Web.Http;
 
 namespace GwcltdApp.Web.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Super")]
     [RoutePrefix("api/wsystems")]
     public class WSystemsController : ApiControllerBase
     {

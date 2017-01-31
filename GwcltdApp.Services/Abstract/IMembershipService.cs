@@ -11,8 +11,10 @@ namespace GwcltdApp.Services
     public interface IMembershipService
     {
         MembershipContext ValidateUser(string username, string password);
-        User CreateUser(string username, string email, string password, int[] roles);
+        User CreateUser(string username, string email, string password, int gwclarea, int gwclstation, int[] roles);
         User GetUser(int userId);
+        User GetUserStation(string username);
+        User GetUserRegion(string username);
         List<Role> GetUserRoles(string username);
     }
 }
