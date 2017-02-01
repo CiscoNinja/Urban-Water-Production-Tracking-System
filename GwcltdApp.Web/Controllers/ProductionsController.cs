@@ -35,13 +35,13 @@ namespace GwcltdApp.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("latest")]
-        public HttpResponseMessage Get(HttpRequestMessage request)
+        [Route("latest/{userstation:int}")]
+        public HttpResponseMessage Get(HttpRequestMessage request, int userstation)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var productions = _productionsRepository.GetAll().OrderByDescending(m => m.DayToRecord).Take(4).ToList();
+                var productions = _productionsRepository.GetAll().Where(s => s.GwclStationId == userstation).OrderByDescending(m => m.DayToRecord).Take(4).ToList();
 
                 IEnumerable<ProductionViewModel> productionsVM = Mapper.Map<IEnumerable<Production>, IEnumerable<ProductionViewModel>>(productions);
 
@@ -51,11 +51,11 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        [AllowAnonymous]
-        [Route("summary/{id}")]
-        public HttpResponseMessage GetTable(HttpRequestMessage request, string id)
+        //[AllowAnonymous]
+        [Route("summary/{userstation:int}/{id}")]
+        public HttpResponseMessage GetTable(HttpRequestMessage request, int userstation, string id)
         {
-            var allsys = SummaryManager.GetAllSystems();//change underying code to get systems from the logged in user's station
+            var allsys = SummaryManager.GetAllUserSystems(userstation);//change underying code to get systems from the logged in user's station
             List<GraphData> list = new List<GraphData>();
             var graph = new MyDictionary();
             return CreateHttpResponse(request, () =>
@@ -217,7 +217,7 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [Route("charts/{id}")]
         public HttpResponseMessage GetChart(HttpRequestMessage request, string id)
         {
@@ -348,7 +348,7 @@ namespace GwcltdApp.Web.Controllers
             }
         }
         [Route("details/{id:int}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int id)
+        public HttpResponseMessage GetSingle(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -363,9 +363,9 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        [AllowAnonymous]
-        [Route("{page:int=0}/{pageSize=3}/{filter?}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, DateTime? filter1 = null, DateTime? filter2 = null, string filter = null)
+        //[AllowAnonymous]
+        [Route("{userstation:int}/{page:int=0}/{pageSize=3}/{filter?}")]
+        public HttpResponseMessage Get(HttpRequestMessage request, int userstation, int? page, int? pageSize, DateTime? filter1 = null, DateTime? filter2 = null, string filter = null)
         {
             int currentPage = page.Value;
             int currentPageSize = pageSize.Value;
@@ -399,26 +399,26 @@ namespace GwcltdApp.Web.Controllers
                 if (filter1.HasValue && filter2.HasValue && string.IsNullOrEmpty(filter) )
                 {//change code to get systems from the logged in user's station
                     productions = _productionsRepository.GetAll()
-                        .Where(m => DbFunctions.TruncateTime(m.DayToRecord) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.DayToRecord) <= DbFunctions.TruncateTime(filter2.Value))
+                        .Where(m => m.GwclStationId == userstation && (DbFunctions.TruncateTime(m.DayToRecord) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.DayToRecord) <= DbFunctions.TruncateTime(filter2.Value)))
                         .OrderBy(m => m.DayToRecord)
                         .Skip(currentPage * currentPageSize)
                         .Take(currentPageSize)
                         .ToList();
 
                     totalProductions = _productionsRepository.GetAll()
-                        .Where(m => DbFunctions.TruncateTime(m.DayToRecord) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.DayToRecord) <= DbFunctions.TruncateTime(filter2.Value))
+                        .Where(m => m.GwclStationId == userstation && (DbFunctions.TruncateTime(m.DayToRecord) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.DayToRecord) <= DbFunctions.TruncateTime(filter2.Value)))
                         .Count();
                 }
                 else
                 {
                     productions = _productionsRepository
-                        .GetAll()
+                        .GetAll().Where(m => m.GwclStationId == userstation)
                         .OrderBy(m => m.ID)
                         .Skip(currentPage * currentPageSize)
                         .Take(currentPageSize)
                         .ToList();
 
-                    totalProductions = _productionsRepository.GetAll().Count();
+                    totalProductions = _productionsRepository.GetAll().Where(m => m.GwclStationId == userstation).Count();
                 }
 
                 IEnumerable<ProductionViewModel> productionsVM = Mapper.Map<IEnumerable<Production>, IEnumerable<ProductionViewModel>>(productions);

@@ -14,11 +14,12 @@
             })
             .when("/login", {
                 templateUrl: "scripts/spa/account/login.html",
-                controller: "loginCtrl"
+                controller: "loginCtrl",
             })
             .when("/register", {
                 templateUrl: "scripts/spa/account/register.html",
-                controller: "registerCtrl"
+                controller: "registerCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             //.when("/customers", {
             //    templateUrl: "scripts/spa/customers/customers.html",
@@ -31,7 +32,8 @@
             //})
             .when("/options", {
                 templateUrl: "scripts/spa/options/options.html",
-                controller: "opttionsCtrl"
+                controller: "opttionsCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/options/add", {
                 templateUrl: "scripts/spa/options/add.html",
@@ -45,11 +47,13 @@
             })
             .when("/options/edit/:id", {
                 templateUrl: "scripts/spa/options/edit.html",
-                controller: "optionEditCtrl"
+                controller: "optionEditCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/productions", {
                 templateUrl: "scripts/spa/productions/productions.html",
-                controller: "productionsCtrl"
+                controller: "productionsCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/productions/add", {
                 templateUrl: "scripts/spa/productions/add.html",
@@ -58,11 +62,13 @@
             })
             .when("/productions/summary/:id", {
                 templateUrl: "scripts/spa/productions/summary.html",
-                controller: "summaryCtrl"
+                controller: "summaryCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
                 .when("/productions/charts/:id", {
                     templateUrl: "scripts/spa/productions/charts.html",
-                    controller: "chartsCtrl"
+                    controller: "chartsCtrl",
+                    resolve: { isAuthenticated: isAuthenticated }
                 })
             .when("/productions/:id", {
                 templateUrl: "scripts/spa/productions/details.html",
@@ -75,7 +81,8 @@
             })
             .when("/optiontypes", {
                 templateUrl: "scripts/spa/optiontypes/optiontypes.html",
-                controller: "optiontypesCtrl"
+                controller: "optiontypesCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/optiontypes/add", {
                 templateUrl: "scripts/spa/optiontypes/add.html",
@@ -93,7 +100,8 @@
             })
             .when("/wsystems", {
                 templateUrl: "scripts/spa/wsystems/wsystems.html",
-                controller: "wsystemsCtrl"
+                controller: "wsystemsCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/wsystems/add", {
                 templateUrl: "scripts/spa/wsystems/add.html",

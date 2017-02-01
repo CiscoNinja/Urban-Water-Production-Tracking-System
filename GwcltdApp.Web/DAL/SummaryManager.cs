@@ -16,6 +16,14 @@ namespace GwcltdApp.Web.DAL
                 return context.WSystemSet.OrderBy(x => x.Code).ToList();
             }
         }
+        public static List<WSystem> GetAllUserSystems(int userstation)//change code to get systems from the logged in user's station
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.WSystemSet.Where(s => s.GwclStationId == userstation).OrderBy(x => x.Code).ToList();
+            }
+        }
+
         public static string GetTypeName(int id)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())

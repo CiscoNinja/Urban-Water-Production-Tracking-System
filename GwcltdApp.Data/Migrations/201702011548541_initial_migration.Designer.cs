@@ -13,7 +13,7 @@ namespace GwcltdApp.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201701282257099_initial_migration"; }
+            get { return "201702011548541_initial_migration"; }
         }
         
         string IMigrationMetadata.Source

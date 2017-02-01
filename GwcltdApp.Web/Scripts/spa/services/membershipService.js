@@ -18,7 +18,7 @@
         }
 
         function loadWsystems(completed) {
-            apiService.get('/api/wsystems/', null,
+            apiService.get('/api/wsystems/'+1, null,
             completed,
             wsystemsLoadFailed);
         }

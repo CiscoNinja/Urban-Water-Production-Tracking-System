@@ -25,7 +25,7 @@ namespace GwcltdApp.Data.Migrations
             //////create roles
             //context.RoleSet.AddOrUpdate(r => r.Name, GenerateRoles());
             //create productions
-            context.ProductionSet.AddOrUpdate(GenerateProductions());
+            //context.ProductionSet.AddOrUpdate(GenerateProductions());
 
             // username: chsakell, password: homecinema
             //context.UserSet.AddOrUpdate(u => u.Email, new User[]{
@@ -41,7 +41,7 @@ namespace GwcltdApp.Data.Migrations
             //    }
             //});
 
-            // username: ciscomaria5, password: 3GoDsinone
+            //username: ciscomaria5, password: 3GoDsinone
             //context.UserSet.AddOrUpdate(u => u.Email, new User[]{
             //    new User()
             //    {
@@ -86,26 +86,26 @@ namespace GwcltdApp.Data.Migrations
             //    }
             //});
 
-            context.StationSystemSet.AddOrUpdate(new StationSystem[] {
-                new StationSystem() {
-                    GwclStationId = 1,
-                    WSystemID = 1
-                }
-            });
+            //context.StationSystemSet.AddOrUpdate(new StationSystem[] {
+            //    new StationSystem() {
+            //        GwclStationId = 1,
+            //        WSystemID = 1
+            //    }
+            //});
 
-            context.RegionStationSet.AddOrUpdate(new RegionStation[] {
-                new RegionStation() {
-                    GwclRegionId = 1,
-                    GwclStationId = 1
-                }
-            });
+            //context.RegionStationSet.AddOrUpdate(new RegionStation[] {
+            //    new RegionStation() {
+            //        GwclRegionId = 1,
+            //        GwclStationId = 1
+            //    }
+            //});
 
-            context.AreaRegionSet.AddOrUpdate(new AreaRegion[] {
-                new AreaRegion() {
-                    GwclRegionId = 1,
-                    GwclAreaId = 1
-                }
-            });
+            //context.AreaRegionSet.AddOrUpdate(new AreaRegion[] {
+            //    new AreaRegion() {
+            //        GwclRegionId = 1,
+            //        GwclAreaId = 1
+            //    }
+            //});
 
         }
         private Option[] GenerateOptions()
@@ -167,11 +167,11 @@ namespace GwcltdApp.Data.Migrations
         private WSystem[] GenerateWSystems()
         {
             WSystem[] wsystem = new WSystem[] {
-                new WSystem() { Name = "Kpong New", Code = "S01", Capacity = 181818},
-                new WSystem() { Name = "Kpong Old", Code = "S02", Capacity = 38636 },
-                new WSystem() { Name = "Keseve/Adafoa", Code = "S03", Capacity = 1363 },
-                new WSystem() { Name = "Tahal", Code = "S04", Capacity = 100},
-                new WSystem() { Name = "China Ghezhouba", Code = "S05", Capacity = 838 },
+                new WSystem() { Name = "Kpong New", Code = "S01", Capacity = 181818, GwclStationId =1 },
+                new WSystem() { Name = "Kpong Old", Code = "S02", Capacity = 38636, GwclStationId =1 },
+                new WSystem() { Name = "Keseve/Adafoa", Code = "S03", Capacity = 1363, GwclStationId =1 },
+                new WSystem() { Name = "Tahal", Code = "S04", Capacity = 100, GwclStationId =1},
+                new WSystem() { Name = "China Ghezhouba", Code = "S05", Capacity = 838, GwclStationId =1 },
                 new WSystem() { Name = "Siemens", Code = "S06", Capacity = 0 },
                 new WSystem() { Name = "Desalination", Code = "S07", Capacity = 0 },
             };

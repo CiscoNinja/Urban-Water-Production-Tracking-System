@@ -16,8 +16,8 @@ namespace GwcltdApp.Data.Migrations
                         GwclRegionId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.GwclArea", t => t.GwclAreaId, cascadeDelete: true)
-                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionId, cascadeDelete: true)
+                .ForeignKey("dbo.GwclArea", t => t.GwclAreaId, cascadeDelete: false)
+                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionId, cascadeDelete: false)
                 .Index(t => t.GwclAreaId)
                 .Index(t => t.GwclRegionId);
             
@@ -53,8 +53,8 @@ namespace GwcltdApp.Data.Migrations
                         GwclStationId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: true)
-                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionId, cascadeDelete: true)
+                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: false)
+                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionId, cascadeDelete: false)
                 .Index(t => t.GwclRegionId)
                 .Index(t => t.GwclStationId);
             
@@ -80,8 +80,8 @@ namespace GwcltdApp.Data.Migrations
                         WSystemID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.WSystem", t => t.WSystemID, cascadeDelete: true)
-                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: true)
+                .ForeignKey("dbo.WSystem", t => t.WSystemID, cascadeDelete: false)
+                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: false)
                 .Index(t => t.GwclStationId)
                 .Index(t => t.WSystemID);
             
@@ -93,8 +93,11 @@ namespace GwcltdApp.Data.Migrations
                         Code = c.String(nullable: false, maxLength: 5),
                         Name = c.String(nullable: false, maxLength: 20),
                         Capacity = c.Int(nullable: false),
+                        GwclStationId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: false)
+                .Index(t => t.GwclStationId);
             
             CreateTable(
                 "dbo.SystemProduction",
@@ -105,8 +108,8 @@ namespace GwcltdApp.Data.Migrations
                         ProductionId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Production", t => t.ProductionId, cascadeDelete: true)
-                .ForeignKey("dbo.WSystem", t => t.WSystemId, cascadeDelete: true)
+                .ForeignKey("dbo.Production", t => t.ProductionId, cascadeDelete: false)
+                .ForeignKey("dbo.WSystem", t => t.WSystemId, cascadeDelete: false)
                 .Index(t => t.WSystemId)
                 .Index(t => t.ProductionId);
             
@@ -130,9 +133,9 @@ namespace GwcltdApp.Data.Migrations
                         GwclStationId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: true)
-                .ForeignKey("dbo.Option", t => t.OptionId, cascadeDelete: true)
-                .ForeignKey("dbo.OptionType", t => t.OptionTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: false)
+                .ForeignKey("dbo.Option", t => t.OptionId, cascadeDelete: false)
+                .ForeignKey("dbo.OptionType", t => t.OptionTypeId, cascadeDelete: false)
                 .ForeignKey("dbo.WSystem", t => t.WSystemId, cascadeDelete: false)
                 .Index(t => t.WSystemId)
                 .Index(t => t.OptionId)
@@ -167,8 +170,8 @@ namespace GwcltdApp.Data.Migrations
                         PlantDowntimeId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.PlantDowntime", t => t.PlantDowntimeId, cascadeDelete: true)
-                .ForeignKey("dbo.WSystem", t => t.WSystemId, cascadeDelete: true)
+                .ForeignKey("dbo.PlantDowntime", t => t.PlantDowntimeId, cascadeDelete: false)
+                .ForeignKey("dbo.WSystem", t => t.WSystemId, cascadeDelete: false)
                 .Index(t => t.WSystemId)
                 .Index(t => t.PlantDowntimeId);
             
@@ -196,7 +199,7 @@ namespace GwcltdApp.Data.Migrations
                         GwclStationId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: true)
+                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: false)
                 .Index(t => t.GwclStationId);
             
             CreateTable(
@@ -208,7 +211,7 @@ namespace GwcltdApp.Data.Migrations
                         GwclRegionId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionId, cascadeDelete: true)
+                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionId, cascadeDelete: false)
                 .Index(t => t.GwclRegionId);
             
             CreateTable(
@@ -251,8 +254,8 @@ namespace GwcltdApp.Data.Migrations
                         RoleId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Role", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.Role", t => t.RoleId, cascadeDelete: false)
+                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: false)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
             
@@ -272,8 +275,8 @@ namespace GwcltdApp.Data.Migrations
                         RoleId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionID, cascadeDelete: true)
-                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: true)
+                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionID, cascadeDelete: false)
+                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: false)
                 .ForeignKey("dbo.Role", t => t.RoleId, cascadeDelete: false)
                 .Index(t => t.GwclRegionID)
                 .Index(t => t.GwclStationId)
@@ -304,6 +307,7 @@ namespace GwcltdApp.Data.Migrations
             DropForeignKey("dbo.Production", "OptionTypeId", "dbo.OptionType");
             DropForeignKey("dbo.Production", "OptionId", "dbo.Option");
             DropForeignKey("dbo.Production", "GwclStationId", "dbo.GwclStation");
+            DropForeignKey("dbo.WSystem", "GwclStationId", "dbo.GwclStation");
             DropForeignKey("dbo.GwclStation", "GwclRegionId", "dbo.GwclRegion");
             DropForeignKey("dbo.GwclRegion", "GwclAreaID", "dbo.GwclArea");
             DropForeignKey("dbo.AreaRegion", "GwclAreaId", "dbo.GwclArea");
@@ -323,6 +327,7 @@ namespace GwcltdApp.Data.Migrations
             DropIndex("dbo.Production", new[] { "WSystemId" });
             DropIndex("dbo.SystemProduction", new[] { "ProductionId" });
             DropIndex("dbo.SystemProduction", new[] { "WSystemId" });
+            DropIndex("dbo.WSystem", new[] { "GwclStationId" });
             DropIndex("dbo.StationSystem", new[] { "WSystemID" });
             DropIndex("dbo.StationSystem", new[] { "GwclStationId" });
             DropIndex("dbo.GwclStation", new[] { "GwclRegionId" });

@@ -16,11 +16,11 @@
         $scope.loadData = loadData;
 
         function loadData() {
-            apiService.get('/api/productions/latest', null,
+            apiService.get('/api/productions/latest/'+1, null,
                         productionsLoadCompleted,
                         productionsLoadFailed);
 
-            apiService.get("/api/productions/latest", null,
+            apiService.get("/api/productions/latest/"+1, null,
                 summaryLoadCompleted,
                 summaryLoadFailed);
         }

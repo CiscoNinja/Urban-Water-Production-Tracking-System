@@ -56,7 +56,9 @@ namespace GwcltdApp.Web.Mappings
 
             Mapper.CreateMap<OptionType, OptionTypeViewModel>();
 
-            Mapper.CreateMap<WSystem, WSystemViewModel>();
+            Mapper.CreateMap<WSystem, WSystemViewModel>()
+                .ForMember(vm => vm.GwclStation, map => map.MapFrom(m => m.GwclStation.Name))
+                .ForMember(vm => vm.GwclStationId, map => map.MapFrom(m => m.GwclStation.ID));
         }
     }
 }

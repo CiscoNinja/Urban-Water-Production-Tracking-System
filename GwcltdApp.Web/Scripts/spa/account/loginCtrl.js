@@ -9,7 +9,6 @@
         $scope.pageClass = 'page-login';
         $scope.login = login;
         $scope.user = {};
-        
 
         function login() {
             membershipService.login($scope.user, loginCompleted)

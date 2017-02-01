@@ -17,9 +17,9 @@
                 <a class="userinfo">{{userstation.GwclRegion}}</a>
                 <a class="control-label">Station:</a>
                 <a class="userinfo">{{userstation.GwclStation}}</a>
-                <a class="control-label">System:</a>
-                <select ng-model="userSystem.ID" class="form-control black userinfo" ng-options="userSystem.ID as userSystem.Name for userSystem in userSystems" required></select>
-                <input type="hidden" name="ID" ng-value="userSystem.ID" />
+                <a class="control-label">Systems:</a>
+                <select ng-model="userInfo.selectedSys" class="form-control black userinfo" ng-options="userSystem.ID as userSystem.Name for userSystem in userSystems" required></select>
+                <input type="hidden" name="selectedSys" ng-value="userInfo.selectedSys" />
             </li>
             <li class="userinfo1"><a ng-if="userData.isUserLoggedIn">{{username}}<i class="fa fa-user fa-fw"></i></a></li>
             <li class="bg-danger"><a ng-if="userData.isUserLoggedIn" href="" ng-click="logout();">Logout<i class="fa fa-sign-out fa-fw"></i></a></li>

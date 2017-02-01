@@ -14,7 +14,7 @@ namespace GwcltdApp.Data
     public class GwcltdAppContext : DbContext
     {
         public GwcltdAppContext()
-            : base("GwcltdAppDB5")
+            : base("GwcltdAppDB6")
         {
             Database.SetInitializer<GwcltdAppContext>(null);
         }

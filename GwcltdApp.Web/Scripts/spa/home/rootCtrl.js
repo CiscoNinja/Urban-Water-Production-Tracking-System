@@ -7,8 +7,9 @@
     function rootCtrl($scope, $location, membershipService, $rootScope) {
 
         $scope.userData = {};
-        $scope.userSystems = { ID: 1 };
+        $scope.userSystems = {};
         $scope.userstation = {};
+        $scope.userInfo = {selectedSys: 1}
         
         $scope.userData.displayUserInfo = displayUserInfo;
         $scope.logout = logout;

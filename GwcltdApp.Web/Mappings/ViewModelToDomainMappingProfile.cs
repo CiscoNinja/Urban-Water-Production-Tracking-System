@@ -20,8 +20,8 @@ namespace GwcltdApp.Web.Mappings
             Mapper.CreateMap<ProductionViewModel, Production>()
                 //.ForMember(m => m.Image, map => map.Ignore())
                 .ForMember(m => m.Option, map => map.Ignore())
-                .ForMember(m => m.OptionType, map => map.Ignore())
-                .ForMember(m => m.WSystem, map => map.Ignore());
+                .ForMember(m => m.OptionType, map => map.Ignore());
+                //.ForMember(m => m.WSystem, map => map.Ignore());
         }
     }
 }

@@ -40,7 +40,7 @@
                 }
             };
 
-            apiService.get('/api/productions/', config,
+            apiService.get('/api/productions/'+1, config,
             productionsLoadCompleted,
             productionsLoadFailed);
         }
