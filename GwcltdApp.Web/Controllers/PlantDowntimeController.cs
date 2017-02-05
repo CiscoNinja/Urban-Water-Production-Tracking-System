@@ -131,7 +131,6 @@ namespace GwcltdApp.Web.Controllers
                     PlantDowntime newPlantDowntime = new PlantDowntime();
                     newPlantDowntime.UpdatePlantDowntime(plantdowntime);
 
-
                     _plantdowntimeRepository.Add(newPlantDowntime);
 
                     _unitOfWork.Commit();

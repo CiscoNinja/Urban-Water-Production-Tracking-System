@@ -1,0 +1,33 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Edit {{EditedWArea.Code}} {{EditedWArea.Name}}
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="addWAreaForm" angular-validator-submit="AddWArea()">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label" for="areaName">Area Name</label>
+                            <input type="text" class="form-control" ng-model="EditedWArea.Name" name="areaName" id="areaName" placeholder="Area Name"
+                                   validate-on="blur" required required-message="'Arae Name is required'">
+                        </div>
+
+                        <div class="col-sm-6 selectContainer">
+                            <label class="control-label" for="areaCode">Area Code</label>
+                            <input type="text" class="form-control" ng-model="EditedWArea.Code" name="areaCode" id="areaCode" placeholder="Area Code"
+                                   validate-on="blur" required required-message="'Area Code is required'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="nav pull-right" style="display:flex; align-items:center">
+            <p><a ng-href="#/gwclareas/" class="btn btn-danger" ng-click="cancelEdit()">Cancel</a></p>
+            <p><a ng-href="#/gwclareas/" class="btn btn-primary" ng-click="updateWArea()">Update</a></p>
+        </div>
+    </div>
+</div>

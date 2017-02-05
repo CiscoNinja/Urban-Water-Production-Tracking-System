@@ -1,0 +1,47 @@
+﻿<hr />
+<div class="alert alert-info alert-dismissable">
+    <a class="panel-close close" data-dismiss="alert">×</a>
+    <i class="fa fa-search-plus fa-3x"></i>
+    Add new Area.
+</div>
+<div class="row">
+    <form role="form" novalidate angular-validator name="addWAreaForm" angular-validator-submit="AddWArea()">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="areaName">Area Name</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newWArea.Name" name="areaName" id="areaName" placeholder="Area Name"
+                           validate-on="blur" required required-message="'Area Name is required'">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="areaCode">Area Code</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newWArea.Code" name="areaCode" id="areaCode" placeholder="Area Code"
+                           validate-on="blur" required required-message="'Area Code is required'">
+                </div>
+            </div>
+            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+        </div>
+    </form>
+    <div class="col-sm-5 col-md-push-1">
+        <div class="col-md-12">
+            <div class="alert alert-success">
+                <ul>
+                    <li ng-repeat="message in submission.successMessages track by $index">
+                        <strong>{{message}}</strong>
+                    </li>
+                </ul>
+                <strong ng-bind="submission.successMessage"><span class="glyphicon glyphicon-ok"></span> </strong>
+            </div>
+            <div class="alert alert-danger">
+                <ul>
+                    <li ng-repeat="error in submission.errorMessages track by $index">
+                        <strong>{{error}}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

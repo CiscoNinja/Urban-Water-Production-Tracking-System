@@ -1,0 +1,54 @@
+﻿<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">GWCLtd. Regions</h4>
+            <div class="input-group">
+                <input id="inputSearchGwclRegions" type="search" ng-model="filterGwclRegions" class="form-control shortInputSearch" placeholder="Filter, search areas..">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" ng-click="search();"><i class="glyphicon glyphicon-search"></i></button>
+                    <button class="btn btn-primary" ng-click="clearSearch();"><i class="glyphicon glyphicon-remove-sign"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div id="gwclregion" class="col-sm-6" ng-repeat="gwclregion in GwclRegions | filter:filterGwclRegions">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>{{gwclregion.Name}}</strong><br/>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed shortMargin">
+                                    <tr>
+                                        <td class="shortPadding">Region Name:</td>
+                                        <td class="shortPadding"><i>{{gwclregion.Name}}</i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="shortPadding">Region Code:</td>
+                                        <td class="shortPadding"><i>{{gwclregion.Code}}</i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="shortPadding">Area:</td>
+                                        <td class="shortPadding"><i>{{gwclregion.GwclArea}}</i></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            <label class="label label-danger">{{gwclregion.Code}}</label>
+                            <div class="pull-right">
+                                <buton class="btn btn-primary btn-xs" ng-click="openEditDialog(gwclregion);">Edit Region<i class="fa fa-pencil pull-right"></i></buton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="text-center">
+                <custom-pager page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></custom-pager>
+            </div>
+        </div>
+    </div>
+</div>

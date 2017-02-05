@@ -14,7 +14,7 @@ namespace GwcltdApp.Web.Infrastructure.Validators
             RuleFor(gsvm => gsvm.Name).NotEmpty()
                 .WithMessage("please enter a value");
 
-            RuleFor(gsvm => gsvm.Code).NotEmpty()
+            RuleFor(gsvm => gsvm.StationCode).NotEmpty()
                 .WithMessage("please enter a value");
 
             RuleFor(gsvm => gsvm.GwclRegionId).NotNull()

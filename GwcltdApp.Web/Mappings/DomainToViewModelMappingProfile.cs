@@ -54,6 +54,8 @@ namespace GwcltdApp.Web.Mappings
 
             Mapper.CreateMap<Option, OptionViewModel>();
 
+            Mapper.CreateMap<GwclArea, GwclAreaViewModel>();
+
             Mapper.CreateMap<OptionType, OptionTypeViewModel>();
 
             Mapper.CreateMap<WSystem, WSystemViewModel>()

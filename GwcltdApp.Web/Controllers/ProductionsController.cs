@@ -347,6 +347,7 @@ namespace GwcltdApp.Web.Controllers
                 this.Add(val);
             }
         }
+        [AllowAnonymous]
         [Route("details/{id:int}")]
         public HttpResponseMessage GetSingle(HttpRequestMessage request, int id)
         {

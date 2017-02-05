@@ -1,0 +1,42 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Edit {{EditedSystem.Code}} {{EditedSystem.Name}}
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="addRegionForm" angular-validator-submit="AddSystem()">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label" for="systemName">System Name</label>
+                            <input type="text" class="form-control" ng-model="EditedSystem.Name" name="systemName" id="systemName" placeholder="System Name"
+                                   validate-on="blur" required required-message="'System Name is required'">
+                        </div>
+                        <div class="col-sm-6 selectContainer">
+                            <label class="control-label" for="systemCode">System Code</label>
+                            <input type="text" class="form-control" ng-model="EditedSystem.Code" name="systemCode" id="systemCode" placeholder="System Code"
+                                   validate-on="blur" required required-message="'System Code is required'">
+                        </div>
+                        <div class="col-sm-6 selectContainer">
+                            <label class="control-label" for="systemCapacity">System Capacity</label>
+                            <input type="text" class="form-control" ng-model="EditedSystem.Capacity" name="systemCapacity" id="systemCapacity" placeholder="System Capacity"
+                                   validate-on="blur" required required-message="'System Capacity is required'">
+                        </div>
+                        <div class="col-xs-4 col-sm-4 selectContainer">
+                            <label class="control-label">Select Station</label>
+                            <select ng-model="EditedSystem.GwclStationId" class="form-control black" ng-options="station.ID as station.Name for station in stations" required></select>
+                            <input type="hidden" name="GwclStationId" ng-value="EditedSystem.GwclStationId" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="nav pull-right" style="display:flex; align-items:center">
+            <p><a ng-href="#/gwclsystems/" class="btn btn-danger" ng-click="cancelEdit()">Cancel</a></p>
+            <p><a ng-href="#/gwclsystems/" class="btn btn-primary" ng-click="updateSystem()">Update</a></p>
+        </div>
+    </div>
+</div>

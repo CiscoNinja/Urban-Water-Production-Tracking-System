@@ -12,39 +12,35 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace GwcltdApp.Web.Controllers
 {
-    [Authorize(Roles = "Super")]
-    [RoutePrefix("api/gwclstations")]
-    public class GwclStationsController : ApiControllerBase
+    [Authorize(Roles = "Super, Admin")]
+    [RoutePrefix("api/gwclareas")]
+    public class GwclAreasController : ApiControllerBase
     {
-        private readonly IEntityBaseRepository<GwclStation> _gwclstationsRepository;
-        private readonly IEntityBaseRepository<GwclRegion> _gwclregionsRepository;
-        private readonly IEntityBaseRepository<RegionStation> _regionstationsRepository;
+        private readonly IEntityBaseRepository<GwclArea> _gwclareaRepository;
 
-        public GwclStationsController(IEntityBaseRepository<GwclStation> gwclstationsRepository,
-            IEntityBaseRepository<GwclRegion> gwclregionsRepository, IEntityBaseRepository<RegionStation> regionstationsRepository,
-             IEntityBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
+        public GwclAreasController(IEntityBaseRepository<GwclArea> gwclareaRepository,
+            IEntityBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
             : base(_errorsRepository, _unitOfWork)
         {
-            _gwclstationsRepository = gwclstationsRepository;
-            _gwclregionsRepository = gwclregionsRepository;
-            _regionstationsRepository = regionstationsRepository;
+            _gwclareaRepository = gwclareaRepository;
         }
 
         [AllowAnonymous]
+        [Route("loadareas")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var gwclstations = _gwclstationsRepository.GetAll().ToList();
+                var gwclareas = _gwclareaRepository.GetAll().ToList();
 
-                IEnumerable<GwclStationViewModel> gwclstationsVM = Mapper.Map<IEnumerable<GwclStation>, IEnumerable<GwclStationViewModel>>(gwclstations);
+                IEnumerable<GwclAreaViewModel> gwclareasVM = Mapper.Map<IEnumerable<GwclArea>, IEnumerable<GwclAreaViewModel>>(gwclareas);
 
-                response = request.CreateResponse<IEnumerable<GwclStationViewModel>>(HttpStatusCode.OK, gwclstationsVM);
+                response = request.CreateResponse<IEnumerable<GwclAreaViewModel>>(HttpStatusCode.OK, gwclareasVM);
 
                 return response;
             });
@@ -57,13 +53,13 @@ namespace GwcltdApp.Web.Controllers
             {
                 HttpResponseMessage response = null;
 
-                var gwclstations = _gwclstationsRepository.GetAll()
+                var gwclareas = _gwclareaRepository.GetAll()
                     .Where(c => c.Name.ToLower().Contains(filter) ||
-                    c.StationCode.ToLower().Contains(filter)).ToList();
+                    c.Code.ToLower().Contains(filter)).ToList();
 
-                var gwclstationsVm = Mapper.Map<IEnumerable<GwclStation>, IEnumerable<GwclStationViewModel>>(gwclstations);
+                var gwclareasVm = Mapper.Map<IEnumerable<GwclArea>, IEnumerable<GwclAreaViewModel>>(gwclareas);
 
-                response = request.CreateResponse<IEnumerable<GwclStationViewModel>>(HttpStatusCode.OK, gwclstationsVm);
+                response = request.CreateResponse<IEnumerable<GwclAreaViewModel>>(HttpStatusCode.OK, gwclareasVm);
 
                 return response;
             });
@@ -76,11 +72,11 @@ namespace GwcltdApp.Web.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var gwclstations = _gwclstationsRepository.GetSingle(id);
+                var warea = _gwclareaRepository.GetSingle(id);
 
-                GwclStationViewModel gwclstationVm = Mapper.Map<GwclStation, GwclStationViewModel>(gwclstations);
+                GwclAreaViewModel wareaVm = Mapper.Map<GwclArea, GwclAreaViewModel>(warea);
 
-                response = request.CreateResponse<GwclStationViewModel>(HttpStatusCode.OK, gwclstationVm);
+                response = request.CreateResponse<GwclAreaViewModel>(HttpStatusCode.OK, wareaVm);
 
                 return response;
             });
@@ -88,7 +84,7 @@ namespace GwcltdApp.Web.Controllers
 
         [HttpPost]
         [Route("add")]
-        public HttpResponseMessage Add(HttpRequestMessage request, GwclStationViewModel gwclstation)
+        public HttpResponseMessage Add(HttpRequestMessage request, GwclAreaViewModel warea)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -102,7 +98,7 @@ namespace GwcltdApp.Web.Controllers
                 }
                 else
                 {
-                    if (_gwclstationsRepository.StationExists(gwclstation.Name, gwclstation.StationCode))
+                    if (_gwclareaRepository.AreaExists(warea.Name, warea.Code))
                     {
                         ModelState.AddModelError("Invalid area", "Name or Code already exists");
                         response = request.CreateResponse(HttpStatusCode.BadRequest,
@@ -111,18 +107,15 @@ namespace GwcltdApp.Web.Controllers
                     }
                     else
                     {
-                        GwclStation newWStation = new GwclStation();
-                        newWStation.UpdateStation(gwclstation);
-                        _gwclstationsRepository.Add(newWStation);
+                        GwclArea newWArea = new GwclArea();
+                        newWArea.UpdateWArea(warea);
+                        _gwclareaRepository.Add(newWArea);
 
                         _unitOfWork.Commit();
 
-                        addStationToArea(newWStation, gwclstation.GwclRegionId);
-
-                        _unitOfWork.Commit();
                         // Update view model
-                        gwclstation = Mapper.Map<GwclStation, GwclStationViewModel  >(newWStation);
-                        response = request.CreateResponse<GwclStationViewModel>(HttpStatusCode.Created, gwclstation);
+                        warea = Mapper.Map<GwclArea, GwclAreaViewModel>(newWArea);
+                        response = request.CreateResponse<GwclAreaViewModel>(HttpStatusCode.Created, warea);
                     }
                 }
 
@@ -130,23 +123,9 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        private void addStationToArea(GwclStation gwclstation, int regionId)
-        {
-            var gwclregion = _gwclregionsRepository.GetSingle(regionId);
-            if (gwclregion == null)
-                throw new ApplicationException("Region doesn't exist.");
-
-            var stationRegion = new RegionStation()
-            {
-                GwclStationId = gwclstation.ID,
-                GwclRegionId = gwclregion.ID
-            };
-            _regionstationsRepository.Add(stationRegion);
-        }
-
         [HttpPost]
         [Route("update")]
-        public HttpResponseMessage Update(HttpRequestMessage request, GwclStationViewModel gwclstation)
+        public HttpResponseMessage Update(HttpRequestMessage request, GwclAreaViewModel warea)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -160,8 +139,8 @@ namespace GwcltdApp.Web.Controllers
                 }
                 else
                 {
-                    GwclStation _gwclstation = _gwclstationsRepository.GetSingle(gwclstation.ID);
-                    _gwclstation.UpdateStation(gwclstation);
+                    GwclArea _warea = _gwclareaRepository.GetSingle(warea.ID);
+                    _warea.UpdateWArea(warea);
 
                     _unitOfWork.Commit();
 
@@ -182,47 +161,47 @@ namespace GwcltdApp.Web.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                List<GwclStation> gwclstations = null;
-                int totalStations = new int();
+                List<GwclArea> gwclareas = null;
+                int totalWAreas = new int();
 
                 if (!string.IsNullOrEmpty(filter))
                 {
                     filter = filter.Trim().ToLower();
 
-                    gwclstations = _gwclstationsRepository.FindBy(c => c.Name.ToLower().Contains(filter) ||
-                            c.StationCode.ToLower().Contains(filter))
+                    gwclareas = _gwclareaRepository.FindBy(c => c.Name.ToLower().Contains(filter) ||
+                            c.Code.ToLower().Contains(filter))
                         .OrderBy(c => c.ID)
                         .Skip(currentPage * currentPageSize)
                         .Take(currentPageSize)
                         .ToList();
 
-                    totalStations = _gwclstationsRepository.GetAll()
+                    totalWAreas = _gwclareaRepository.GetAll()
                         .Where(c => c.Name.ToLower().Contains(filter) ||
-                            c.StationCode.ToLower().Contains(filter))
+                            c.Code.ToLower().Contains(filter))
                         .Count();
                 }
                 else
                 {
-                    gwclstations = _gwclstationsRepository.GetAll()
+                    gwclareas = _gwclareaRepository.GetAll()
                         .OrderBy(c => c.ID)
                         .Skip(currentPage * currentPageSize)
                         .Take(currentPageSize)
                     .ToList();
 
-                    totalStations = _gwclstationsRepository.GetAll().Count();
+                    totalWAreas = _gwclareaRepository.GetAll().Count();
                 }
 
-                IEnumerable<GwclStationViewModel> gwclstationsVM = Mapper.Map<IEnumerable<GwclStation>, IEnumerable<GwclStationViewModel>>(gwclstations);
+                IEnumerable<GwclAreaViewModel> gwclareasVM = Mapper.Map<IEnumerable<GwclArea>, IEnumerable<GwclAreaViewModel>>(gwclareas);
 
-                PaginationSet<GwclStationViewModel> pagedSet = new PaginationSet<GwclStationViewModel>()
+                PaginationSet<GwclAreaViewModel> pagedSet = new PaginationSet<GwclAreaViewModel>()
                 {
                     Page = currentPage,
-                    TotalCount = totalStations,
-                    TotalPages = (int)Math.Ceiling((decimal)totalStations / currentPageSize),
-                    Items = gwclstationsVM
+                    TotalCount = totalWAreas,
+                    TotalPages = (int)Math.Ceiling((decimal)totalWAreas / currentPageSize),
+                    Items = gwclareasVM
                 };
 
-                response = request.CreateResponse<PaginationSet<GwclStationViewModel>>(HttpStatusCode.OK, pagedSet);
+                response = request.CreateResponse<PaginationSet<GwclAreaViewModel>>(HttpStatusCode.OK, pagedSet);
 
                 return response;
             });

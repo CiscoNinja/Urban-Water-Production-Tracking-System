@@ -11,7 +11,7 @@ namespace GwcltdApp.Web.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Code { get; set; }
+        public string StationCode { get; set; }
         public int GwclRegionId { get; set; }
         public string GwclRegion  { get; set; }
 

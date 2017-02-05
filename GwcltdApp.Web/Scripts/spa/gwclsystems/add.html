@@ -1,0 +1,63 @@
+﻿<hr />
+<div class="alert alert-info alert-dismissable">
+    <a class="panel-close close" data-dismiss="alert">×</a>
+    <i class="fa fa-search-plus fa-3x"></i>
+    Add new System.
+</div>
+<div class="row">
+    <form role="form" novalidate angular-validator name="addSystemForm" angular-validator-submit="AddSystem()">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="systemName">System Name</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newSystem.Name" name="systemName" id="systemName" placeholder="System Name"
+                           validate-on="blur" required required-message="'System Name is required'">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="systemCode">System Code</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newSystem.Code" name="systemCode" id="systemCode" placeholder="System Code"
+                           validate-on="blur" required required-message="'System Code is required'">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="systemCapacity">System Capacity</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newSystem.Capacity" name="systemCapacity" id="systemCapacity" placeholder="System Capacity"
+                           validate-on="blur" required required-message="'System Capacity is required'">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 selectContainer">
+                        <label class="control-label">Select Station</label>
+                        <select ng-model="newSystem.GwclStationId" class="form-control black" ng-options="station.ID as station.Name for station in stations" required ></select>
+                        <input type="hidden" name="GwclStationId" ng-value="newSystem.GwclStationId" />
+                    </div>
+                </div>
+            </div>
+            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+        </div>
+    </form>
+    <div class="col-sm-5 col-md-push-1">
+        <div class="col-md-12">
+            <div class="alert alert-success">
+                <ul>
+                    <li ng-repeat="message in submission.successMessages track by $index">
+                        <strong>{{message}}</strong>
+                    </li>
+                </ul>
+                <strong ng-bind="submission.successMessage"><span class="glyphicon glyphicon-ok"></span> </strong>
+            </div>
+            <div class="alert alert-danger">
+                <ul>
+                    <li ng-repeat="error in submission.errorMessages track by $index">
+                        <strong>{{error}}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
