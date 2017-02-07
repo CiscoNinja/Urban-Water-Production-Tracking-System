@@ -74,9 +74,11 @@
     <Compile Include="Configurations\UserConfiguration.cs" />
     <Compile Include="Configurations\WSystemPlantDowntimeConfiguration.cs" />
     <Compile Include="Extensions\GwclAreaExtensions.cs" />
+    <Compile Include="Extensions\GwclOptionExtensions.cs" />
     <Compile Include="Extensions\GwclRegionExtensions.cs" />
     <Compile Include="Extensions\GwclStationExtensions.cs" />
     <Compile Include="Extensions\GwclSystemExtensions.cs" />
+    <Compile Include="Extensions\GwclTypeExtensions.cs" />
     <Compile Include="Extensions\UserExtensions.cs" />
     <Compile Include="GwcltdAppContext.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />

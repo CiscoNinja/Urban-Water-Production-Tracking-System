@@ -57,24 +57,24 @@
                 controller: "gwclsystemsAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/options", {
-                templateUrl: "scripts/spa/options/options.html",
-                controller: "opttionsCtrl",
+            .when("/gwcloptions", {
+                templateUrl: "scripts/spa/gwcloptions/gwcloptions.html",
+                controller: "gwcloptionsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/options/add", {
-                templateUrl: "scripts/spa/options/add.html",
-                controller: "optionAddCtrl",
+            .when("/gwcloptions/add", {
+                templateUrl: "scripts/spa/gwcloptions/add.html",
+                controller: "gwcloptionsAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/options/:id", {
-                templateUrl: "scripts/spa/options/details.html",
-                controller: "optionDetailsCtrl",
+            .when("/gwclotypes", {
+                templateUrl: "scripts/spa/gwclotypes/gwclotypes.html",
+                controller: "gwclotypesCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/options/edit/:id", {
-                templateUrl: "scripts/spa/options/edit.html",
-                controller: "optionEditCtrl",
+            .when("/gwclotypes/add", {
+                templateUrl: "scripts/spa/gwclotypes/add.html",
+                controller: "gwclotypesAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/productions", {

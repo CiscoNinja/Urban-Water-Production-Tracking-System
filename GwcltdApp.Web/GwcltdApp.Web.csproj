@@ -172,6 +172,18 @@
     <Content Include="Scripts\spa\account\register.html" />
     <Content Include="Scripts\spa\app.js" />
     <Content Include="Scripts\spa\account\loginCtrl.js" />
+    <Content Include="Scripts\spa\gwcloptions\add.html" />
+    <Content Include="Scripts\spa\gwcloptions\editGwclOptionsModal.html" />
+    <Content Include="Scripts\spa\gwcloptions\gwcloptionEditCtrl.js" />
+    <Content Include="Scripts\spa\gwcloptions\gwcloptions.html" />
+    <Content Include="Scripts\spa\gwcloptions\gwcloptionsAddCtrl.js" />
+    <Content Include="Scripts\spa\gwcloptions\gwcloptionsCtrl.js" />
+    <Content Include="Scripts\spa\gwclotypes\add.html" />
+    <Content Include="Scripts\spa\gwclotypes\editGwclTypesModal.html" />
+    <Content Include="Scripts\spa\gwclotypes\gwclotypeEditCtrl.js" />
+    <Content Include="Scripts\spa\gwclotypes\gwclotypes.html" />
+    <Content Include="Scripts\spa\gwclotypes\gwclotypesAddCtrl.js" />
+    <Content Include="Scripts\spa\gwclotypes\gwclotypesCtrl.js" />
     <Content Include="Scripts\spa\gwclregions\add.html" />
     <Content Include="Scripts\spa\gwclregions\editGwclRegionsModal.html" />
     <Content Include="Scripts\spa\gwclregions\gwclregionEditCtrl.js" />
@@ -351,8 +363,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\spa\downtimes\" />
-    <Folder Include="Scripts\spa\options\" />
-    <Folder Include="Scripts\spa\optiontypes\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>

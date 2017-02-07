@@ -2,32 +2,25 @@
 <div class="alert alert-info alert-dismissable">
     <a class="panel-close close" data-dismiss="alert">×</a>
     <i class="fa fa-search-plus fa-3x"></i>
-    Add new Station.
+    Add new Opton.
 </div>
 <div class="row">
-    <form role="form" novalidate angular-validator name="addStationForm" angular-validator-submit="AddStation()">
+    <form role="form" novalidate angular-validator name="addOptionForm" angular-validator-submit="AddOption()">
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="stationName">Station Name</label>
+                <label for="optionName">Option Name</label>
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="newStation.Name" name="stationName" id="stationName" placeholder="Station Name"
-                           validate-on="blur" required required-message="'required'">
+                    <input type="text" class="form-control" ng-model="newOption.Name" name="optionName" id="optionName" placeholder="Option Name"
+                           validate-on="blur" required required-message="'Option Name is required'">
 
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="stationCode">Station Code</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="newStation.StationCode" name="stationCode" id="stationCode" placeholder="Station Code"
-                           validate-on="blur" required required-message="'required'">
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-xs-4 col-sm-4 selectContainer">
-                        <label class="control-label">Select Region</label>
-                        <select ng-model="newStation.GwclRegionId" class="form-control black" ng-options="region.ID as region.Name for region in regions" required ></select>
-                        <input type="hidden" name="GwclRegionId" ng-value="newStation.GwclRegionId" />
+                        <label class="control-label">Option Of</label>
+                        <select ng-model="newOption.OptionOf" class="form-control black" ng-options="dataoption.Name as dataoption.Name for dataoption in dataoptions" required></select>
+                        <input type="hidden" name="OptionOf" ng-value="newOption.OptionOf" />
                     </div>
                 </div>
             </div>

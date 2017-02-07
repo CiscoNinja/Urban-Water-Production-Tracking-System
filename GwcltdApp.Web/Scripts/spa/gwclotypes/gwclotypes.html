@@ -1,0 +1,45 @@
+﻿<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">GWCLtd. Types</h4>
+            <div class="input-group">
+                <input id="inputSearchGwclTypes" type="search" ng-model="filterGwclTypes" class="form-control shortInputSearch" placeholder="Filter, search areas..">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" ng-click="search();"><i class="glyphicon glyphicon-search"></i></button>
+                    <button class="btn btn-primary" ng-click="clearSearch();"><i class="glyphicon glyphicon-remove-sign"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div id="gwclotypes" class="col-sm-6" ng-repeat="gwclotype in GwclTypes | filter:filterGwclTypes">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>{{gwclotype.Name}}</strong><br/>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed shortMargin">
+                                    <tr>
+                                        <td class="shortPadding">Type Name:</td>
+                                        <td class="shortPadding"><i>{{gwclotype.Name}}</i></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            <div class="pull-right">
+                                <buton class="btn btn-primary btn-xs" ng-click="openEditDialog(gwclotype);">Edit Type<i class="fa fa-pencil pull-right"></i></buton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="text-center">
+                <custom-pager page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></custom-pager>
+            </div>
+        </div>
+    </div>
+</div>

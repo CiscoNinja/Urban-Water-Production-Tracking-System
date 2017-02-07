@@ -1,0 +1,27 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Edit {{EditedType.Name}}
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="addTypeForm" angular-validator-submit="AddType()">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label" for="typeName">Type Name</label>
+                            <input type="text" class="form-control" ng-model="EditedType.Name" name="typeName" id="typeName" placeholder="Name"
+                                   validate-on="blur" required required-message="'required'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="nav pull-right" style="display:flex; align-items:center">
+            <p><a ng-href="#/gwclotypes/" class="btn btn-danger" ng-click="cancelEdit()">Cancel</a></p>
+            <p><a ng-href="#/gwclotypes/" class="btn btn-primary" ng-click="updateType()">Update</a></p>
+        </div>
+    </div>
+</div>

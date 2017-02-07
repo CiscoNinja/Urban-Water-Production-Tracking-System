@@ -1,27 +1,27 @@
 ﻿
 <div class="panel panel-primary">
     <div class="panel-heading">
-        Edit {{EditedRegion.Code}} {{EditedRegion.Name}}
+        Edit {{EditedStation.Code}} {{EditedStation.Name}}
     </div>
     <div class="panel-body">
-        <form role="form" novalidate angular-validator name="addRegionForm" angular-validator-submit="AddRegion()">
+        <form role="form" novalidate angular-validator name="addStationForm" angular-validator-submit="AddStation()">
             <div class="">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6">
-                            <label class="control-label" for="regionName">Region Name</label>
-                            <input type="text" class="form-control" ng-model="EditedRegion.Name" name="regionName" id="regionName" placeholder="Region Name"
-                                   validate-on="blur" required required-message="'Region Name is required'">
+                            <label class="control-label" for="stationName">Station Name</label>
+                            <input type="text" class="form-control" ng-model="EditedStation.Name" name="stationName" id="stationName" placeholder="Station Name"
+                                   validate-on="blur" required required-message="'required'">
                         </div>
                         <div class="col-sm-6 selectContainer">
-                            <label class="control-label" for="regionCode">Region Code</label>
-                            <input type="text" class="form-control" ng-model="EditedRegion.Code" name="regionCode" id="regionCode" placeholder="Region Code"
-                                   validate-on="blur" required required-message="'Region Code is required'">
+                            <label class="control-label" for="stationCode">Station Code</label>
+                            <input type="text" class="form-control" ng-model="EditedStation.StationCode" name="stationCode" id="stationCode" placeholder="Station Code"
+                                   validate-on="blur" required required-message="'required'">
                         </div>
                         <div class="col-xs-4 col-sm-4 selectContainer">
                             <label class="control-label">Select Area</label>
-                            <select ng-model="EditedRegion.GwclAreaID" class="form-control black" ng-options="area.ID as area.Name for area in areas" required></select>
-                            <input type="hidden" name="GwclAreaID" ng-value="EditedRegion.GwclAreaID" />
+                            <select ng-model="EditedStation.GwclRegionId" class="form-control black" ng-options="region.ID as region.Name for region in regions" required></select>
+                            <input type="hidden" name="GwclRegionId" ng-value="EditedStation.GwclRegionId" />
                         </div>
                     </div>
                 </div>
@@ -30,8 +30,8 @@
     </div>
     <div class="panel-footer clearfix">
         <div class="nav pull-right" style="display:flex; align-items:center">
-            <p><a ng-href="#/gwclregions/" class="btn btn-danger" ng-click="cancelEdit()">Cancel</a></p>
-            <p><a ng-href="#/gwclregions/" class="btn btn-primary" ng-click="updateRegion()">Update</a></p>
+            <p><a ng-href="#/gwclstations/" class="btn btn-danger" ng-click="cancelEdit()">Cancel</a></p>
+            <p><a ng-href="#/gwclstations/" class="btn btn-primary" ng-click="updateRegion()">Update</a></p>
         </div>
     </div>
 </div>

@@ -61,5 +61,16 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
             gwclsysytem.Capacity = gwclsysytem.Capacity;
             gwclsysytem.GwclStationId = gwclsysytem.GwclStationId;
         }
+
+        public static void UpdateOption(this Option gwcloption, OptionViewModel gwcloptionVm)
+        {
+            gwcloption.Name = gwcloptionVm.Name;
+            gwcloption.OptionOf = gwcloptionVm.OptionOf;
+        }
+
+        public static void UpdateType(this OptionType gwclotypes, OptionTypeViewModel gwclotypesVm)
+        {
+            gwclotypes.Name = gwclotypesVm.Name;
+        }
     }
 }

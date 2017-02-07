@@ -1,52 +1,52 @@
 ﻿(function (app) {
     'use strict';
 
-    app.controller('gwclregionsAddCtrl', gwclregionsAddCtrl);
+    app.controller('gwclstationsAddCtrl', gwclstationsAddCtrl);
 
-    gwclregionsAddCtrl.$inject = ['$scope', '$location', '$rootScope', 'apiService'];
+    gwclstationsAddCtrl.$inject = ['$scope', '$location', '$rootScope', 'apiService'];
 
-    function gwclregionsAddCtrl($scope, $location, $rootScope, apiService) {
+    function gwclstationsAddCtrl($scope, $location, $rootScope, apiService) {
 
-        $scope.newRegion = {};
-        $scope.areas = [];
+        $scope.newStation = {};
+        $scope.regions = [];
 
-        $scope.AddRegion = AddRegion;
+        $scope.AddStation = AddStation;
 
         $scope.submission = {
             successMessages: ['Successfull submission will appear here.'],
             errorMessages: ['Submition errors will appear here.']
         };
 
-        function AddRegion() {
-            apiService.post('/api/gwclregions/add', $scope.newRegion,
-           addRegionSucceded,
-           addRegionFailed);
+        function AddStation() {
+            apiService.post('/api/gwclstations/add', $scope.newStation,
+           addStationSucceded,
+           addStationFailed);
         }
 
-        function loadAreas() {
-            apiService.get('/api/gwclareas/loadareas', null,
-            areasLoadCompleted,
-            areasLoadFailed);
+        function loadRegions() {
+            apiService.get('/api/gwclregions/loadregions', null,
+            regionsLoadCompleted,
+            regionsLoadFailed);
         }
 
-        function areasLoadCompleted(response) {
-            $scope.areas = response.data;
+        function regionsLoadCompleted(response) {
+            $scope.regions = response.data;
         }
 
-        function areasLoadFailed(response) {
+        function regionsLoadFailed(response) {
             notificationService.displayError(response.data);
         }
 
-        function addRegionSucceded(response) {
+        function addStationSucceded(response) {
             $scope.submission.errorMessages = ['Submition errors will appear here.'];
             console.log(response);
-            var gwclareaAdded = response.data;
+            var gwclstationAdded = response.data;
             $scope.submission.successMessages = [];
-            $scope.submission.successMessages.push($scope.newRegion.Name + ' has been successfully added');
-            $scope.newRegion = {};
+            $scope.submission.successMessages.push($scope.newStation.Name + ' has been successfully added');
+            $scope.newStation = {};
         }
 
-        function addRegionFailed(response) {
+        function addStationFailed(response) {
             console.log(response);
             if (response.status == '400')
                 $scope.submission.errorMessages = response.data;
@@ -54,7 +54,7 @@
                 $scope.submission.errorMessages = response.statusText;
         }
 
-        loadAreas();
+        loadRegions();
     }
 
 })(angular.module('gwcltdApp'));

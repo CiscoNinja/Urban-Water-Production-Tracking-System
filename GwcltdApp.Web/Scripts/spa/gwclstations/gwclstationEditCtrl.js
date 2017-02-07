@@ -1,41 +1,42 @@
 ﻿(function (app) {
     'use strict';
 
-    app.controller('gwclregionEditCtrl', gwclregionEditCtrl);
+    app.controller('gwclstationEditCtrl', gwclstationEditCtrl);
 
-    gwclregionEditCtrl.$inject = ['$scope', '$modalInstance', 'apiService', 'notificationService'];
+    gwclstationEditCtrl.$inject = ['$scope', '$modalInstance', 'apiService', 'notificationService'];
 
-    function gwclregionEditCtrl($scope, $modalInstance, apiService, notificationService) {
+    function gwclstationEditCtrl($scope, $modalInstance, apiService, notificationService) {
 
         $scope.cancelEdit = cancelEdit;
-        $scope.updateRegion = updateRegion;
+        $scope.updateStation = updateStation;
+        $scope.regions = [];
 
-        function loadAreas() {
-            apiService.get('/api/gwclareas/loadareas', null,
-            areasLoadCompleted,
-            areasLoadFailed);
+        function loadRegions() {
+            apiService.get('/api/gwclregions/loadregions', null,
+            regionsLoadCompleted,
+            regionsLoadFailed);
         }
 
-        function areasLoadCompleted(response) {
-            $scope.areas = response.data;
+        function regionsLoadCompleted(response) {
+            $scope.regions = response.data;
         }
 
-        function areasLoadFailed(response) {
+        function regionsLoadFailed(response) {
             notificationService.displayError(response.data);
         }
 
-        function updateRegion()
+        function updateStation()
         {
-            console.log($scope.EditedRegion);
-            apiService.post('/api/gwclregions/update/', $scope.EditedRegion,
+            console.log($scope.EditedStation);
+            apiService.post('/api/gwclstations/update/', $scope.EditedStation,
             updateRegionCompleted,
             updateRegionLoadFailed);
         }
 
         function updateRegionCompleted(response)
         {
-            notificationService.displaySuccess($scope.EditedRegion.Name + ' with code ' + $scope.EditedRegion.Code + ' has been updated');
-            $scope.EditedRegion = {};
+            notificationService.displaySuccess($scope.EditedStation.Name + ' with code ' + $scope.EditedStation.Code + ' has been updated');
+            $scope.EditedStation = {};
             $modalInstance.dismiss();
         }
 
@@ -48,7 +49,7 @@
             $scope.isEnabled = false;
             $modalInstance.dismiss();
         }
-        loadAreas();
+        loadRegions();
     }
 
 })(angular.module('gwcltdApp'));

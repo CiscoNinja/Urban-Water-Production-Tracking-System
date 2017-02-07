@@ -34,6 +34,7 @@ namespace GwcltdApp.Web.Controllers
         }
 
         [AllowAnonymous]
+        [Route("loadregions")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>

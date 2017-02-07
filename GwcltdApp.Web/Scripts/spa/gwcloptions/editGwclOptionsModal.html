@@ -1,0 +1,32 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Edit {{EditedOption.Name}}
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="addOptionForm" angular-validator-submit="AddOption()">
+            <div class="">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label" for="optionName">Option Name</label>
+                            <input type="text" class="form-control" ng-model="EditedOption.Name" name="optionName" id="optionName" placeholder="Option Name"
+                                   validate-on="blur" required required-message="'required'">
+                        </div>
+                        <div class="col-xs-4 col-sm-4 selectContainer">
+                            <label class="control-label">Option Of</label>
+                            <select ng-model="EditedOption.OptionOf" class="form-control black" ng-options="dataoption.Name as dataoption.Name for dataoption in dataoptions" required></select>
+                            <input type="hidden" name="OptionOf" ng-value="EditedOption.OptionOf" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="nav pull-right" style="display:flex; align-items:center">
+            <p><a ng-href="#/gwcloptions/" class="btn btn-danger" ng-click="cancelEdit()">Cancel</a></p>
+            <p><a ng-href="#/gwcloptions/" class="btn btn-primary" ng-click="updateOption()">Update</a></p>
+        </div>
+    </div>
+</div>

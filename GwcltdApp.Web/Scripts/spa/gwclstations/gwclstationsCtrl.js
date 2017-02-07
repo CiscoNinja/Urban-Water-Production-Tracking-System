@@ -51,7 +51,7 @@
         }
 
         function gwclstationsLoadCompleted(result) {
-            $scope.GwclStations = result.data.Items;
+            $scope.GwclStations = result.data;
 
             $scope.page = result.data.Page;
             $scope.pagesCount = result.data.TotalPages;
