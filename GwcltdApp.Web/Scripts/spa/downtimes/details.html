@@ -1,0 +1,35 @@
+﻿<hr />
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h5>{{downtime.CurrentDate | date: 'longDate'}}</h5>
+            </div>
+            <div class="panel-body" ng-if="!loadingDowntime">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">{{downtime.CurrentDate | date: 'longDate'}}</h4>
+                        Date Recorded: <label>{{downtime.CurrentDate | date: 'longDate'}}</label><br />
+                        Start Time: <label>{{downtime.Starttime}}</label><br />
+                        End Time: <label>{{downtime.EndTime}}</label><br />
+                        Time Lost: <label>{{downtime.HoursDown | number}}</label>minutes<br />
+                        <label class="label label-info">{{downtime.WSystem}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer clearfix" ng-if="!loadingDowntime">
+                <div class="pull-right">
+                    <a ng-href="#/downtimes/edit/{{downtime.ID}}" class="btn btn-default">Edit production <i class="fa fa-pencil-square pull-right"></i></a>
+                </div>
+            </div>
+            <div ng-if="loadingDowntime">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Loading downtime data...</label>
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

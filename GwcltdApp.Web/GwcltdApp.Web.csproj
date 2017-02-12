@@ -144,6 +144,16 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\fancybox_overlay.png" />
     <Content Include="Content\css\fancybox_sprite.png" />
+    <Content Include="Content\css\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\css\jquery-ui-timepicker-addon.css" />
+    <Content Include="Content\css\jquery-ui.min.css" />
+    <Content Include="Content\css\jquery-ui.structure.min.css" />
+    <Content Include="Content\css\jquery-ui.theme.min.css" />
     <Content Include="Content\css\loading-bar.css" />
     <Content Include="Content\css\normalize.css" />
     <Content Include="Content\fonts\blokk\BLOKKRegular.eot" />
@@ -172,6 +182,14 @@
     <Content Include="Scripts\spa\account\register.html" />
     <Content Include="Scripts\spa\app.js" />
     <Content Include="Scripts\spa\account\loginCtrl.js" />
+    <Content Include="Scripts\spa\downtimes\add.html" />
+    <Content Include="Scripts\spa\downtimes\details.html" />
+    <Content Include="Scripts\spa\downtimes\edit.html" />
+    <Content Include="Scripts\spa\downtimes\downtimeAddCtrl.js" />
+    <Content Include="Scripts\spa\downtimes\downtimeDetailsCtrl.js" />
+    <Content Include="Scripts\spa\downtimes\downtimeEditCtrl.js" />
+    <Content Include="Scripts\spa\downtimes\downtimes.html" />
+    <Content Include="Scripts\spa\downtimes\downtimesCtrl.js" />
     <Content Include="Scripts\spa\gwcloptions\add.html" />
     <Content Include="Scripts\spa\gwcloptions\editGwclOptionsModal.html" />
     <Content Include="Scripts\spa\gwcloptions\gwcloptionEditCtrl.js" />
@@ -242,6 +260,7 @@
     <Content Include="Scripts\vendors\angular-validator.js" />
     <Content Include="Scripts\vendors\d3.v4.min.js" />
     <Content Include="Scripts\vendors\debouncejs.js" />
+    <Content Include="Scripts\vendors\jquery-ui-timepicker-addon.min.js" />
     <Content Include="Scripts\vendors\jquery.fancybox-media.js" />
     <Content Include="Scripts\vendors\jquery.fancybox.js" />
     <Content Include="Scripts\vendors\jquery.stickyheader.js" />
@@ -339,6 +358,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="sms.ashx" />
     <Content Include="Logging\AutoAuditSetup.pdf" />
+    <Content Include="Scripts\vendors\jquery-ui.min.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -362,7 +382,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\spa\downtimes\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>

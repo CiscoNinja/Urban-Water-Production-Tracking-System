@@ -12,12 +12,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace GwcltdApp.Web.Controllers
 {
-    [Authorize(Roles = "Super")]
-    [RoutePrefix("api/plantdowntime")]
+    [Authorize(Roles = "Super, Admin")]
+    [RoutePrefix("api/downtimes")]
     public class PlantDowntimeController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<PlantDowntime> _plantdowntimeRepository;
@@ -29,24 +29,25 @@ namespace GwcltdApp.Web.Controllers
             _plantdowntimeRepository = plantdowntimeRepository;
         }
 
-        [AllowAnonymous]
-        public HttpResponseMessage Get(HttpRequestMessage request)
-        {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-                var plantdowntime = _plantdowntimeRepository.GetAll().ToList();
+        //[AllowAnonymous]
+        //[Route("{userstation:int}")]
+        //public HttpResponseMessage Get(HttpRequestMessage request, int userstation)
+        //{
+        //    return CreateHttpResponse(request, () =>
+        //    {
+        //        HttpResponseMessage response = null;
+        //        var plantdowntime = _plantdowntimeRepository.GetAll().Where(s => s.WSystem.GwclStationId == userstation).OrderByDescending(m => m.CurrentDate).Take(4).ToList();
 
-                IEnumerable<PlantDowntimeViewModel> plantdowntimeVM = Mapper.Map<IEnumerable<PlantDowntime>, IEnumerable<PlantDowntimeViewModel>>(plantdowntime);
+        //        IEnumerable<PlantDowntimeViewModel> plantdowntimeVM = Mapper.Map<IEnumerable<PlantDowntime>, IEnumerable<PlantDowntimeViewModel>>(plantdowntime);
 
-                response = request.CreateResponse<IEnumerable<PlantDowntimeViewModel>>(HttpStatusCode.OK, plantdowntimeVM);
+        //        response = request.CreateResponse<IEnumerable<PlantDowntimeViewModel>>(HttpStatusCode.OK, plantdowntimeVM);
 
-                return response;
-            });
-        }
+        //        return response;
+        //    });
+        //}
 
         [Route("details/{id:int}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int id)
+        public HttpResponseMessage GetSingle(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -62,8 +63,8 @@ namespace GwcltdApp.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("{page:int=0}/{pageSize=3}/{filter?}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, DateTime? filter1 = null, DateTime? filter2 = null, string filter = null)
+        [Route("{userstation:int}/{page:int=0}/{pageSize=3}/{filter?}")]
+        public HttpResponseMessage Get(HttpRequestMessage request, int userstation, int? page, int? pageSize, DateTime? filter1 = null, DateTime? filter2 = null, string filter = null)
         {
             int currentPage = page.Value;
             int currentPageSize = pageSize.Value;
@@ -76,26 +77,26 @@ namespace GwcltdApp.Web.Controllers
                 if (filter1.HasValue && filter2.HasValue && string.IsNullOrEmpty(filter))
                 {
                     plantdowntimes = _plantdowntimeRepository.GetAll()
-                        .Where(m => DbFunctions.TruncateTime(m.CurrentDate) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.CurrentDate) <= DbFunctions.TruncateTime(filter2.Value))
+                        .Where(m => m.WSystem.GwclStationId == userstation && (DbFunctions.TruncateTime(m.CurrentDate) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.CurrentDate) <= DbFunctions.TruncateTime(filter2.Value)))
                         .OrderBy(m => m.CurrentDate)
                         .Skip(currentPage * currentPageSize)
                         .Take(currentPageSize)
                         .ToList();
 
                     totalPlantdowntimes = _plantdowntimeRepository.GetAll()
-                        .Where(m => DbFunctions.TruncateTime(m.CurrentDate) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.CurrentDate) <= DbFunctions.TruncateTime(filter2.Value))
+                        .Where(m => m.WSystem.GwclStationId == userstation && (DbFunctions.TruncateTime(m.CurrentDate) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.CurrentDate) <= DbFunctions.TruncateTime(filter2.Value)))
                         .Count();
                 }
                 else
                 {
                     plantdowntimes = _plantdowntimeRepository
-                        .GetAll()
+                        .GetAll().Where(m => m.WSystem.GwclStationId == userstation)
                         .OrderBy(m => m.ID)
                         .Skip(currentPage * currentPageSize)
                         .Take(currentPageSize)
                         .ToList();
 
-                    totalPlantdowntimes = _plantdowntimeRepository.GetAll().Count();
+                    totalPlantdowntimes = _plantdowntimeRepository.GetAll().Where(m => m.WSystem.GwclStationId == userstation).Count();
                 }
 
                 IEnumerable<PlantDowntimeViewModel> plantdowntimesVM = Mapper.Map<IEnumerable<PlantDowntime>, IEnumerable<PlantDowntimeViewModel>>(plantdowntimes);

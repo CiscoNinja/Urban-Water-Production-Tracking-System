@@ -106,44 +106,25 @@
                 templateUrl: "scripts/spa/productions/edit.html",
                 controller: "productionEditCtrl"
             })
-            .when("/optiontypes", {
-                templateUrl: "scripts/spa/optiontypes/optiontypes.html",
-                controller: "optiontypesCtrl",
+            .when("/downtimes", {
+                templateUrl: "scripts/spa/downtimes/downtimes.html",
+                controller: "downtimesCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/optiontypes/add", {
-                templateUrl: "scripts/spa/optiontypes/add.html",
-                controller: "optiontypeAddCtrl",
+            .when("/downtimes/add", {
+                templateUrl: "scripts/spa/downtimes/add.html",
+                controller: "downtimeAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/optiontypes/:id", {
-                templateUrl: "scripts/spa/optiontypes/details.html",
-                controller: "optiontypeDetailsCtrl",
+            .when("/downtimes/:id", {
+                templateUrl: "scripts/spa/downtimes/details.html",
+                controller: "downtimeDetailsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
-            .when("/optiontypes/edit/:id", {
-                templateUrl: "scripts/spa/optiontypes/edit.html",
-                controller: "optiontypeEditCtrl"
-            })
-            .when("/wsystems", {
-                templateUrl: "scripts/spa/wsystems/wsystems.html",
-                controller: "wsystemsCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
-            })
-            .when("/wsystems/add", {
-                templateUrl: "scripts/spa/wsystems/add.html",
-                controller: "wsystemAddCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
-            })
-            .when("/wsystems/:id", {
-                templateUrl: "scripts/spa/wsystems/details.html",
-                controller: "wsystemDetailsCtrl",
-                resolve: { isAuthenticated: isAuthenticated }
-            })
-            .when("/wsystems/edit/:id", {
-                templateUrl: "scripts/spa/wsystems/edit.html",
-                controller: "wsystemEditCtrl"
-            }).otherwise({ redirectTo: "/" });
+            .when("/downtimes/edit/:id", {
+                templateUrl: "scripts/spa/downtimes/edit.html",
+                controller: "downtimeEditCtrl"
+            });
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];

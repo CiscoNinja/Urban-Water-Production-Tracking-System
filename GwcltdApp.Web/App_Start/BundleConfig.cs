@@ -13,30 +13,33 @@ namespace GwcltdApp.Web.App_Start
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                 "~/Scripts/Vendors/modernizr.js"));
 
-           bundles.Add(new ScriptBundle("~/bundles/vendors").Include(
-                "~/Scripts/Vendors/jquery.js",
-                "~/Scripts/Vendors/bootstrap.js",
-                "~/Scripts/Vendors/toastr.js",
-                "~/Scripts/Vendors/jquery.raty.js",
-                "~/Scripts/Vendors/respond.src.js",
-                "~/Scripts/Vendors/angular.js",
-                "~/Scripts/Vendors/angular-route.js",
-                "~/Scripts/Vendors/angular-cookies.js",
-                "~/Scripts/Vendors/angular-validator.js",
-                "~/Scripts/Vendors/angular-base64.js",
-                "~/Scripts/Vendors/angular-file-upload.js",
-                "~/Scripts/Vendors/angucomplete-alt.min.js",
-                "~/Scripts/Vendors/ui-bootstrap-tpls-0.13.1.js",
-                "~/Scripts/Vendors/underscore.js",
-                "~/Scripts/Vendors/raphael.js",
-                "~/Scripts/Vendors/morris.js",
-                //"~/Scripts/Vendors/d3.v4.min.js",
-                //"~/Scripts/Vendors/jquery.stickyheader.js",
-                //"~/Scripts/Vendors/debouncejs.js",
-                "~/Scripts/Vendors/jquery.fancybox.js",
-                "~/Scripts/Vendors/jquery.fancybox-media.js",
-                "~/Scripts/Vendors/loading-bar.js"
-                ));
+            bundles.Add(new ScriptBundle("~/bundles/vendors").Include(
+                 "~/Scripts/Vendors/jquery.js",
+                 "~/Scripts/Vendors/jquery-ui.min.js",
+                 "~/Scripts/Vendors/jquery-ui-timepicker-addon.min.js",
+                 "~/Scripts/Vendors/bootstrap.js",
+                 "~/Scripts/Vendors/toastr.js",
+                 "~/Scripts/Vendors/jquery.raty.js",
+                 "~/Scripts/Vendors/respond.src.js",
+                 "~/Scripts/Vendors/angular.js",
+                 "~/Scripts/Vendors/angular-route.js",
+                 "~/Scripts/Vendors/angular-cookies.js",
+                 "~/Scripts/Vendors/angular-validator.js",
+                 "~/Scripts/Vendors/angular-base64.js",
+                 "~/Scripts/Vendors/angular-file-upload.js",
+                 "~/Scripts/Vendors/angucomplete-alt.min.js",
+                 "~/Scripts/Vendors/ui-bootstrap-tpls-0.13.1.js",
+                 "~/Scripts/Vendors/underscore.js",
+                 "~/Scripts/Vendors/raphael.js",
+                 "~/Scripts/Vendors/morris.js",
+
+                 //"~/Scripts/Vendors/d3.v4.min.js",
+                 //"~/Scripts/Vendors/jquery.stickyheader.js",
+                 //"~/Scripts/Vendors/debouncejs.js",
+                 "~/Scripts/Vendors/jquery.fancybox.js",
+                 "~/Scripts/Vendors/jquery.fancybox-media.js",
+                 "~/Scripts/Vendors/loading-bar.js"
+                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
                 "~/Scripts/spa/modules/common.core.js",
@@ -49,15 +52,13 @@ namespace GwcltdApp.Web.App_Start
                 "~/Scripts/spa/layout/topBar.directive.js",
                 "~/Scripts/spa/layout/sideBar.directive.js",
                 "~/Scripts/spa/layout/customPager.directive.js",
-                "~/Scripts/spa/directives/rating.directive.js",
-                "~/Scripts/spa/directives/availableMovie.directive.js",
                 "~/Scripts/spa/account/loginCtrl.js",
                 "~/Scripts/spa/account/registerCtrl.js",
                 "~/Scripts/spa/home/rootCtrl.js",
                 "~/Scripts/spa/home/indexCtrl.js",
                 "~/Scripts/spa/gwclareas/gwclareasCtrl.js",
                 "~/Scripts/spa/gwclareas/gwclareasAddCtrl.js",
-                "~/Scripts/spa/gwclareas/gwclareaEditCtrl.js", 
+                "~/Scripts/spa/gwclareas/gwclareaEditCtrl.js",
                 "~/Scripts/spa/gwclregions/gwclregionsCtrl.js",
                 "~/Scripts/spa/gwclregions/gwclregionsAddCtrl.js",
                 "~/Scripts/spa/gwclregions/gwclregionEditCtrl.js",
@@ -79,9 +80,10 @@ namespace GwcltdApp.Web.App_Start
                 "~/Scripts/spa/productions/productionEditCtrl.js",
                 "~/Scripts/spa/productions/summaryCtrl.js",
                 "~/Scripts/spa/productions/chartsCtrl.js",
-                "~/Scripts/spa/controllers/rentalCtrl.js",
-                "~/Scripts/spa/rental/rentMovieCtrl.js",
-                "~/Scripts/spa/rental/rentStatsCtrl.js"
+               "~/Scripts/spa/downtimes/downtimesCtrl.js",
+                "~/Scripts/spa/downtimes/downtimeAddCtrl.js",
+                "~/Scripts/spa/downtimes/downtimeDetailsCtrl.js",
+                "~/Scripts/spa/downtimes/downtimeEditCtrl.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -91,7 +93,11 @@ namespace GwcltdApp.Web.App_Start
                  "~/content/css/font-awesome.css",
                 "~/content/css/morris.css",
                 "~/content/css/toastr.css",
+                "~/content/css/jquery-ui.min.css",
+                //"~/content/css/jquery-ui.theme.min.css",
+                //"~/content/css/jquery-ui.structure.min.css",
                 "~/content/css/jquery.fancybox.css",
+                "~/content/css/jquery-ui-timepicker-addon.css",
                 "~/content/css/loading-bar.css"));
 
             BundleTable.EnableOptimizations = false;

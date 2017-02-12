@@ -1,0 +1,84 @@
+﻿<div id="editProductionWrapper">
+    <hr>
+    <div class="row" >
+        <!-- left column -->
+        <div class="col-xs-2">
+            
+        </div>
+
+        <!-- edit form column -->
+        <div class="col-xs-8 personal-info">
+            
+            <form class="form-horizontal" role="form" novalidate angular-validator name="editDowntimeForm" angular-validator-submit="UpdateDowntime()">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label class="control-label">Day To Record</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control" name="todaysDate" datepicker-popup="{{format}}" ng-model="downtime.CurrentDate" is-open="datepicker.currentdate" datepicker-options="dateOptions" ng-required="true" datepicker-append-to-body="true" close-text="Close"
+                                       validate-on="blur" required required-message="'required'" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 'currentdate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 selectContainer">
+                            <label class="control-label">Select System</label>
+                            <select ng-model="downtime.WSystemId" class="form-control black" ng-options="wsystem.ID as wsystem.Name for wsystem in wsystems" required></select>
+                            <input type="hidden" name="WSystemId" ng-value="downtime.WSystemId" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label class="control-label">Start Time</label>
+                            <p class="input-group">
+                                <input id="date_picker" name="date_picker" type="text" class="form-control" ng-model="downtime.Starttime"
+                                       readonly validate-on="blur" required required-message="'required'" />
+                                <span class="input-group-btn">
+                                    <button type="button" id="btndatetime1" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <label class="control-label">End Time</label>
+                            <p class="input-group">
+                                <input id="date_picker2" name="date_picker2" type="text" class="form-control" ng-model="downtime.EndTime"
+                                       readonly validate-on="blur" required required-message="'required'" />
+                                <span class="input-group-btn">
+                                    <button type="button" id="btndatetime2" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <label id="lostLabel" class="control-label">Time Lost</label>
+                            <input class="form-control" id="hoursdown" ng-model="downtime.HoursDown" ng-click="calculateMins()" name="hoursdown"
+                                   validate-on="blur" required required-message="'required'" readonly>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-pencil-square-o"></i>
+                    Edit <strong>{{downtime.CurrentDate | date: 'mediumDate'}}</strong> downtime. Make sure you fill all required fields.
+                </div>
+
+                <div class="form-group col-xs-4">
+                    <label class="control-label"></label>
+                    <div class="">
+                        <input type="submit" class="btn btn-primary" value="Update" />
+                        <span></span>
+                        <a class="btn btn-default" ng-href="#/downtimes/{{downtime.ID}}">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+</div>
