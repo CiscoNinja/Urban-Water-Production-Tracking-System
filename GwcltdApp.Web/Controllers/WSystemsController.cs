@@ -34,12 +34,13 @@ namespace GwcltdApp.Web.Controllers
         }
 
         [AllowAnonymous]
-        public HttpResponseMessage Get(HttpRequestMessage request)
+        [Route("loadsystems/{stationid:int}")]
+        public HttpResponseMessage Getsys(HttpRequestMessage request, int stationid)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var wsystems = _wsystemsRepository.GetAll().ToList();
+                var wsystems = _wsystemsRepository.GetAll().Where(x => x.GwclStationId == stationid).ToList();
 
                 IEnumerable<WSystemViewModel> wsystemsVM = Mapper.Map<IEnumerable<WSystem>, IEnumerable<WSystemViewModel>>(wsystems);
 

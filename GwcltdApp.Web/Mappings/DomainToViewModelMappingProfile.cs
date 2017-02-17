@@ -34,6 +34,7 @@ namespace GwcltdApp.Web.Mappings
                 .ForMember(vm => vm.WSystemId, map => map.MapFrom(m => m.WSystem.ID));
 
             Mapper.CreateMap<User, RegistrationViewModel>()
+                .ForMember(vm => vm.Password, map => map.MapFrom(m => m.HashedPassword))
                 .ForMember(vm => vm.GwclRegion, map => map.MapFrom(m => m.GwclRegion.Name))
                 .ForMember(vm => vm.GwclStation, map => map.MapFrom(m => m.GwclStation.Name))
                 .ForMember(vm => vm.GwclRegionId, map => map.MapFrom(m => m.GwclRegion.ID))

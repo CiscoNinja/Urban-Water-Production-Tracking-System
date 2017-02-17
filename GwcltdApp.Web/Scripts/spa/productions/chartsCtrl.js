@@ -28,7 +28,7 @@
 
         function loadWsystems() {
 
-            apiService.get('/api/wsystems/syscodes', null,
+            apiService.get('/api/gwclsystems/syscodes', null,
             wsystemsLoadCompleted,
             wsystemsLoadFailed);
         }

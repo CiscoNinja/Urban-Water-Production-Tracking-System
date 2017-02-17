@@ -14,7 +14,6 @@
         $scope.isReadOnly = false;
         $scope.AddDowntime = AddDowntime;
         $scope.openDatePicker = openDatePicker;
-        $scope.calculateMins = calculateMins;
 
         $scope.dateOptions = {
             formatYear: 'yy',
@@ -43,10 +42,10 @@
             });
         });
 
-        function calculateMins() {
+        $("#hoursdown").click(function (e) {
             var timeStart = new Date(document.getElementById('date_picker').value);
             var timeEnd = new Date(document.getElementById('date_picker2').value);
-            
+
             var hourDiff = timeEnd - timeStart; //in ms 
 
             var diffDays = Math.floor(hourDiff / 86400000); // days
@@ -57,12 +56,12 @@
             var minDiff = hourDiff / 60 / 1000; //in minutes
             var hDiff = hourDiff / 3600 / 1000; //in hours
 
-            document.getElementById('hoursdown').value = minDiff;
+            $("#hoursdown").val(minDiff);
             document.getElementById('lostLabel').innerHTML = "Time Lost: " + diffDays + "days " + diffHrs + "hrs " + diffMins + "mins";
-        }
+        });
 
         function loadWsystems() {
-            apiService.get('/api/wsystems/', null,
+            apiService.get('/api/gwclsystems/loadsystems/' + $rootScope.repository.loggedUser.stationid, null,
             wsystemsLoadCompleted,
             wsystemsLoadFailed);
         }

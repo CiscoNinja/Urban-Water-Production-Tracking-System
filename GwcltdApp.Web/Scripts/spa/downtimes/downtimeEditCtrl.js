@@ -81,7 +81,7 @@
         }
 
         function loadWsystems() {
-            apiService.get('/api/wsystems/', null,
+            apiService.get('/api/gwclsystems/loadsystems/' + $rootScope.repository.loggedUser.stationid, null,
             wsystemsLoadCompleted,
             wsystemsLoadFailed);
         }

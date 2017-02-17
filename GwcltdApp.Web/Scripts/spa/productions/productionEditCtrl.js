@@ -3,9 +3,9 @@
 
     app.controller('productionEditCtrl', productionEditCtrl);
 
-    productionEditCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService'];
+    productionEditCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', '$rootScope'];
 
-    function productionEditCtrl($scope, $location, $routeParams, apiService, notificationService) {
+    function productionEditCtrl($scope, $location, $routeParams, apiService, notificationService, $rootScope) {
         $scope.pageClass = 'page-productions';
         $scope.production = {};
         $scope.wsystems = [];
@@ -75,7 +75,7 @@
         }
 
         function loadWsystems() {
-            apiService.get('/api/wsystems/', null,
+            apiService.get('/api/gwclsystems/loadsystems/'+$rootScope.repository.loggedUser.stationid, null,
             wsystemsLoadCompleted,
             wsystemsLoadFailed);
         }

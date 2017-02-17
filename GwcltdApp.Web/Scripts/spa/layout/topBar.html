@@ -14,9 +14,9 @@
         <ul class="nav navbar-nav navbar-right">
             <li style="display:flex; align-items:center" ng-if="userData.isUserLoggedIn">
                 <a class="control-label">Region:</a>
-                <a class="userinfo">{{userstation.GwclRegion}}</a>
+                <a class="userinfo">{{uregionname}}</a>
                 <a class="control-label">Station:</a>
-                <a class="userinfo">{{userstation.GwclStation}}</a>
+                <a class="userinfo">{{ustationname}}</a>
                 <a class="control-label">Systems:</a>
                 <select ng-model="userInfo.selectedSys" class="form-control black userinfo" ng-options="userSystem.ID as userSystem.Name for userSystem in userSystems" required></select>
                 <input type="hidden" name="selectedSys" ng-value="userInfo.selectedSys" />

@@ -27,7 +27,7 @@
         }
 
         function loadGwclRegions() {
-            apiService.get('/api/gwclregions/', null,
+            apiService.get('/api/gwclregions/loadregions', null,
             gwclregionsLoadCompleted,
             gwclregionsLoadFailed);
         }

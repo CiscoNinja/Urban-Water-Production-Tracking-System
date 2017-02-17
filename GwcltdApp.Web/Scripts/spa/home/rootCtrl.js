@@ -18,19 +18,22 @@
             $scope.userSystems = response.data;
         }
 
-        function stationLoadCompleted(response) {
-            $scope.userstation = response.data;
-        }
+        //function stationLoadCompleted(response) {
+        //    $scope.userstation = response.data;
+        //}
 
 
         function displayUserInfo() {
             $scope.userData.isUserLoggedIn = membershipService.isUserLoggedIn();
-
+            
             if($scope.userData.isUserLoggedIn)
             {
-                membershipService.loadUserStation($rootScope.repository.loggedUser, stationLoadCompleted)
+                //membershipService.loadUserStation($rootScope.repository.loggedUser, stationLoadCompleted)
                 membershipService.loadWsystems(wsystemsLoadCompleted);
                 $scope.username = $rootScope.repository.loggedUser.username;
+                $scope.ustationname = $rootScope.repository.loggedUser.stationname;
+                $scope.uregionname = $rootScope.repository.loggedUser.regionname;
+                $scope.ustationid = $rootScope.repository.loggedUser.stationid;
                 // save all user parameters here
             }
         }
