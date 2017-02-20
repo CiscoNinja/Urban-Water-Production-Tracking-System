@@ -3,9 +3,9 @@
 
     app.controller('indexCtrl', indexCtrl);
 
-    indexCtrl.$inject = ['$scope','apiService', 'notificationService'];
+    indexCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$rootScope'];
 
-    function indexCtrl($scope, apiService, notificationService) {
+    function indexCtrl($scope, apiService, notificationService, $rootScope) {
         $scope.pageClass = 'page-home';
         $scope.loadingProductions = true;
         $scope.loadingSummary = true;
@@ -16,11 +16,11 @@
         $scope.loadData = loadData;
 
         function loadData() {
-            apiService.get('/api/productions/latest/'+1, null,
+            apiService.get('/api/productions/latest/'+$rootScope.repository.loggedUser.stationid, null,
                         productionsLoadCompleted,
                         productionsLoadFailed);
 
-            apiService.get("/api/productions/latest/"+1, null,
+            apiService.get("/api/productions/latest/"+$rootScope.repository.loggedUser.stationid, null,
                 summaryLoadCompleted,
                 summaryLoadFailed);
         }

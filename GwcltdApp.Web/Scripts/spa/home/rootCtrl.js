@@ -40,7 +40,7 @@
 
         function logout() {
             membershipService.removeCredentials();
-            $location.path('#/');
+            $location.path('/');
             $scope.userData.displayUserInfo();
         }
 

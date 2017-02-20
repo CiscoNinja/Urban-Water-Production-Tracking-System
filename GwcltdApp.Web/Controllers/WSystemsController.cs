@@ -51,13 +51,13 @@ namespace GwcltdApp.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("syscodes")]
-        public HttpResponseMessage GetCodes(HttpRequestMessage request)
+        [Route("syscodes/{stationid:int}")]
+        public HttpResponseMessage GetCodes(HttpRequestMessage request, int stationid)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var wsystems = _wsystemsRepository.GetAll().Select(x => x.Code).ToArray();
+                var wsystems = _wsystemsRepository.GetAll().Where(x => x.GwclStationId == stationid).Select(x => x.Code).ToArray();
 
                 //IEnumerable<WSystemViewModel> wsystemsVM = Mapper.Map<IEnumerable<WSystem>, IEnumerable<WSystemViewModel>>(wsystems);
 

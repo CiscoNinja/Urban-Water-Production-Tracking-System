@@ -3,9 +3,9 @@
 
     app.controller('gwclsystemsCtrl', gwclsystemsCtrl);
 
-    gwclsystemsCtrl.$inject = ['$scope', '$modal', 'apiService', 'notificationService'];
+    gwclsystemsCtrl.$inject = ['$scope', '$modal', 'apiService', 'notificationService', '$rootScope'];
 
-    function gwclsystemsCtrl($scope, $modal, apiService, notificationService) {
+    function gwclsystemsCtrl($scope, $modal, apiService, notificationService, $rootScope) {
 
         $scope.pageClass = 'page-gwclsystems';
         $scope.loadingGwclSystems = true;

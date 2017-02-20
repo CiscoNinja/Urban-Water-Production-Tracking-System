@@ -3,9 +3,9 @@
 
     app.controller('downtimeAddCtrl', downtimeAddCtrl);
 
-    downtimeAddCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService'];
+    downtimeAddCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', '$rootScope'];
 
-    function downtimeAddCtrl($scope, $location, $routeParams, apiService, notificationService) {
+    function downtimeAddCtrl($scope, $location, $routeParams, apiService, notificationService, $rootScope) {
 
         $scope.pageClass = 'page-downtimes';
         $scope.downtime = { WSystemId: 1 };

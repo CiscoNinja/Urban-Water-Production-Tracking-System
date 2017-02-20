@@ -3,9 +3,9 @@
 
     app.controller('summaryCtrl', summaryCtrl);
 
-    summaryCtrl.$inject = ['$scope', '$routeParams', 'apiService', 'notificationService', '$timeout'];
+    summaryCtrl.$inject = ['$scope', '$routeParams', 'apiService', 'notificationService', '$timeout', '$rootScope'];
 
-    function summaryCtrl($scope, $routeParams, apiService, notificationService, $timeout) {
+    function summaryCtrl($scope, $routeParams, apiService, notificationService, $timeout, $rootScope) {
         $scope.loadTable = loadTable;
         $scope.loadingStatistics = true;
         $scope.emptyStatistics = false;
@@ -19,7 +19,7 @@
                 $scope.waterType = $(this).text();
             });
             $scope.loadingStatistics = true;
-            apiService.get('/api/productions/summary/1/' + $routeParams.id, null,
+            apiService.get('/api/productions/summary/'+ $rootScope.repository.loggedUser.stationid + '/' + $routeParams.id, null,
             summaryLoadCompleted,
             summaryLoadFailed);
         }

@@ -3,9 +3,9 @@
 
     app.controller('productionAddCtrl', productionAddCtrl);
 
-    productionAddCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService'];
+    productionAddCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', '$rootScope'];
 
-    function productionAddCtrl($scope, $location, $routeParams, apiService, notificationService) {
+    function productionAddCtrl($scope, $location, $routeParams, apiService, notificationService,$rootScope) {
 
         $scope.pageClass = 'page-productions';
         $scope.production = { WSystemId: 1, OptionId: 1, OptionTypeId: 1 };
@@ -55,7 +55,7 @@
         }
 
         function loadWsystems() {
-            apiService.get('/api/wsystems/', null,
+            apiService.get('/api/gwclsystems/loadsystems/' + $rootScope.repository.loggedUser.stationid, null,
             wsystemsLoadCompleted,
             wsystemsLoadFailed);
         }

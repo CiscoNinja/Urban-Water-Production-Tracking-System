@@ -3,9 +3,9 @@
 
     app.controller('downtimeEditCtrl', downtimeEditCtrl);
 
-    downtimeEditCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService'];
+    downtimeEditCtrl.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'notificationService', '$rootScope'];
 
-    function downtimeEditCtrl($scope, $location, $routeParams, apiService, notificationService) {
+    function downtimeEditCtrl($scope, $location, $routeParams, apiService, notificationService,$rootScope) {
         $scope.pageClass = 'page-downtimes';
         $scope.downtime = {};
         $scope.wsystems = [];
@@ -100,7 +100,7 @@
         }
 
         function UpdateDowntimeModel() {
-            apiService.post('/api/downtimes/update', $scope.production,
+            apiService.post('/api/downtimes/update', $scope.downtime,
             updateDowntimeSucceded,
             updateDowntimeFailed);
         }

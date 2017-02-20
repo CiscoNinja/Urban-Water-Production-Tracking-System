@@ -10,7 +10,8 @@
         $routeProvider
             .when("/", {
                 templateUrl: "scripts/spa/home/index.html",
-                controller: "indexCtrl"
+                controller: "indexCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/login", {
                 templateUrl: "scripts/spa/account/login.html",
@@ -23,7 +24,8 @@
             })
             .when("/gwclareas", {
                 templateUrl: "scripts/spa/gwclareas/gwclareas.html",
-                controller: "gwclareasCtrl"
+                controller: "gwclareasCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclareas/add", {
                 templateUrl: "scripts/spa/gwclareas/add.html",
@@ -32,7 +34,8 @@
             })
             .when("/gwclregions", {
                 templateUrl: "scripts/spa/gwclregions/gwclregions.html",
-                controller: "gwclregionsCtrl"
+                controller: "gwclregionsCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclregions/add", {
                 templateUrl: "scripts/spa/gwclregions/add.html",
@@ -41,7 +44,8 @@
             })
             .when("/gwclstations", {
                 templateUrl: "scripts/spa/gwclstations/gwclstations.html",
-                controller: "gwclstationsCtrl"
+                controller: "gwclstationsCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclstations/add", {
                 templateUrl: "scripts/spa/gwclstations/add.html",
@@ -50,7 +54,8 @@
             })
             .when("/gwclsystems", {
                 templateUrl: "scripts/spa/gwclsystems/gwclsystems.html",
-                controller: "gwclsystemsCtrl"
+                controller: "gwclsystemsCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclsystems/add", {
                 templateUrl: "scripts/spa/gwclsystems/add.html",
@@ -104,7 +109,8 @@
             })
             .when("/productions/edit/:id", {
                 templateUrl: "scripts/spa/productions/edit.html",
-                controller: "productionEditCtrl"
+                controller: "productionEditCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/downtimes", {
                 templateUrl: "scripts/spa/downtimes/downtimes.html",
@@ -123,7 +129,8 @@
             })
             .when("/downtimes/edit/:id", {
                 templateUrl: "scripts/spa/downtimes/edit.html",
-                controller: "downtimeEditCtrl"
+                controller: "downtimeEditCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
             });
     }
 

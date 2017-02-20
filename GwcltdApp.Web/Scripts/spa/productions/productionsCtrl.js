@@ -3,9 +3,9 @@
 
     app.controller('productionsCtrl', productionsCtrl);
 
-    productionsCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
+    productionsCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$rootScope'];
 
-    function productionsCtrl($scope, apiService, notificationService) {
+    function productionsCtrl($scope, apiService, notificationService,$rootScope) {
         $scope.pageClass = 'page-productions';
         $scope.loadingProductions = true;
         $scope.page = 0;
@@ -40,7 +40,7 @@
                 }
             };
 
-            apiService.get('/api/productions/'+1, config,
+            apiService.get('/api/productions/' + $rootScope.repository.loggedUser.stationid, config,
             productionsLoadCompleted,
             productionsLoadFailed);
         }
