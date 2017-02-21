@@ -3,9 +3,9 @@
 
     app.controller('chartsCtrl', chartsCtrl);
 
-    chartsCtrl.$inject = ['$scope', '$routeParams', 'apiService', 'notificationService', '$timeout'];
+    chartsCtrl.$inject = ['$scope', '$routeParams', 'apiService', 'notificationService', '$timeout', '$rootScope'];
 
-    function chartsCtrl($scope, $routeParams, apiService, notificationService, $timeout) {
+    function chartsCtrl($scope, $routeParams, apiService, notificationService, $timeout, $rootScope) {
         $scope.loadCharts = loadCharts;
         $scope.loadWsystems = loadWsystems;
         $scope.emptyStatistics = false;
