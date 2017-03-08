@@ -34,7 +34,7 @@ namespace GwcltdApp.Web.Controllers
             _productionsRepository = productionsRepository;
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [Route("latest/{userstation:int}")]
         public HttpResponseMessage Get(HttpRequestMessage request, int userstation)
         {
@@ -51,7 +51,7 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [Route("summary/{userstation:int}/{id}")]
         public HttpResponseMessage GetTable(HttpRequestMessage request, int userstation, string id)
         {
@@ -217,7 +217,7 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [Route("charts/{userstation:int}/{id}")]
         public HttpResponseMessage GetChart(HttpRequestMessage request,int userstation, string id)
         {
@@ -321,7 +321,7 @@ namespace GwcltdApp.Web.Controllers
                 this.Add(val);
             }
         }
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [Route("details/{id:int}")]
         public HttpResponseMessage GetSingle(HttpRequestMessage request, int id)
         {
