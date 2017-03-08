@@ -21,7 +21,7 @@
             });
 
             $scope.loadingCharts = true;
-            apiService.get('/api/productions/charts/' +$routeParams.id, null,
+            apiService.get('/api/productions/charts/' + $rootScope.repository.loggedUser.stationid +'/'+$routeParams.id, null,
             chartsLoadCompleted,
             chartsLoadFailed);
         }

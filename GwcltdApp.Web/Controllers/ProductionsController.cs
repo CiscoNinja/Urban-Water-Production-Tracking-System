@@ -51,7 +51,7 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [Route("summary/{userstation:int}/{id}")]
         public HttpResponseMessage GetTable(HttpRequestMessage request, int userstation, string id)
         {
@@ -217,16 +217,16 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        //[AllowAnonymous]
-        [Route("charts/{id}")]
-        public HttpResponseMessage GetChart(HttpRequestMessage request, string id)
+        [AllowAnonymous]
+        [Route("charts/{userstation:int}/{id}")]
+        public HttpResponseMessage GetChart(HttpRequestMessage request,int userstation, string id)
         {
-            List<ChartData> list = new List<ChartData>();
-            var graph = new MyDictionary1();
+            var allsys = SummaryManager.GetAllUserSystems(userstation);
+            List<Dictionary<string, string>> returnList = new List<Dictionary<string, string>>();
+            
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-               // var allProductions = _productionsRepository.GetAll();
 
                 switch(id)
                 {
@@ -234,40 +234,42 @@ namespace GwcltdApp.Web.Controllers
                         {
                             for (int i = 1; i <= 12; i++)
                             {
+                                Dictionary<string, string> graph_dictionary = new Dictionary<string, string>();
                                 DateTime monthvalue = new DateTime(2016, i, 1);
                                 string thismonth = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthvalue.Month);
 
-                                var system1Total = SummaryManager.getWaterTable("S01",i,"Treated Water");
-                                var system2Total = SummaryManager.getWaterTable("S02", i, "Treated Water");
-                                var system3Total = SummaryManager.getWaterTable("S03", i, "Treated Water");
-                                var system4Total = SummaryManager.getWaterTable("S04", i, "Treated Water");
-                                var system5Total = SummaryManager.getWaterTable("S05", i, "Treated Water");
-                                var system6Total = SummaryManager.getWaterTable("S06", i, "Treated Water");
-                                var system7Total = SummaryManager.getWaterTable("S07", i, "Treated Water");
-                                graph.Add(thismonth, system1Total, system2Total, system3Total, system4Total, system5Total, system6Total, system7Total);
+                                graph_dictionary["month"] = thismonth;
+
+                                foreach (var syscode in allsys)
+                                {
+                                    graph_dictionary[syscode.Code] = SummaryManager.getWaterTable(syscode.Code, i, "Treated Water").ToString();
+                                }
+
+                                returnList.Add(graph_dictionary);
                             }
 
-                            response = request.CreateResponse<MyDictionary1>(HttpStatusCode.OK, graph);
+                            response = request.CreateResponse(HttpStatusCode.OK, returnList);
                             break;
                         }
                     case "Plant Loss":
                         {
                             for (int i = 1; i <= 12; i++)
                             {
+                                Dictionary<string, string> graph_dictionary = new Dictionary<string, string>();
                                 DateTime monthvalue = new DateTime(2016, i, 1);
                                 string thismonth = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthvalue.Month);
 
-                                var system1Total = SummaryManager.PlantLoss_percent("S01", i);
-                                var system2Total = SummaryManager.PlantLoss_percent("S02", i);
-                                var system3Total = SummaryManager.PlantLoss_percent("S03", i);
-                                var system4Total = SummaryManager.PlantLoss_percent("S04", i);
-                                var system5Total = SummaryManager.PlantLoss_percent("S05", i);
-                                var system6Total = SummaryManager.PlantLoss_percent("S06", i);
-                                var system7Total = SummaryManager.PlantLoss_percent("S07", i);
-                                graph.Add(thismonth, system1Total, system2Total, system3Total, system4Total, system5Total, system6Total, system7Total);
+                                graph_dictionary["month"] = thismonth;
+
+                                foreach (var syscode in allsys)
+                                {
+                                    graph_dictionary[syscode.Code] = SummaryManager.PlantLoss_percent(syscode.Code, i).ToString();
+                                }
+
+                                returnList.Add(graph_dictionary);
                             }
 
-                            response = request.CreateResponse<MyDictionary1>(HttpStatusCode.OK, graph);
+                            response = request.CreateResponse(HttpStatusCode.OK, returnList);
                             break;
                         }
                         
@@ -298,34 +300,6 @@ namespace GwcltdApp.Web.Controllers
             public double Dec { get; set; }
         }
 
-        public struct ChartData
-        {
-            public string month { get; set; }
-            public double S01 { get; set; }
-            public double S02 { get; set; }
-            public double S03 { get; set; }
-            public double S04 { get; set; }
-            public double S05 { get; set; }
-            public double S06 { get; set; }
-            public double S07 { get; set; }
-        }
-
-        public class MyDictionary1 : List<ChartData>
-        {
-            public void Add(string key, double value1, double value2, double value3, double value4, double value5, double value6, double value7)
-            {
-                ChartData val = new ChartData();
-                val.month = key;
-                val.S01 = value1;
-                val.S02 = value2;
-                val.S03 = value3;
-                val.S04 = value4;
-                val.S05 = value5;
-                val.S06 = value6;
-                val.S07 = value7;
-                this.Add(val);
-            }
-        }
         public class MyDictionary : List<GraphData>
         {
             public void Add(string key, double value1, double value2, double value3, double value4, double value5, double value6, double value7, double value8, double value9, double value10, double value11, double value12)
