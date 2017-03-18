@@ -49,52 +49,47 @@ namespace GwcltdApp.Web
 
             foreach (string line in lines)
             {
-        //        class Program
-        //{
-        //    static void Main(string[] args)
-        //    {
-        //        DateTime DateCreated;
-        //        DateTime DayToRecord;
-        //        //double DailyActual;
-        //        double FRPH;
-        //        double FRPS;
-        //        double TFPD;
-        //        double NTFPD;
-        //        double LOG;
-        //        //string WSystem;
-        //        //string WSystemCode;
-        //        //int WSystemId;
-        //        //string Option;
-        //        //int OptionId;
-        //        //string OptionType;
-        //        //int OptionTypeId;
-        //        string value = "YAC0415 06:00 08/11/2016 39C 194.108 m3/h v:0.76 m/s 640794.4 m3 -17.3992 m3 s9 LOG: 96";
-        //        // Split the string on line breaks.
-        //        // ... The return value from Split is a string array.
-        //        string[] lines = value.Split(' ');
+                
+                DateTime DateCreated;
+                DateTime DayToRecord;
+                //double DailyActual;
+                double FRPH;
+                double FRPS;
+                double TFPD;
+                double NTFPD;
+                double LOG;
+                //string WSystem;
+                //string WSystemCode;
+                //int WSystemId;
+                //string Option;
+                //int OptionId;
+                //string OptionType;
+                //int OptionTypeId;
+                //string value = "YAC0415 06:00 08/11/2016 39C 194.108 m3/h v:0.76 m/s 640794.4 m3 -17.3992 m3 s9 LOG: 96";
+                // Split the string on line breaks.
+                // ... The return value from Split is a string array.
+                //string[] lines = value.Split(' ');
 
-        //        DateCreated = Convert.ToDateTime(lines[2] + " " + lines[1]);
-        //        DayToRecord = Convert.ToDateTime(lines[2] + " " + lines[1]);
-        //        TFPD = Convert.ToDouble(lines[8]);
-        //        NTFPD = Convert.ToDouble(lines[10]);
-        //        LOG = Convert.ToDouble(lines[14]);
-        //        FRPH = Convert.ToDouble(lines[4]);
-        //        FRPS = Convert.ToDouble(lines[6].Remove(0, 2));
-        //        //DailyActual = Convert.ToDouble(lines[17]);
+                DateCreated = Convert.ToDateTime(lines[2] + " " + lines[1]);
+                DayToRecord = Convert.ToDateTime(lines[2] + " " + lines[1]);
+                TFPD = Convert.ToDouble(lines[8]);
+                NTFPD = Convert.ToDouble(lines[10]);
+                LOG = Convert.ToDouble(lines[14]);
+                FRPH = Convert.ToDouble(lines[4]);
+                FRPS = Convert.ToDouble(lines[6].Remove(0, 2));
+                //DailyActual = Convert.ToDouble(lines[17]);
 
-        //        foreach (string line in lines)
-        //        {
-        //            Console.WriteLine(line);
-        //        }
-        //        Console.WriteLine(DayToRecord);
-        //        Console.WriteLine(DateCreated);
-        //        Console.WriteLine(TFPD);
-        //        Console.WriteLine(NTFPD);
-        //        Console.WriteLine(LOG);
-        //        Console.WriteLine(FRPS);
-        //    }
-        //}
-    }
+                //foreach (string line in lines)
+                //{
+                //    Console.WriteLine(line);
+                //}
+                Console.WriteLine(DayToRecord);
+                Console.WriteLine(DateCreated);
+                Console.WriteLine(TFPD);
+                Console.WriteLine(NTFPD);
+                Console.WriteLine(LOG);
+                Console.WriteLine(FRPS);
+            }
 
 
             // Sending a reply SMS. If you don't want to send a reply, just comment all the next lines out
