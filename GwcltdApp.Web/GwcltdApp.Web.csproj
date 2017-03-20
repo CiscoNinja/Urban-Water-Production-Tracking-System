@@ -288,7 +288,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppConfig\ApplicationConfiguration.cs" />
+    <Compile Include="Controllers\ConfigsController.cs" />
+    <Compile Include="CustomConfiguration\App.cs" />
+    <Compile Include="CustomConfiguration\ApplicationConfiguration.cs" />
     <Compile Include="App_Start\AutofacWebapiConfig.cs" />
     <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -305,6 +307,12 @@
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\WSystemsController.cs" />
+    <Compile Include="CustomConfiguration\ConfigModels\ConfigViewModel.cs" />
+    <Compile Include="CustomConfiguration\ConfigModels\custConfigType.cs" />
+    <Compile Include="CustomConfiguration\ConfigHelpers\MyModel.cs" />
+    <Compile Include="CustomConfiguration\ConfigHelpers\ReflectionUtils.cs" />
+    <Compile Include="CustomConfiguration\ConfigHelpers\StringUtils.cs" />
+    <Compile Include="CustomConfiguration\ConfigHelpers\WebUtils.cs" />
     <Compile Include="DAL\SummaryManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -364,6 +372,7 @@
     <Content Include="sms.ashx" />
     <Content Include="Logging\AutoAuditSetup.pdf" />
     <Content Include="Scripts\vendors\jquery-ui.min.js" />
+    <Content Include="Views\Configs\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

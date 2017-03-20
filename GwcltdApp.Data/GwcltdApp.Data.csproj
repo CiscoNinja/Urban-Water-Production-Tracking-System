@@ -109,6 +109,7 @@
     <Content Include="it\MockData.resources.dll" />
     <Content Include="uk\MockData.resources.dll" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702011548541_initial_migration.resx">
       <DependentUpon>201702011548541_initial_migration.cs</DependentUpon>

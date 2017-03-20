@@ -1,0 +1,88 @@
+﻿@model GwcltdApp.Web.CustomConfiguration.ConfigModels.ConfigViewModel
+@{
+    ViewBag.Title = "Application Configuration";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .btn-primary, .btn-success {
+            background-image: none;
+            filter: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-error" data-dismiss="alert">
+                <a class="close" href="#">&times;</a>
+                <i class="icon-exclamation-sign"></i> @Model.ErrorMessage
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.InfoMessage))
+        {
+            <div class="alert alert-info" data-dismiss="alert">
+                <a class="close" href="#">&times;</a>
+                <i class="icon-info-sign"></i> @Html.Raw(Model.InfoMessage)
+            </div>
+        }
+
+        <form action="@Url.Action("Save")" method="post">
+            
+            <div class="containercontent">
+
+                @Html.Raw(Model.ShowPropertyGrid())
+                <div class="">
+
+                </div>
+
+                <p>
+                    <input type="submit" id="btnSubmit" name="btnSubmit" class="btn btn-primary btn-large" value="Save Settings" accesskey="S" />
+                </p>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-dropdown.js"></script>
+    <script src="../js/bootstrap-alert.js"></script>
+
+
+    @*<script src="js/bootstrap-transition.js"></script>
+
+        <script src="js/bootstrap-modal.js"></script>
+
+        <script src="js/bootstrap-scrollspy.js"></script>
+        <script src="js/bootstrap-tab.js"></script>
+        <script src="js/bootstrap-tooltip.js"></script>
+        <script src="js/bootstrap-popover.js"></script>
+        <script src="js/bootstrap-button.js"></script>
+        <script src="js/bootstrap-collapse.js"></script>
+        <script src="js/bootstrap-carousel.js"></script>
+        <script src="js/bootstrap-typeahead.js"></script>
+    *@
+    <script>
+
+    </script>
+</body>
+</html>

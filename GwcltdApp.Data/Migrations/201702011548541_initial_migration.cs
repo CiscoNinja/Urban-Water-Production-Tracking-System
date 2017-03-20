@@ -244,7 +244,15 @@ namespace GwcltdApp.Data.Migrations
                         SENT_DT = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
-            
+
+            CreateTable(
+                "dbo.ConfigData",
+                c => new
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                })
+                .PrimaryKey(t => t.ID);
+
             CreateTable(
                 "dbo.UserRole",
                 c => new
@@ -339,6 +347,7 @@ namespace GwcltdApp.Data.Migrations
             DropTable("dbo.User");
             DropTable("dbo.UserRole");
             DropTable("dbo.SMS_IN");
+            DropTable("dbo.ConfigData");
             DropTable("dbo.Role");
             DropTable("dbo.Error");
             DropTable("dbo.UserRegion");

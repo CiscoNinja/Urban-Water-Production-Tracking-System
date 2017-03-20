@@ -1,11 +1,12 @@
-﻿using System;
+﻿using GwcltdApp.Web.CustomConfiguration.ConfigModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
 using Westwind.Utilities.Configuration;
 
-namespace GwcltdApp.Web.AppConfig
+namespace GwcltdApp.Web.CustomConfiguration
 {
     /// <summary>
     /// Application specific config class that holds global configuration values
@@ -22,15 +23,14 @@ namespace GwcltdApp.Web.AppConfig
         /// <returns></returns>
         protected override IConfigurationProvider OnCreateDefaultProvider(string sectionName, object configData)
         {
-
             var provider = new SqlServerConfigurationProvider<ApplicationConfiguration>()
             {
-                
-                PropertiesToEncrypt = "MailServerPassword,ConnectionString",
+                ConnectionString = "Data Source=.\\SQLExpress;Initial Catalog=GwcltdAppDB6;Integrated Security=SSPI; MultipleActiveResultSets=true",
+                Tablename = "ConfigData",
+                PropertiesToEncrypt = "ConnectionString",
                 EncryptionKey = "secret",
-                ConnectionString = "DevSampleConnectionString",
-                Tablename = "Configuration",
-                Key = 1
+                Key = 1,
+                ProviderName = "System.Data.SqlClient"
             };
 
             return provider;
@@ -78,27 +78,22 @@ namespace GwcltdApp.Web.AppConfig
         /// </summary>
         public DebugModes DebugMode { get; set; }
 
-        /// <summary>
-        /// Determines how many items are displayed per page in typical list displays
-        /// </summary>
-        public int MaxPageItems { get; set; }
-
         #endregion
 
-       
+
 
         #region Water Systems settings
 
-        public List<string> RawWaterList { get; set; }
-        public List<string> TreatedWaterList { get; set; }
-        public List<string> RawOne { get; set; }
-        public List<string> RawTwo { get; set; }
-        public List<string> RawThree { get; set; }
-        public List<string> RawFour { get; set; }
-        public List<string> TreatedOne { get; set; }
-        public List<string> TreatedTwo { get; set; }
-        public List<string> TreatedThree { get; set; }
-        public List<string> TreatedFour { get; set; }
+        public custConfigType RawWater { get; set; }
+        public custConfigType TreatedWater { get; set; }
+        public custConfigType Raw1 { get; set; }
+        public custConfigType Raw2 { get; set; }
+        public custConfigType Raw3 { get; set; }
+        public custConfigType Raw4 { get; set; }
+        public custConfigType Treated1 { get; set; }
+        public custConfigType Treated2 { get; set; }
+        public custConfigType Treated3 { get; set; }
+        public custConfigType Treated4 { get; set; }
 
         #endregion
     }
