@@ -29,7 +29,7 @@ namespace GwcltdApp.Data
         public IDbSet<Production> ProductionSet { get; set; }
         public IDbSet<Error> ErrorSet { get; set; }
         public IDbSet<SMS_IN> SMS_INSet { get; set; }
-        public IDbSet<ConfigData> ConfigDataSet { get; set; }
+        public IDbSet<Config> ConfigSet { get; set; }
         public IDbSet<GwclArea> GwclAreaSet { get; set; }
         public IDbSet<GwclRegion> GwclRegionSet { get; set; }
         public IDbSet<UserRegion> UserRegionSet { get; set; }
