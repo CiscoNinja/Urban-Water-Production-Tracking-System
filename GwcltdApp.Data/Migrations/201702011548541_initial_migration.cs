@@ -246,10 +246,11 @@ namespace GwcltdApp.Data.Migrations
                 .PrimaryKey(t => t.ID);
 
             CreateTable(
-                "dbo.ConfigData",
+                "dbo.Config",
                 c => new
                 {
                     ID = c.Int(nullable: false, identity: true),
+                    ConfigData = c.String(),
                 })
                 .PrimaryKey(t => t.ID);
 
@@ -347,7 +348,7 @@ namespace GwcltdApp.Data.Migrations
             DropTable("dbo.User");
             DropTable("dbo.UserRole");
             DropTable("dbo.SMS_IN");
-            DropTable("dbo.ConfigData");
+            DropTable("dbo.Config");
             DropTable("dbo.Role");
             DropTable("dbo.Error");
             DropTable("dbo.UserRegion");

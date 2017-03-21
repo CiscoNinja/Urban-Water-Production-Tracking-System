@@ -57,26 +57,26 @@ namespace GwcltdApp.Data.Migrations
             //    }
             //});
 
-            context.UserRoleSet.AddOrUpdate(new UserRole[] {
-                 new UserRole() {
-                     RoleId = 1, // admin
-                     UserId = 1  // chsakell
-                 }
-            });
+            //context.UserRoleSet.AddOrUpdate(new UserRole[] {
+            //     new UserRole() {
+            //         RoleId = 1, // admin
+            //         UserId = 1  // chsakell
+            //     }
+            //});
 
-            context.UserRegionSet.AddOrUpdate(new UserRegion[] {
-                 new UserRegion() {
-                     GwclRegionId = 1,
-                     UserId = 1
-                 }
-             });
+            //context.UserRegionSet.AddOrUpdate(new UserRegion[] {
+            //     new UserRegion() {
+            //         GwclRegionId = 1,
+            //         UserId = 1
+            //     }
+            // });
 
-            context.UserStationSet.AddOrUpdate(new UserStation[] {
-                 new UserStation() {
-                     GwclStationId = 1,
-                     UserId = 1
-                 }
-             });
+            //context.UserStationSet.AddOrUpdate(new UserStation[] {
+            //     new UserStation() {
+            //         GwclStationId = 1,
+            //         UserId = 1
+            //     }
+            // });
 
 
             //context.SystemProductionSet.AddOrUpdate(new SystemProduction[] {
