@@ -24,6 +24,47 @@ namespace GwcltdApp.Web.DAL
             }
         }
 
+        public static string GetSystemName(string code)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.WSystemSet.Where(x => x.Code == code).Select(x => x.Name).Single();
+            }
+        }
+
+        public static int GetSystemId(string code)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.WSystemSet.Where(x => x.Code == code).Select(x => x.ID).Single();
+            }
+        }
+
+        public static string GetStationName(string code)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.WSystemSet.Where(x => x.Code == code).FirstOrDefault().GwclStation.Name;
+            }
+        }
+
+        public static int GetStationId(string code)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.WSystemSet.Where(x => x.Code == code).FirstOrDefault().GwclStationId;
+            }
+        }
+
+        public static string GetStationCode(string code)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.WSystemSet.Where(x => x.Code == code).FirstOrDefault().GwclStation.StationCode;
+            }
+        }
+
+
         public static int GetTypeIdByName(string name)// gets id of water options Treated or Raw
         {
             using (GwcltdAppContext context = new GwcltdAppContext())

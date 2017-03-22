@@ -1,5 +1,8 @@
-﻿using GwcltdApp.Web.CustomConfiguration;
+﻿using GwcltdApp.Entities;
+using GwcltdApp.Web.CustomConfiguration;
 using GwcltdApp.Web.DAL;
+using GwcltdApp.Web.Infrastructure.Extensions;
+using GwcltdApp.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -45,21 +48,21 @@ namespace GwcltdApp.Web
              *
              */
 
-            #region retrieve config values
+            #region retrieving and mapping config values
             string option = null;
             int optionid = 0;
             string optiontype = null;
             int optiontypeid = 0;
-            string[] rawWater = Regex.Split(App.Configuration.RawWater, "\r\n");
-            string[] treatedWater = Regex.Split(App.Configuration.TreatedWater, "\r\n");
-            string[] raw1 = Regex.Split(App.Configuration.Raw1, "\r\n");
-            string[] raw2 = Regex.Split(App.Configuration.Raw2, "\r\n");
-            string[] raw3 = Regex.Split(App.Configuration.Raw3, "\r\n");
-            string[] raw4 = Regex.Split(App.Configuration.Raw4, "\r\n");
-            string[] treated1 = Regex.Split(App.Configuration.Treated1, "\r\n");
-            string[] treated2 = Regex.Split(App.Configuration.Treated2, "\r\n");
-            string[] treated3 = Regex.Split(App.Configuration.Treated3, "\r\n");
-            string[] treated4 = Regex.Split(App.Configuration.Treated4, "\r\n");
+            string[] rawWater = App.Configuration.RawWater.Split(',');
+            string[] treatedWater = App.Configuration.TreatedWater.Split(',');
+            string[] raw1 = App.Configuration.Raw1.Split(',');
+            string[] raw2 = App.Configuration.Raw2.Split(',');
+            string[] raw3 = App.Configuration.Raw3.Split(',');
+            string[] raw4 = App.Configuration.Raw4.Split(',');
+            string[] treated1 = App.Configuration.Treated1.Split(',');
+            string[] treated2 = App.Configuration.Treated2.Split(',');
+            string[] treated3 = App.Configuration.Treated3.Split(',');
+            string[] treated4 = App.Configuration.Treated4.Split(',');
 
             if (rawWater.Contains(senderNumber))
             {
@@ -111,63 +114,55 @@ namespace GwcltdApp.Web
                 optiontype = "Treated Water 4";
                 optiontypeid = SummaryManager.GetTypeIdByName2(optiontype);
             }
-            #endregion retrieve config values
+            #endregion retrieving and mapping config values
 
             // Text Message processing
             // Split the string on line breaks.
             // ... The return value from Split is a string array.
 
             #region processing text message into database
-            string[] lines = Regex.Split(messageText, "\r\n");
+            
 
-            foreach (string line in lines)
+            IEnumerable<string> allSystemNumbers = rawWater.Union(treatedWater);
+
+            if (allSystemNumbers.Contains(senderNumber)) //ensures that only text messages coming from GWCLtd. Systems are processed
             {
-                DateTime DateCreated;
-                DateTime DayToRecord;
-                //double DailyActual;
-                double FRPH;
-                double FRPS;
-                double TFPD;
-                double NTFPD;
-                double LOG;
-                //string WSystem;
-                //string WSystemCode;
-                //int WSystemId;
-                string Option;
-                int OptionId;
-                string OptionType;
-                int OptionTypeId;
-                string Comments;
+                var productionVM = new ProductionViewModel();
+                string[] lines = messageText.Split(' ');
+                //Regex.Split(messageText, "\r\n");
 
-                //string value = "YAC0415 06:00 08/11/2016 39C 194.108 m3/h v:0.76 m/s 640794.4 m3 -17.3992 m3 s9 LOG: 96";
-                // Split the string on line breaks.
-                // ... The return value from Split is a string array.
-                //string[] lines = value.Split(' ');
+                foreach (string line in lines)
+                {
+                    //example
+                    //string value = "YAC0415 06:00 08/11/2016 39C 194.108 m3/h v:0.76 m/s 640794.4 m3 -17.3992 m3 s9 LOG: 96";
+                    // Split the string on line breaks.
+                    // ... The return value from Split is a string array.
+                    //string[] lines = value.Split(' ');
 
-                DateCreated = Convert.ToDateTime(lines[2] + " " + lines[1]);
-                DayToRecord = Convert.ToDateTime(lines[2] + " " + lines[1]);
-                TFPD = Convert.ToDouble(lines[8]);
-                NTFPD = Convert.ToDouble(lines[10]);
-                LOG = Convert.ToDouble(lines[14]);
-                FRPH = Convert.ToDouble(lines[4]);
-                FRPS = Convert.ToDouble(lines[6].Remove(0, 2));
-                Option = option;
-                OptionId = optionid;
-                OptionType = optiontype;
-                OptionTypeId = optiontypeid;
-                Comments = "Send Via Text Message";
-                //DailyActual = Convert.ToDouble(lines[17]);
+                    productionVM.DateCreated = Convert.ToDateTime(lines[2] + " " + lines[1]);
+                    productionVM.DayToRecord = Convert.ToDateTime(lines[2] + " " + lines[1]);
+                    productionVM.DailyActual = ;
+                    productionVM.Comment = "Sent Via Text Message from " + senderNumber;
+                    productionVM.FRPH = Convert.ToDouble(lines[4]);
+                    productionVM.FRPS = Convert.ToDouble(lines[6].Remove(0, 2));
+                    productionVM.TFPD = Convert.ToDouble(lines[8]);
+                    productionVM.NTFPD = Convert.ToDouble(lines[10]);
+                    productionVM.LOG = Convert.ToDouble(lines[14]);
+                    productionVM.WSystem = SummaryManager.GetSystemName(lines[0]);
+                    productionVM.WSystemCode = lines[0];
+                    productionVM.WSystemId = SummaryManager.GetSystemId(lines[0]);
+                    productionVM.Option = option;
+                    productionVM.OptionId = optionid;
+                    productionVM.OptionType = optiontype;
+                    productionVM.OptionTypeId = optiontypeid;
+                    productionVM.GwclStationId = SummaryManager.GetStationId(lines[0]);
+                    productionVM.StationCode = SummaryManager.GetStationCode(lines[0]);
+                    productionVM.GwclStation = SummaryManager.GetSystemName(lines[0]);
 
-                //foreach (string line in lines)
-                //{
-                //    Console.WriteLine(line);
-                //}
-                Console.WriteLine(DayToRecord);
-                Console.WriteLine(DateCreated);
-                Console.WriteLine(TFPD);
-                Console.WriteLine(NTFPD);
-                Console.WriteLine(LOG);
-                Console.WriteLine(FRPS);
+                    Production newProduction = new Production();
+                    newProduction.UpdateProduction(productionVM);
+                }
+
             }
 
             #endregion processing text message into database 
