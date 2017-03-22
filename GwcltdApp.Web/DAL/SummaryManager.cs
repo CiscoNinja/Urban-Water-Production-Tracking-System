@@ -24,11 +24,19 @@ namespace GwcltdApp.Web.DAL
             }
         }
 
-        public static string GetTypeName(int id)
+        public static int GetTypeIdByName(string name)// gets id of water options Treated or Raw
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                return context.OptionSet.Where(x => x.ID == id).Select(x => x.ID).ToString();
+                return context.OptionSet.Where(x => x.Name == name).Select(x => x.ID).Single();
+            }
+        }
+
+        public static int GetTypeIdByName2(string name)// get type of water option Treated water 1 etx
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.OptionTypeSet.Where(x => x.Name == name).Select(x => x.ID).Single();
             }
         }
         public static double PlantLoss_percent(string itemcode, int mnth)

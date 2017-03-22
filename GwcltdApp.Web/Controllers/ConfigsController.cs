@@ -31,7 +31,7 @@ namespace GwcltdApp.Web.Controllers
             if (model == null)
                 model = new ConfigViewModel();
 
-            //this.LoadAppConfiguration(model);
+            this.LoadAppConfiguration(model);
 
             model.Configuration = this.AppConfig;
             //model.ErrorMessage = "Hello World";
@@ -45,7 +45,7 @@ namespace GwcltdApp.Web.Controllers
             if (!isSave)
                 return Index(model);
 
-           // this.LoadAppConfiguration(model);
+            this.LoadAppConfiguration(model);
 
             if (this.AppConfig == null)
             {
@@ -73,10 +73,10 @@ namespace GwcltdApp.Web.Controllers
         {
                 var provider = new SqlServerConfigurationProvider<ApplicationConfiguration>()
                 {
-                    ConnectionString = "DevSampleConnectionString",
+                    ConnectionString = "Data Source=.\\SQLExpress;Initial Catalog=GwcltdAppDB6;Integrated Security=SSPI; MultipleActiveResultSets=true",
                     Tablename = "ConfigData",
                     Key = 1,
-                    PropertiesToEncrypt = "Data Source=.\\SQLExpress;Initial Catalog=GwcltdAppDB6;Integrated Security=SSPI; MultipleActiveResultSets=true",
+                    PropertiesToEncrypt = "ConnectionString",
                     EncryptionKey = STR_SUPERSECRET
                 };
 

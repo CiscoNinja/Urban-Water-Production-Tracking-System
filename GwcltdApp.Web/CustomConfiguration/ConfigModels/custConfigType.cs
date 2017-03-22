@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using Westwind.Utilities;
 
 namespace GwcltdApp.Web.CustomConfiguration.ConfigModels
 {
+    //[TypeConverter(typeof(List<string>)), Serializable()]
     public class custConfigType
     {
-        public List<string> SimNumbers { get; set; }
+        public string SimNumbers { get; set; }
 
         public static custConfigType FromString(string data)
         {

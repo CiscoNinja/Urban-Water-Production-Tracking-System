@@ -84,16 +84,16 @@ namespace GwcltdApp.Web.CustomConfiguration
 
         #region Water Systems settings
 
-        public custConfigType RawWater { get; set; }
-        public custConfigType TreatedWater { get; set; }
-        public custConfigType Raw1 { get; set; }
-        public custConfigType Raw2 { get; set; }
-        public custConfigType Raw3 { get; set; }
-        public custConfigType Raw4 { get; set; }
-        public custConfigType Treated1 { get; set; }
-        public custConfigType Treated2 { get; set; }
-        public custConfigType Treated3 { get; set; }
-        public custConfigType Treated4 { get; set; }
+        public string RawWater { get; set; }
+        public string TreatedWater { get; set; }
+        public string Raw1 { get; set; }
+        public string Raw2 { get; set; }
+        public string Raw3 { get; set; }
+        public string Raw4 { get; set; }
+        public string Treated1 { get; set; }
+        public string Treated2 { get; set; }
+        public string Treated3 { get; set; }
+        public string Treated4 { get; set; }
 
         #endregion
     }
