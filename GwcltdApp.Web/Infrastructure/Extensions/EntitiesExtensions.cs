@@ -25,6 +25,29 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
             production.WSystemId = productionVm.WSystemId;
         }
 
+        public static void AddProduction(this Production production, ProductionViewModel productionVm)
+        {
+            using (Data.GwcltdAppContext context = new Data.GwcltdAppContext())
+            {
+                production.Comment = productionVm.Comment;
+                production.DailyActual = productionVm.DailyActual;
+                production.DateCreated = productionVm.DateCreated;
+                production.DayToRecord = productionVm.DayToRecord;
+                production.FRPH = productionVm.FRPH;
+                production.FRPS = productionVm.FRPS;
+                production.TFPD = productionVm.TFPD;
+                production.NTFPD = productionVm.NTFPD;
+                production.LOG = productionVm.LOG;
+                production.OptionId = productionVm.OptionId;
+                production.OptionTypeId = productionVm.OptionTypeId;
+                production.WSystemId = productionVm.WSystemId;
+
+                context.ProductionSet.Add(production);
+
+                context.SaveChanges();
+            }
+        }
+
         public static void UpdatePlantDowntime(this PlantDowntime plantdowntime, PlantDowntimeViewModel plantdowntimeVm)
         {
             plantdowntime.CurrentDate = plantdowntimeVm.CurrentDate;

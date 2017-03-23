@@ -143,11 +143,11 @@ namespace GwcltdApp.Web
                     productionVM.DayToRecord = Convert.ToDateTime(lines[2] + " " + lines[1]);
                     productionVM.DailyActual = ;
                     productionVM.Comment = "Sent Via Text Message from " + senderNumber;
-                    productionVM.FRPH = Convert.ToDouble(lines[4]);
-                    productionVM.FRPS = Convert.ToDouble(lines[6].Remove(0, 2));
-                    productionVM.TFPD = Convert.ToDouble(lines[8]);
-                    productionVM.NTFPD = Convert.ToDouble(lines[10]);
-                    productionVM.LOG = Convert.ToDouble(lines[14]);
+                    productionVM.FRPH = Math.Round(Convert.ToDouble(lines[4]), 2, MidpointRounding.AwayFromZero);
+                    productionVM.FRPS = Math.Round(Convert.ToDouble(lines[6].Remove(0, 2)), 2, MidpointRounding.AwayFromZero);
+                    productionVM.TFPD = Math.Round(Convert.ToDouble(lines[8]), 2, MidpointRounding.AwayFromZero);
+                    productionVM.NTFPD = Math.Round(Convert.ToDouble(lines[10]), 2, MidpointRounding.AwayFromZero);
+                    productionVM.LOG = Math.Round(Convert.ToDouble(lines[14]), 2, MidpointRounding.AwayFromZero);
                     productionVM.WSystem = SummaryManager.GetSystemName(lines[0]);
                     productionVM.WSystemCode = lines[0];
                     productionVM.WSystemId = SummaryManager.GetSystemId(lines[0]);
@@ -160,7 +160,7 @@ namespace GwcltdApp.Web
                     productionVM.GwclStation = SummaryManager.GetSystemName(lines[0]);
 
                     Production newProduction = new Production();
-                    newProduction.UpdateProduction(productionVM);
+                    newProduction.AddProduction(productionVM);
                 }
 
             }
