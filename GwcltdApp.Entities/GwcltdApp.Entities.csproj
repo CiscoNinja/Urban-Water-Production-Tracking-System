@@ -45,6 +45,7 @@
     <Compile Include="GwclArea.cs" />
     <Compile Include="GwclRegion.cs" />
     <Compile Include="GwclStation.cs" />
+    <Compile Include="HourlyProduction.cs" />
     <Compile Include="UserStation.cs" />
     <Compile Include="WSystemPlantDowntime.cs" />
     <Compile Include="OptionType.cs" />

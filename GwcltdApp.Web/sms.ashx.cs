@@ -129,7 +129,9 @@ namespace GwcltdApp.Web
             {
                 var productionVM = new ProductionViewModel();
                 string[] lines = messageText.Split(' ');
+                DateTime firstHour = Convert.ToDateTime("01/01/2017 01:00");
                 //Regex.Split(messageText, "\r\n");
+
 
                 foreach (string line in lines)
                 {
@@ -141,7 +143,7 @@ namespace GwcltdApp.Web
 
                     productionVM.DateCreated = Convert.ToDateTime(lines[2] + " " + lines[1]);
                     productionVM.DayToRecord = Convert.ToDateTime(lines[2] + " " + lines[1]);
-                    productionVM.DailyActual = ;
+                    productionVM.DailyActual = Math.Round(Convert.ToDouble(lines[8]), 2, MidpointRounding.AwayFromZero);
                     productionVM.Comment = "Sent Via Text Message from " + senderNumber;
                     productionVM.FRPH = Math.Round(Convert.ToDouble(lines[4]), 2, MidpointRounding.AwayFromZero);
                     productionVM.FRPS = Math.Round(Convert.ToDouble(lines[6].Remove(0, 2)), 2, MidpointRounding.AwayFromZero);
@@ -159,8 +161,45 @@ namespace GwcltdApp.Web
                     productionVM.StationCode = SummaryManager.GetStationCode(lines[0]);
                     productionVM.GwclStation = SummaryManager.GetSystemName(lines[0]);
 
-                    Production newProduction = new Production();
-                    newProduction.AddProduction(productionVM);
+                    HourlyProduction newHrlyProduction = new HourlyProduction();
+                    newHrlyProduction.AddHrlyProduction(productionVM);
+                }
+
+
+                if (Convert.ToDateTime(lines[2] + " " + lines[1]).Hour.Equals(firstHour.Hour))
+                {
+                    foreach (string line in lines)
+                    {
+                        //example
+                        //string value = "YAC0415 06:00 08/11/2016 39C 194.108 m3/h v:0.76 m/s 640794.4 m3 -17.3992 m3 s9 LOG: 96";
+                        // Split the string on line breaks.
+                        // ... The return value from Split is a string array.
+                        //string[] lines = value.Split(' ');
+
+                        productionVM.DateCreated = Convert.ToDateTime(lines[2] + " " + lines[1]);
+                        productionVM.DayToRecord = Convert.ToDateTime(lines[2] + " " + lines[1]);
+                        productionVM.DailyActual = Math.Round(SummaryManager.GetTFbyDate(Convert.ToDateTime(lines[2] + " " + lines[1]))-
+                            SummaryManager.GetTFbyDate(Convert.ToDateTime(lines[2] + " " + lines[1]).AddHours(-24)));
+                        productionVM.Comment = "Sent Via Text Message from " + senderNumber;
+                        productionVM.FRPH = Math.Round(Convert.ToDouble(lines[4]), 2, MidpointRounding.AwayFromZero);
+                        productionVM.FRPS = Math.Round(Convert.ToDouble(lines[6].Remove(0, 2)), 2, MidpointRounding.AwayFromZero);
+                        productionVM.TFPD = Math.Round(Convert.ToDouble(lines[8]), 2, MidpointRounding.AwayFromZero);
+                        productionVM.NTFPD = Math.Round(Convert.ToDouble(lines[10]), 2, MidpointRounding.AwayFromZero);
+                        productionVM.LOG = Math.Round(Convert.ToDouble(lines[14]), 2, MidpointRounding.AwayFromZero);
+                        productionVM.WSystem = SummaryManager.GetSystemName(lines[0]);
+                        productionVM.WSystemCode = lines[0];
+                        productionVM.WSystemId = SummaryManager.GetSystemId(lines[0]);
+                        productionVM.Option = option;
+                        productionVM.OptionId = optionid;
+                        productionVM.OptionType = optiontype;
+                        productionVM.OptionTypeId = optiontypeid;
+                        productionVM.GwclStationId = SummaryManager.GetStationId(lines[0]);
+                        productionVM.StationCode = SummaryManager.GetStationCode(lines[0]);
+                        productionVM.GwclStation = SummaryManager.GetSystemName(lines[0]);
+
+                        Production newProduction = new Production();
+                        newProduction.AddProduction(productionVM);
+                    }
                 }
 
             }

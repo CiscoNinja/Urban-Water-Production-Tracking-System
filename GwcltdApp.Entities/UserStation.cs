@@ -12,6 +12,6 @@ namespace GwcltdApp.Entities
         public int ID { get; set; }
         public int UserId { get; set; }
         public int GwclStationId { get; set; }
-        public virtual GwclStation GwclStation { get; set; }
+        public virtual User User { get; set; }
     }
 }

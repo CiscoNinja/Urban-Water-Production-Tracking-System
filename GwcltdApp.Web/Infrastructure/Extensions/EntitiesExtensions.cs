@@ -48,6 +48,29 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
             }
         }
 
+        public static void AddHrlyProduction(this HourlyProduction hrlyproduction, ProductionViewModel productionVm)
+        {
+            using (Data.GwcltdAppContext context = new Data.GwcltdAppContext())
+            {
+                hrlyproduction.Comment = productionVm.Comment;
+                hrlyproduction.HourlyActual = productionVm.DailyActual;
+                hrlyproduction.DateCreated = productionVm.DateCreated;
+                hrlyproduction.DayToRecord = productionVm.DayToRecord;
+                hrlyproduction.FRPH = productionVm.FRPH;
+                hrlyproduction.FRPS = productionVm.FRPS;
+                hrlyproduction.TFPD = productionVm.TFPD;
+                hrlyproduction.NTFPD = productionVm.NTFPD;
+                hrlyproduction.LOG = productionVm.LOG;
+                hrlyproduction.OptionId = productionVm.OptionId;
+                hrlyproduction.OptionTypeId = productionVm.OptionTypeId;
+                hrlyproduction.WSystemId = productionVm.WSystemId;
+
+                context.HourlyProductionSet.Add(hrlyproduction);
+
+                context.SaveChanges();
+            }
+        }
+
         public static void UpdatePlantDowntime(this PlantDowntime plantdowntime, PlantDowntimeViewModel plantdowntimeVm)
         {
             plantdowntime.CurrentDate = plantdowntimeVm.CurrentDate;

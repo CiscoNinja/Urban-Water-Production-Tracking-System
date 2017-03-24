@@ -27,6 +27,7 @@ namespace GwcltdApp.Data
         public IDbSet<OptionType> OptionTypeSet { get; set; }
         public IDbSet<WSystem> WSystemSet { get; set; }
         public IDbSet<Production> ProductionSet { get; set; }
+        public IDbSet<HourlyProduction> HourlyProductionSet { get; set; }
         public IDbSet<Error> ErrorSet { get; set; }
         public IDbSet<SMS_IN> SMS_INSet { get; set; }
         public IDbSet<Config> ConfigSet { get; set; }

@@ -64,6 +64,14 @@ namespace GwcltdApp.Web.DAL
             }
         }
 
+        public static double GetTFbyDate(DateTime date) //gets total flow by date
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.ProductionSet.Where(x => x.DayToRecord == date).FirstOrDefault().TFPD;
+            }
+        }
+
 
         public static int GetTypeIdByName(string name)// gets id of water options Treated or Raw
         {

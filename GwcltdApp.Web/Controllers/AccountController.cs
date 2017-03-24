@@ -56,8 +56,6 @@ namespace GwcltdApp.Web.Controllers
                 return response;
             });
         }
-
-        [Authorize(Roles = "Super, Admin")]
         [Route("register")]
         [HttpPost]
         public HttpResponseMessage Register(HttpRequestMessage request, RegistrationViewModel user)
@@ -72,7 +70,7 @@ namespace GwcltdApp.Web.Controllers
                 }
                 else
                 {
-                    Entities.User _user = _membershipService.CreateUser(user.Username, user.Email, user.Password, user.GwclRegionId, user.GwclStationId, new int[] { user.RoleId } );
+                    User _user = _membershipService.CreateUser(user.Username, user.Email, user.Password, user.GwclRegionId, user.GwclStationId, new int[] { user.RoleId } );
 
                     if (_user != null)
                     {

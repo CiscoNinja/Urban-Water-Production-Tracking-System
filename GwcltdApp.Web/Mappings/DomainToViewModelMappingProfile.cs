@@ -29,6 +29,19 @@ namespace GwcltdApp.Web.Mappings
                 .ForMember(vm => vm.StationCode, map => map.MapFrom(m => m.GwclStation.StationCode))
                 .ForMember(vm => vm.GwclStationId, map => map.MapFrom(m => m.GwclStation.ID));
 
+            Mapper.CreateMap<HourlyProduction, ProductionViewModel>()
+               .ForMember(vm => vm.DailyActual, map => map.MapFrom(m => m.HourlyActual))
+               .ForMember(vm => vm.Option, map => map.MapFrom(m => m.Option.Name))
+               .ForMember(vm => vm.OptionId, map => map.MapFrom(m => m.Option.ID))
+               .ForMember(vm => vm.OptionType, map => map.MapFrom(m => m.OptionType.Name))
+               .ForMember(vm => vm.OptionTypeId, map => map.MapFrom(m => m.OptionType.ID))
+               .ForMember(vm => vm.WSystem, map => map.MapFrom(m => m.WSystem.Name))
+               .ForMember(vm => vm.WSystemCode, map => map.MapFrom(m => m.WSystem.Code))
+               .ForMember(vm => vm.WSystemId, map => map.MapFrom(m => m.WSystem.ID))
+               .ForMember(vm => vm.GwclStation, map => map.MapFrom(m => m.GwclStation.Name))
+               .ForMember(vm => vm.StationCode, map => map.MapFrom(m => m.GwclStation.StationCode))
+               .ForMember(vm => vm.GwclStationId, map => map.MapFrom(m => m.GwclStation.ID));
+
             Mapper.CreateMap<PlantDowntime, PlantDowntimeViewModel>()
                 .ForMember(vm => vm.WSystem, map => map.MapFrom(m => m.WSystem.Name))
                 .ForMember(vm => vm.WSystemId, map => map.MapFrom(m => m.WSystem.ID));
