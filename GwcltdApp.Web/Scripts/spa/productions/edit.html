@@ -42,22 +42,23 @@
                                    validate-on="blur" required required-message="'required'" readonly>
                         </div>
                         <div class="col-xs-4">
-                            <label class="control-label">Date of Entry</label>
+                            <label class="control-label">Start Time</label>
                             <p class="input-group">
-                                <input type="text" class="form-control" name="todaysDate" datepicker-popup="{{format}}" ng-model="production.DateCreated" is-open="datepicker.todayDate" datepicker-options="dateOptions" ng-required="true" datepicker-append-to-body="true" close-text="Close"
-                                       validate-on="blur" required required-message="'required'" />
+                                <input id="date_picker" name="date_picker" type="text" class="form-control" ng-model="production.DateCreated"
+                                       readonly validate-on="blur" required required-message="'required'" />
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 'todayDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    <button type="button" id="btndatetime1" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
                             </p>
                         </div>
+
                         <div class="col-xs-4">
-                            <label class="control-label">Date To Record</label>
+                            <label class="control-label">End Time</label>
                             <p class="input-group">
-                                <input type="text" class="form-control" name="dayToRecord" datepicker-popup="{{format}}" ng-model="production.DayToRecord" is-open="datepicker.dtRecord" datepicker-options="dateOptions" ng-required="true" datepicker-append-to-body="true" close-text="Close"
-                                       validate-on="blur" required required-message="'required'" />
+                                <input id="date_picker2" name="date_picker2" type="text" class="form-control" ng-model="production.DayToRecord"
+                                       readonly validate-on="blur" required required-message="'required'" />
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event,'dtRecord')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    <button type="button" id="btndatetime2" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
                             </p>
                         </div>

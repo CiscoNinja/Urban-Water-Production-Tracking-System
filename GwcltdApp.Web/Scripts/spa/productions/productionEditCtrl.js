@@ -24,6 +24,26 @@
         $scope.datepicker.todayDate = false;
         $scope.datepicker.dtRecord = false;
 
+        $(function () {
+            $("#btndatetime1").click(function () {
+                $('#date_picker').datetimepicker({
+                    controlType: 'select',
+                    timeFormat: 'hh:mm tt'
+                }
+                    ).datetimepicker("show")
+            });
+        });
+
+        $(function () {
+            $("#btndatetime2").click(function () {
+                $('#date_picker2').datetimepicker({
+                    controlType: 'select',
+                    timeFormat: 'hh:mm tt'
+                }
+                    ).datetimepicker("show")
+            });
+        });
+
         function loadProduction() {
 
             $scope.loadingProduction = true;
