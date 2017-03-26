@@ -8,7 +8,7 @@
     function productionAddCtrl($scope, $location, $routeParams, apiService, notificationService,$rootScope) {
 
         $scope.pageClass = 'page-productions';
-        $scope.production = { WSystemId: 1, OptionId: 1, OptionTypeId: 1 };
+        $scope.production = { WSystemId: 1, OptionId: 1, OptionTypeId: 1, GwclStationId: $rootScope.repository.loggedUser.stationid };
 
         $scope.wsystems = [];
         $scope.options = [];
@@ -16,6 +16,7 @@
         $scope.isReadOnly = false;
         $scope.AddProduction = AddProduction;
         $scope.openDatePicker = openDatePicker;
+
 
         $scope.dateOptions = {
             formatYear: 'yy',
@@ -73,7 +74,7 @@
         }
 
         function AddProductionModel() {
-            apiService.post('/api/productions/add', $scope.production,
+            apiService.post('/api/hrlyproductions/add', $scope.production,
             addProductionSucceded,
             addProductionFailed);
         }
@@ -97,7 +98,7 @@
         }
 
         function redirectToEdit() {
-            $location.url('productions/edit/' + $scope.production.ID);
+            $location.url('productions/' + $scope.production.ID);
         }
 
         loadOptions();

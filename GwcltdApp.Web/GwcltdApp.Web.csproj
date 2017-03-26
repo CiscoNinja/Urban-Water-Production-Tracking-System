@@ -289,6 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ConfigsController.cs" />
+    <Compile Include="Controllers\HourlyProductionsController.cs" />
     <Compile Include="CustomConfiguration\App.cs" />
     <Compile Include="CustomConfiguration\ApplicationConfiguration.cs" />
     <Compile Include="App_Start\AutofacWebapiConfig.cs" />

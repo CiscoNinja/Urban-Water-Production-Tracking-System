@@ -11,6 +11,7 @@
         $scope.user = {};
         $scope.roles = [];
         $scope.gwclregions = [];
+        $scope.gwclstations = [];
 
         function loadRoles() {
             apiService.get('/api/roles/', null,
@@ -40,6 +41,20 @@
             notificationService.displayError(response.data);
         }
 
+        function loadGwclStations() {
+            apiService.get('/api/gwclstations', null,
+            gwclstationsLoadCompleted,
+            gwclstationsLoadFailed);
+        }
+
+        function gwclstationsLoadCompleted(response) {
+            $scope.gwclstations = response.data;
+        }
+
+        function gwclstationsLoadFailed(response) {
+            notificationService.displayError(response.data);
+        }
+
         function register() {
             membershipService.register($scope.user, registerCompleted);
         }
@@ -52,11 +67,12 @@
                 $location.path('#/register');
             }
             else {
-                notificationService.displayError('Registration failed. Try again.');
+                notificationService.displayError('Registration failed. Username already exists. Try again.');
             }
         }
         loadRoles();
         loadGwclRegions();
+        loadGwclStations();
     }
 
 })(angular.module('common.core'));

@@ -16,7 +16,7 @@
 
             $scope.loadingProduction = true;
 
-            apiService.get('/api/productions/details/' + $routeParams.id, null,
+            apiService.get('/api/hrlyproductions/details/' + $routeParams.id, null,
             productionLoadCompleted,
             productionLoadFailed);
         }
@@ -27,7 +27,7 @@
 
         function clearSearch()
         {
-            $scope.filterRentals = '';
+            $scope.filterProductions = '';
         }
 
         function productionLoadCompleted(result) {

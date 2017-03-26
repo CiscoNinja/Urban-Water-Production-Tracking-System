@@ -40,7 +40,7 @@
                 }
             };
 
-            apiService.get('/api/productions/' + $rootScope.repository.loggedUser.stationid, config,
+            apiService.get('/api/hrlyproductions/' + $rootScope.repository.loggedUser.stationid, config,
             productionsLoadCompleted,
             productionsLoadFailed);
         }

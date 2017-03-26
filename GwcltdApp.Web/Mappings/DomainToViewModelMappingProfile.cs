@@ -30,7 +30,6 @@ namespace GwcltdApp.Web.Mappings
                 .ForMember(vm => vm.GwclStationId, map => map.MapFrom(m => m.GwclStation.ID));
 
             Mapper.CreateMap<HourlyProduction, ProductionViewModel>()
-               .ForMember(vm => vm.DailyActual, map => map.MapFrom(m => m.HourlyActual))
                .ForMember(vm => vm.Option, map => map.MapFrom(m => m.Option.Name))
                .ForMember(vm => vm.OptionId, map => map.MapFrom(m => m.Option.ID))
                .ForMember(vm => vm.OptionType, map => map.MapFrom(m => m.OptionType.Name))

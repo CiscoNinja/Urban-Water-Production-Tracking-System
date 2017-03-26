@@ -42,7 +42,7 @@
             });
         });
 
-        $("#hoursdown").click(function (e) {
+        $("#hoursdown").click(function () {
             var timeStart = new Date(document.getElementById('date_picker').value);
             var timeEnd = new Date(document.getElementById('date_picker2').value);
 
@@ -57,6 +57,9 @@
             var hDiff = hourDiff / 3600 / 1000; //in hours
 
             $("#hoursdown").val(minDiff);
+            var event1 = document.createEvent("HTMLEvents");
+            event1.initEvent('change', true, true);
+            document.getElementById('hoursdown').dispatchEvent(event1);
             document.getElementById('lostLabel').innerHTML = "Time Lost: " + diffDays + "days " + diffHrs + "hrs " + diffMins + "mins";
         });
 

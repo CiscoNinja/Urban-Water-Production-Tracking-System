@@ -56,7 +56,10 @@
             var minDiff = hourDiff / 60 / 1000; //in minutes
             var hDiff = hourDiff / 3600 / 1000; //in hours
 
-            document.getElementById('hoursdown').value = minDiff;
+            $("#hoursdown").val(minDiff);
+            var event1 = document.createEvent("HTMLEvents");
+            event1.initEvent('change', true, true);
+            document.getElementById('hoursdown').dispatchEvent(event1);
             document.getElementById('lostLabel').innerHTML = "Time Lost: " + diffDays + "days " + diffHrs + "hrs " + diffMins + "mins";
         }
 

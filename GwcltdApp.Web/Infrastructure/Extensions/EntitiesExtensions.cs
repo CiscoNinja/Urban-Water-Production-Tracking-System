@@ -23,6 +23,24 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
             production.OptionId = productionVm.OptionId;
             production.OptionTypeId = productionVm.OptionTypeId;
             production.WSystemId = productionVm.WSystemId;
+            production.GwclStationId = productionVm.GwclStationId;
+        }
+
+        public static void UpdateHrlyProduction(this HourlyProduction production, ProductionViewModel productionVm)
+        {
+            production.Comment = productionVm.Comment;
+            production.HourlyActual = productionVm.TFPD;
+            production.DateCreated = productionVm.DateCreated;
+            production.DayToRecord = productionVm.DayToRecord;
+            production.FRPH = productionVm.FRPH;
+            production.FRPS = productionVm.FRPS;
+            production.TFPD = productionVm.TFPD;
+            production.NTFPD = productionVm.NTFPD;
+            production.LOG = productionVm.LOG;
+            production.OptionId = productionVm.OptionId;
+            production.OptionTypeId = productionVm.OptionTypeId;
+            production.WSystemId = productionVm.WSystemId;
+            production.GwclStationId = productionVm.GwclStationId;
         }
 
         public static void AddProduction(this Production production, ProductionViewModel productionVm)
@@ -41,6 +59,7 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
                 production.OptionId = productionVm.OptionId;
                 production.OptionTypeId = productionVm.OptionTypeId;
                 production.WSystemId = productionVm.WSystemId;
+                production.GwclStationId = productionVm.GwclStationId;
 
                 context.ProductionSet.Add(production);
 
@@ -64,6 +83,7 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
                 hrlyproduction.OptionId = productionVm.OptionId;
                 hrlyproduction.OptionTypeId = productionVm.OptionTypeId;
                 hrlyproduction.WSystemId = productionVm.WSystemId;
+                hrlyproduction.GwclStationId = productionVm.GwclStationId;
 
                 context.HourlyProductionSet.Add(hrlyproduction);
 

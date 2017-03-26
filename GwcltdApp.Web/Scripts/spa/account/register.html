@@ -22,6 +22,11 @@
             <input type="hidden" name="inputGwclRegionID" ng-value="user.GwclRegionID" />
         </div>
         <div class="form-group selectContainer">
+            <label class="control-label">Station</label>
+            <select ng-model="user.GwclStationID" class="form-control black" ng-options="gwclstation.ID as gwclstation.Name for gwclstation in gwclstations" required></select>
+            <input type="hidden" name="inputGwclStationID" ng-value="user.GwclStationID" />
+        </div>
+        <div class="form-group selectContainer">
             <label class="control-label">Role</label>
             <select ng-model="user.RoleId" class="form-control black" ng-options="role.ID as role.Name for role in roles" required></select>
             <input type="hidden" name="inputRoleId" ng-value="user.RoleId" />

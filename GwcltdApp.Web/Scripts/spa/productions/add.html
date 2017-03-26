@@ -38,6 +38,11 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-xs-4">
+                            <label class="control-label">Station</label>
+                            <input class="form-control" type="number" ng-model="production.GwclStationId" name="GwclStationId"
+                                   validate-on="blur" required required-message="'required'" readonly>
+                        </div>
+                        <div class="col-xs-4">
                             <label class="control-label">Date of Entry</label>
                             <p class="input-group">
                                 <input type="text" class="form-control" name="todaysDate" datepicker-popup="{{format}}" ng-model="production.DateCreated" is-open="datepicker.todayDate" datepicker-options="dateOptions" ng-required="true" datepicker-append-to-body="true" close-text="Close"
@@ -58,16 +63,16 @@
                                 </span>
                             </p>
                         </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
 
                         <div class="col-xs-4">
                             <label class="control-label">Daily Actual</label>(m&sup3/d)
                             <input class="form-control" type="number" ng-model="production.DailyActual" name="dailyactual"
                                    validate-on="blur" required required-message="'required'">
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
                         <div class="col-xs-4">
                             <label class="control-label">Flow Rate</label>(m&sup3/h)
                             <input class="form-control" type="number" ng-model="production.FRPH" name="frph"
@@ -79,16 +84,16 @@
                             <input class="form-control" type="number" ng-model="production.FRPS" name="frps"
                                    validate-on="blur" required required-message="'required'">
                         </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
 
                         <div class="col-xs-4">
                             <label class="control-label">Total Flow</label>(m&sup3)
                             <input class="form-control" type="number" ng-model="production.TFPD" name="tfpd"
                                    validate-on="blur" required required-message="'required'">
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
                         <div class="col-xs-4">
                             <label class="control-label">Negative Flow</label>(m&sup3)
                             <input class="form-control" type="number" ng-model="production.NTFPD" name="ntfpd"
