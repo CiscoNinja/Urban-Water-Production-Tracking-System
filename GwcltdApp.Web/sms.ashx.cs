@@ -17,7 +17,7 @@ namespace GwcltdApp.Web
     /// </summary>
     public class sms : IHttpHandler
     {
-        // This method is called each time a new SMS message arrives
+        // This method is called each time a new SMS message arrives 
         public void ProcessRequest(HttpContext context)
         {
             #region text message fields
