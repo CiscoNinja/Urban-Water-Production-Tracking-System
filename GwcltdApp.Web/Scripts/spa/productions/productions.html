@@ -36,11 +36,11 @@
                         <div class="media-body">
                             <h4 class="media-heading">
                                 <label class="label label-info">{{production.WSystemCode}}</label>&nbsp;
-                                <a class="" ng-href="#/productions/{{production.ID}}" title="View {{production.DayToRecord | date: 'mediumDate'}} details">
-                                    {{production.DayToRecord | date: 'longDate'}}
+                                <a class="" ng-href="#/productions/{{production.ID}}" title="View {{production.DayToRecord | date: 'MMMM d, y h:mm a'}} details">
+                                    {{production.DayToRecord | date: 'MMMM d, y h:mm a'}}
                                 </a>
                             </h4>
-                            Date Recorded: <strong>{{production.DateCreated | date: 'longDate'}}</strong>
+                            Date Recorded: <strong>{{production.DateCreated | date: 'MMMM d, y h:mm a'}}</strong>
                             <br />
                             System: <strong>{{production.WSystem}}</strong>
                             <br />

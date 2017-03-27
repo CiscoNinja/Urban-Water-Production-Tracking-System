@@ -8,11 +8,7 @@
 
         <!-- edit form column -->
         <div class="col-xs-8 personal-info">
-            <div class="alert alert-info alert-dismissable">
-                <a class="panel-close close" data-dismiss="alert">×</a>
-                <i class="fa fa-pencil-square-o"></i>
-                Edit <strong>{{production.DayToRecord | date: 'mediumDate'}}</strong> production. Make sure you fill all required fields.
-            </div>
+            
             <form class="form-horizontal" role="form" novalidate angular-validator name="editProductionForm" angular-validator-submit="UpdateProduction()">
                 <div class="form-group">
                     <div class="row">
@@ -68,7 +64,7 @@
                     <div class="row">
                         <div class="col-xs-4">
                             <label class="control-label">Daily Actual</label>(m&sup3/d)
-                            <input class="form-control" type="number" ng-model="production.DailyActual" name="dailyactual"
+                            <input class="form-control" type="number" ng-model="production.TFPD" name="dailyactual"
                                    validate-on="blur" required required-message="'required'">
                         </div>
                         <div class="col-xs-4">
@@ -109,6 +105,11 @@
                     <textarea class="form-control" ng-model="production.Comment" name="comment" rows="3" />
                 </div>
                 <br />
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-pencil-square-o"></i>
+                    Edit <strong>{{production.DayToRecord | date: 'MMMM d, y h:mm a'}}</strong> production. Make sure you fill all required fields.
+                </div>
                 <div class="form-group col-xs-4">
                     <label class="control-label"></label>
                     <div class="">

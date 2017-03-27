@@ -172,8 +172,9 @@ namespace GwcltdApp.Web.Controllers
                     if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
                     {
                         Production newproduction = new Production();
-                        hrlyproduction.DailyActual = (SummaryManager.GetTFbyDate(hrlyproduction.DayToRecord) - 
-                            SummaryManager.GetTFbyDate(hrlyproduction.DayToRecord.AddHours(-24)));
+                        var currentdate = hrlyproduction.DayToRecord;
+                        var prviousdate = hrlyproduction.DayToRecord.AddDays(-1).AddHours(-24);
+                        newproduction.DailyActual = SummaryManager.DailyActual(currentdate, prviousdate);
                         newproduction.UpdateProduction(hrlyproduction);
 
                         _newproductionsRepository.Add(newproduction);
@@ -222,9 +223,11 @@ namespace GwcltdApp.Web.Controllers
                             { }
                             else
                             {
-                                hrlyproduction.DailyActual = (SummaryManager.GetTFbyDate(hrlyproduction.DayToRecord) -
-                                    SummaryManager.GetTFbyDate(hrlyproduction.DayToRecord.AddHours(-24)));
+                                var currentdate = hrlyproduction.DayToRecord;
+                                var prviousdate = hrlyproduction.DayToRecord.AddDays(-1).AddHours(-24);
+                                hrlyproduction.DailyActual = SummaryManager.DailyActual(currentdate, prviousdate);
                                 newproductionDb.UpdateProduction(hrlyproduction);
+
                                 _newproductionsRepository.Edit(newproductionDb);
 
                                 _unitOfWork.Commit();
