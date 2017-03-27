@@ -172,9 +172,10 @@ namespace GwcltdApp.Web.Controllers
                     if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
                     {
                         Production newproduction = new Production();
-                        var currentdate = hrlyproduction.DayToRecord;
-                        var prviousdate = hrlyproduction.DayToRecord.AddDays(-1).AddHours(-24);
-                        newproduction.DailyActual = SummaryManager.DailyActual(currentdate, prviousdate);
+                        var currenttotal = hrlyproduction.TFPD;
+                        var prviousdate = hrlyproduction.DayToRecord.AddDays(-1);
+                        var dayActual = SummaryManager.DailyActual(currenttotal, prviousdate);
+                        hrlyproduction.DailyActual = dayActual;
                         newproduction.UpdateProduction(hrlyproduction);
 
                         _newproductionsRepository.Add(newproduction);
@@ -215,24 +216,24 @@ namespace GwcltdApp.Web.Controllers
 
                         _unitOfWork.Commit();
 
-                        DateTime firstHour = Convert.ToDateTime("01/01/2017 01:00");
-                        if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
-                        {
-                            var newproductionDb = _newproductionsRepository.GetSingle(hrlyproduction.ID);
-                            if (newproductionDb == null)
-                            { }
-                            else
-                            {
-                                var currentdate = hrlyproduction.DayToRecord;
-                                var prviousdate = hrlyproduction.DayToRecord.AddDays(-1).AddHours(-24);
-                                hrlyproduction.DailyActual = SummaryManager.DailyActual(currentdate, prviousdate);
-                                newproductionDb.UpdateProduction(hrlyproduction);
+                        //DateTime firstHour = Convert.ToDateTime("01/01/2017 01:00");
+                        //if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
+                        //{
+                        //    var newproductionDb = _newproductionsRepository.GetSingle(hrlyproduction.ID);
+                        //    if (newproductionDb == null)
+                        //    { }
+                        //    else
+                        //    {
+                        //        var currentdate = hrlyproduction.DayToRecord;
+                        //        var prviousdate = hrlyproduction.DayToRecord.AddDays(-1);
+                        //        hrlyproduction.DailyActual = SummaryManager.DailyActual(currentdate, prviousdate);
+                        //        newproductionDb.UpdateProduction(hrlyproduction);
 
-                                _newproductionsRepository.Edit(newproductionDb);
+                        //        _newproductionsRepository.Edit(newproductionDb);
 
-                                _unitOfWork.Commit();
-                            };
-                        }
+                        //        _unitOfWork.Commit();
+                        //    };
+                        //}
 
                         response = request.CreateResponse<ProductionViewModel>(HttpStatusCode.OK, hrlyproduction);
                     }

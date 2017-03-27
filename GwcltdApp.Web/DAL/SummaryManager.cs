@@ -2,6 +2,7 @@
 using GwcltdApp.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -68,7 +69,7 @@ namespace GwcltdApp.Web.DAL
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                return context.ProductionSet.Where(x => x.DayToRecord == date).Select(x => x.TFPD).DefaultIfEmpty().Single();
+                return context.ProductionSet.Where(x => DbFunctions.TruncateTime(x.DayToRecord) == date.Date).Select(x => x.TFPD).DefaultIfEmpty().Single();
             }
         }
 
@@ -88,19 +89,12 @@ namespace GwcltdApp.Web.DAL
                 return context.OptionTypeSet.Where(x => x.Name == name).Select(x => x.ID).Single();
             }
         }
-        public static double DailyActual(DateTime currentDate, DateTime previousDate)
+        public static double DailyActual(double currentTotal, DateTime previousDate)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-
-                var currentTotal = GetTFbyDate(currentDate);
                 var previoousTotal = GetTFbyDate(previousDate);
-
-                double res = currentTotal;
-                if (previoousTotal != 0)
-                {
-                    res = currentTotal - previoousTotal;
-                }
+                double res = currentTotal - previoousTotal;
                 return Math.Round(res, 2, MidpointRounding.AwayFromZero);
             }
         }
