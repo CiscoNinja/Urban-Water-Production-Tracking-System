@@ -216,24 +216,24 @@ namespace GwcltdApp.Web.Controllers
 
                         _unitOfWork.Commit();
 
-                        //DateTime firstHour = Convert.ToDateTime("01/01/2017 01:00");
-                        //if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
-                        //{
-                        //    var newproductionDb = _newproductionsRepository.GetSingle(hrlyproduction.ID);
-                        //    if (newproductionDb == null)
-                        //    { }
-                        //    else
-                        //    {
-                        //        var currentdate = hrlyproduction.DayToRecord;
-                        //        var prviousdate = hrlyproduction.DayToRecord.AddDays(-1);
-                        //        hrlyproduction.DailyActual = SummaryManager.DailyActual(currentdate, prviousdate);
-                        //        newproductionDb.UpdateProduction(hrlyproduction);
+                        DateTime firstHour = Convert.ToDateTime("01/01/2017 01:00");
+                        if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
+                        {
+                            var newproductionDb = _newproductionsRepository.GetAll().FirstOrDefault(x => x.DayToRecord == hrlyproduction.DayToRecord);
+                            if (newproductionDb == null)
+                            { }
+                            else
+                            {
+                                var currenttotal = hrlyproduction.TFPD;
+                                var prviousdate = hrlyproduction.DayToRecord.AddDays(-1);
+                                hrlyproduction.DailyActual = SummaryManager.DailyActual(currenttotal, prviousdate);
+                                newproductionDb.UpdateProduction(hrlyproduction);
 
-                        //        _newproductionsRepository.Edit(newproductionDb);
+                                _newproductionsRepository.Edit(newproductionDb);
 
-                        //        _unitOfWork.Commit();
-                        //    };
-                        //}
+                                _unitOfWork.Commit();
+                            };
+                        }
 
                         response = request.CreateResponse<ProductionViewModel>(HttpStatusCode.OK, hrlyproduction);
                     }
