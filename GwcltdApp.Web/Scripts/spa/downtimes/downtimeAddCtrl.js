@@ -90,7 +90,7 @@
         function addDowntimeSucceded(response) {
             notificationService.displaySuccess($scope.downtime.CurrentDate + ' has been submitted');
             $scope.downtime = response.data;
-                redirectToEdit();
+                redirectToDetails();
         }
 
         function addDowntimeFailed(response) {
@@ -105,8 +105,8 @@
             $scope.datepicker[dpicker] = true;
         }
 
-        function redirectToEdit() {
-            $location.url('downtimes/edit/' + $scope.downtime.ID);
+        function redirectToDetails() {
+            $location.url('downtimes/' + $scope.downtime.ID);
         }
 
         loadWsystems();

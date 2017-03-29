@@ -123,6 +123,7 @@
             console.log(response);
             notificationService.displaySuccess($scope.production.DayToRecord + ' has been updated');
             $scope.production = response.data;
+            redirectToDetails();
         }
 
         function updateProductionFailed(response) {
@@ -135,6 +136,10 @@
 
             $scope.datepicker[dpicker] = true;
         };
+
+        function redirectToDetails() {
+            $location.url('productions/' + $scope.production.ID);
+        }
 
         loadProduction();
     }

@@ -101,7 +101,7 @@
         function addProductionSucceded(response) {
             notificationService.displaySuccess($scope.production.DayToRecord + ' has been submitted');
             $scope.production = response.data;
-                redirectToEdit();
+            redirectToDetails();
         }
 
         function addProductionFailed(response) {
@@ -116,7 +116,7 @@
             $scope.datepicker[dpicker] = true;
         }
 
-        function redirectToEdit() {
+        function redirectToDetails() {
             $location.url('productions/' + $scope.production.ID);
         }
 

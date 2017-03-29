@@ -112,6 +112,7 @@
             console.log(response);
             notificationService.displaySuccess($scope.downtime.CurrentDate + ' has been updated');
             $scope.downtime = response.data;
+            redirectToDetails();
         }
 
         function updateDowntimeFailed(response) {
@@ -124,6 +125,10 @@
 
             $scope.datepicker[dpicker] = true;
         };
+
+        function redirectToDetails() {
+            $location.url('downtimes/' + $scope.downtime.ID);
+        }
 
         loadDowntime();
     }
