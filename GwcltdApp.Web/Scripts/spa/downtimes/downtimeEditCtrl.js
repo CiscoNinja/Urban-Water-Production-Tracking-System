@@ -30,6 +30,9 @@
                 }
                     ).datetimepicker("show")
             });
+            $("#date_picker").change(function () {
+                calculateMins();
+            });
         });
 
         $(function () {
@@ -39,6 +42,9 @@
                     timeFormat: 'hh:mm tt'
                 }
                     ).datetimepicker("show")
+            });
+            $("#date_picker2").change(function () {
+                calculateMins();
             });
         });
 
