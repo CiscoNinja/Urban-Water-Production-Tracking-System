@@ -51,30 +51,30 @@ namespace GwcltdApp.Data.Migrations
             //        Salt = "aXdlHqpYS25mAYYSzn7Z+w==",
             //        IsLocked = false,
             //        DateCreated = DateTime.Now,
-            //        GwclRegionID = 1,
-            //        GwclStationId = 1,
-            //        RoleId = 1
+            //        GwclRegionID = 2,
+            //        GwclStationId = 2,
+            //        RoleId = 5
             //    }
             //});
 
             //context.UserRoleSet.AddOrUpdate(new UserRole[] {
             //     new UserRole() {
-            //         RoleId = 1, // admin
-            //         UserId = 1  // chsakell
+            //         RoleId = 5, // admin
+            //         UserId = 4  // chsakell
             //     }
             //});
 
             //context.UserRegionSet.AddOrUpdate(new UserRegion[] {
             //     new UserRegion() {
-            //         GwclRegionId = 1,
-            //         UserId = 1
+            //         GwclRegionId = 2,
+            //         UserId = 4
             //     }
             // });
 
             //context.UserStationSet.AddOrUpdate(new UserStation[] {
             //     new UserStation() {
-            //         GwclStationId = 1,
-            //         UserId = 1
+            //         GwclStationId = 2,
+            //         UserId = 4
             //     }
             // });
 
@@ -95,15 +95,15 @@ namespace GwcltdApp.Data.Migrations
 
             //context.RegionStationSet.AddOrUpdate(new RegionStation[] {
             //    new RegionStation() {
-            //        GwclRegionId = 1,
-            //        GwclStationId = 1
+            //        GwclRegionId = 2,
+            //        GwclStationId = 2
             //    }
             //});
 
             //context.AreaRegionSet.AddOrUpdate(new AreaRegion[] {
             //    new AreaRegion() {
-            //        GwclRegionId = 1,
-            //        GwclAreaId = 1
+            //        GwclRegionId = 2,
+            //        GwclAreaId = 2
             //    }
             //});
 
@@ -125,7 +125,7 @@ namespace GwcltdApp.Data.Migrations
         private GwclArea[] GenerateGwclAreas()
         {
             GwclArea[] gwclareas = new GwclArea[] {
-                new GwclArea() { Name = "Kumasi", Code = "A01"}
+                new GwclArea() { Name = "Main", Code = "M01"}
             };
 
             return gwclareas;
@@ -133,7 +133,7 @@ namespace GwcltdApp.Data.Migrations
         private GwclRegion[] GenerateGwclRegions()
         {
             GwclRegion[] gwclregions = new GwclRegion[] {
-                new GwclRegion() { Name = "RegKumasi", Code = "PR01"}
+                new GwclRegion() { Name = "AccraOffice", Code = "AO01"}
             };
 
             return gwclregions;
@@ -142,7 +142,7 @@ namespace GwcltdApp.Data.Migrations
         private GwclStation[] GenerateGwclStations()
         {
             GwclStation[] gwclstations = new GwclStation[] {
-                new GwclStation() { Name = "Kpong", StationCode = "AA01"}
+                new GwclStation() { Name = "HeadOffice", StationCode = "HO01", GwclRegionId=2}
             };
 
             return gwclstations;

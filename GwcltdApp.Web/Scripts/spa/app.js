@@ -9,126 +9,126 @@
     function config($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "scripts/spa/home/index.html",
+                templateUrl: "./Scripts/spa/home/index.html",
                 controller: "indexCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/login", {
-                templateUrl: "scripts/spa/account/login.html",
+                templateUrl: "./Scripts/spa/account/login.html",
                 controller: "loginCtrl"
             })
             .when("/register", {
-                templateUrl: "scripts/spa/account/register.html",
+                templateUrl: "./Scripts/spa/account/register.html",
                 controller: "registerCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclareas", {
-                templateUrl: "scripts/spa/gwclareas/gwclareas.html",
+                templateUrl: "./Scripts/spa/gwclareas/gwclareas.html",
                 controller: "gwclareasCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclareas/add", {
-                templateUrl: "scripts/spa/gwclareas/add.html",
+                templateUrl: "./Scripts/spa/gwclareas/add.html",
                 controller: "gwclareasAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclregions", {
-                templateUrl: "scripts/spa/gwclregions/gwclregions.html",
+                templateUrl: "./Scripts/spa/gwclregions/gwclregions.html",
                 controller: "gwclregionsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclregions/add", {
-                templateUrl: "scripts/spa/gwclregions/add.html",
+                templateUrl: "./Scripts/spa/gwclregions/add.html",
                 controller: "gwclregionsAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclstations", {
-                templateUrl: "scripts/spa/gwclstations/gwclstations.html",
+                templateUrl: "./Scripts/spa/gwclstations/gwclstations.html",
                 controller: "gwclstationsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclstations/add", {
-                templateUrl: "scripts/spa/gwclstations/add.html",
+                templateUrl: "./Scripts/spa/gwclstations/add.html",
                 controller: "gwclstationsAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated}
             })
             .when("/gwclsystems", {
-                templateUrl: "scripts/spa/gwclsystems/gwclsystems.html",
+                templateUrl: "./Scripts/spa/gwclsystems/gwclsystems.html",
                 controller: "gwclsystemsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclsystems/add", {
-                templateUrl: "scripts/spa/gwclsystems/add.html",
+                templateUrl: "./Scripts/spa/gwclsystems/add.html",
                 controller: "gwclsystemsAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwcloptions", {
-                templateUrl: "scripts/spa/gwcloptions/gwcloptions.html",
+                templateUrl: "./Scripts/spa/gwcloptions/gwcloptions.html",
                 controller: "gwcloptionsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwcloptions/add", {
-                templateUrl: "scripts/spa/gwcloptions/add.html",
+                templateUrl: "./Scripts/spa/gwcloptions/add.html",
                 controller: "gwcloptionsAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclotypes", {
-                templateUrl: "scripts/spa/gwclotypes/gwclotypes.html",
+                templateUrl: "./Scripts/spa/gwclotypes/gwclotypes.html",
                 controller: "gwclotypesCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclotypes/add", {
-                templateUrl: "scripts/spa/gwclotypes/add.html",
+                templateUrl: "./Scripts/spa/gwclotypes/add.html",
                 controller: "gwclotypesAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/productions", {
-                templateUrl: "scripts/spa/productions/productions.html",
+                templateUrl: "./Scripts/spa/productions/productions.html",
                 controller: "productionsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/productions/add", {
-                templateUrl: "scripts/spa/productions/add.html",
+                templateUrl: "./Scripts/spa/productions/add.html",
                 controller: "productionAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/productions/summary/:id", {
-                templateUrl: "scripts/spa/productions/summary.html",
+                templateUrl: "./Scripts/spa/productions/summary.html",
                 controller: "summaryCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
                 .when("/productions/charts/:id", {
-                    templateUrl: "scripts/spa/productions/charts.html",
+                    templateUrl: "./Scripts/spa/productions/charts.html",
                     controller: "chartsCtrl",
                     resolve: { isAuthenticated: isAuthenticated }
                 })
             .when("/productions/:id", {
-                templateUrl: "scripts/spa/productions/details.html",
+                templateUrl: "./Scripts/spa/productions/details.html",
                 controller: "productionDetailsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/productions/edit/:id", {
-                templateUrl: "scripts/spa/productions/edit.html",
+                templateUrl: "./Scripts/spa/productions/edit.html",
                 controller: "productionEditCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/downtimes", {
-                templateUrl: "scripts/spa/downtimes/downtimes.html",
+                templateUrl: "./Scripts/spa/downtimes/downtimes.html",
                 controller: "downtimesCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/downtimes/add", {
-                templateUrl: "scripts/spa/downtimes/add.html",
+                templateUrl: "./Scripts/spa/downtimes/add.html",
                 controller: "downtimeAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/downtimes/:id", {
-                templateUrl: "scripts/spa/downtimes/details.html",
+                templateUrl: "./Scripts/spa/downtimes/details.html",
                 controller: "downtimeDetailsCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/downtimes/edit/:id", {
-                templateUrl: "scripts/spa/downtimes/edit.html",
+                templateUrl: "./Scripts/spa/downtimes/edit.html",
                 controller: "downtimeEditCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             });

@@ -17,7 +17,7 @@ namespace GwcltdApp.Web.Infrastructure.Validators
             RuleFor(ws => ws.Code).NotEmpty()
                 .WithMessage("please enter a value");
 
-            RuleFor(ws => ws.Capacity).NotNull()
+            RuleFor(ws => ws.Capacity).GreaterThanOrEqualTo(0)
                 .WithMessage("please enter a value");
 
             RuleFor(ws => ws.GwclStationId).NotNull()

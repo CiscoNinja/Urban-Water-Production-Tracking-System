@@ -11,7 +11,7 @@
         $scope.updateRegion = updateRegion;
 
         function loadAreas() {
-            apiService.get('/api/gwclareas/loadareas', null,
+            apiService.get('./api/gwclareas/loadareas', null,
             areasLoadCompleted,
             areasLoadFailed);
         }
@@ -27,7 +27,7 @@
         function updateRegion()
         {
             console.log($scope.EditedRegion);
-            apiService.post('/api/gwclregions/update/', $scope.EditedRegion,
+            apiService.post('./api/gwclregions/update/', $scope.EditedRegion,
             updateRegionCompleted,
             updateRegionLoadFailed);
         }

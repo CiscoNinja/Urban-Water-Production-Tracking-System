@@ -13,7 +13,7 @@
         function updateType()
         {
             console.log($scope.EditedType);
-            apiService.post('/api/gwclotypes/update/', $scope.EditedType,
+            apiService.post('./api/gwclotypes/update/', $scope.EditedType,
             updateTypeCompleted,
             updateTypeLoadFailed);
         }

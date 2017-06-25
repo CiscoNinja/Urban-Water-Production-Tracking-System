@@ -16,7 +16,7 @@
 
             $scope.loadingDowntime = true;
 
-            apiService.get('/api/downtimes/details/' + $routeParams.id, null,
+            apiService.get('./api/downtimes/details/' + $routeParams.id, null,
             downtimeLoadCompleted,
             downtimeLoadFailed);
         }

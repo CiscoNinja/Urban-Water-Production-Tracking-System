@@ -13,7 +13,7 @@
         function updateWArea()
         {
             console.log($scope.EditedWArea);
-            apiService.post('/api/gwclareas/update/', $scope.EditedWArea,
+            apiService.post('./api/gwclareas/update/', $scope.EditedWArea,
             updateWAreaCompleted,
             updateWAreaLoadFailed);
         }

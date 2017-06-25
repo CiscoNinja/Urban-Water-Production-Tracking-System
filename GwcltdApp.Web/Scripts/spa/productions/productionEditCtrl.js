@@ -48,7 +48,7 @@
 
             $scope.loadingProduction = true;
 
-            apiService.get('/api/hrlyproductions/details/' + $routeParams.id, null,
+            apiService.get('./api/hrlyproductions/details/' + $routeParams.id, null,
             productionLoadCompleted,
             productionLoadFailed);
         }
@@ -67,7 +67,7 @@
         }
 
         function loadOptions() {
-            apiService.get('/api/options/', null,
+            apiService.get('./api/gwcloptions/loadoptions', null,
             optionsLoadCompleted,
             optionsLoadFailed);
         }
@@ -81,7 +81,7 @@
         }
 
         function loadOptionTypes() {
-            apiService.get('/api/optiontypes/', null,
+            apiService.get('./api/gwclotypes/loadoptypes', null,
             optiontypesLoadCompleted,
             optiontypesLoadFailed);
         }
@@ -95,7 +95,7 @@
         }
 
         function loadWsystems() {
-            apiService.get('/api/gwclsystems/loadsystems/'+$rootScope.repository.loggedUser.stationid, null,
+            apiService.get('./api/gwclsystems/loadsystems/'+$rootScope.repository.loggedUser.stationid, null,
             wsystemsLoadCompleted,
             wsystemsLoadFailed);
         }
@@ -114,7 +114,7 @@
         }
 
         function UpdateProductionModel() {
-            apiService.post('/api/hrlyproductions/update', $scope.production,
+            apiService.post('./api/hrlyproductions/update', $scope.production,
             updateProductionSucceded,
             updateProductionFailed);
         }

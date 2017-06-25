@@ -30,8 +30,24 @@ namespace GwcltdApp.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("loadareas")]
         public HttpResponseMessage Get(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var gwclareas = _gwclareaRepository.GetAll().ToList();
+
+                IEnumerable<GwclAreaViewModel> gwclareasVM = Mapper.Map<IEnumerable<GwclArea>, IEnumerable<GwclAreaViewModel>>(gwclareas);
+
+                response = request.CreateResponse<IEnumerable<GwclAreaViewModel>>(HttpStatusCode.OK, gwclareasVM);
+
+                return response;
+            });
+        }
+
+        [AllowAnonymous]
+        [Route("loadareas")]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {

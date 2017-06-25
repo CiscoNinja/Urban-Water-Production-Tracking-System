@@ -34,8 +34,24 @@ namespace GwcltdApp.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("loadregions")]
         public HttpResponseMessage Get(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var gwclregions = _gwclregionsRepository.GetAll().ToList();
+
+                IEnumerable<GwclRegionViewModel> gwclregionsVM = Mapper.Map<IEnumerable<GwclRegion>, IEnumerable<GwclRegionViewModel>>(gwclregions);
+
+                response = request.CreateResponse<IEnumerable<GwclRegionViewModel>>(HttpStatusCode.OK, gwclregionsVM);
+
+                return response;
+            });
+        }
+
+        [AllowAnonymous]
+        [Route("loadregions")]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {

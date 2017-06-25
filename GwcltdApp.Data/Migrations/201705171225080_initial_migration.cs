@@ -199,74 +199,10 @@ namespace GwcltdApp.Data.Migrations
                         GwclStationId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: false)
-                .Index(t => t.GwclStationId);
-            
-            CreateTable(
-                "dbo.UserRegion",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
-                        GwclRegionId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionId, cascadeDelete: false)
-                .Index(t => t.GwclRegionId);
-            
-            CreateTable(
-                "dbo.Error",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Message = c.String(),
-                        StackTrace = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.Role",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.SMS_IN",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        SMS_TEXT = c.String(),
-                        SENDER_NUMBER = c.String(),
-                        SENT_DT = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
-
-            CreateTable(
-                "dbo.Config",
-                c => new
-                {
-                    ID = c.Int(nullable: false, identity: true),
-                    ConfigData = c.String(),
-                })
-                .PrimaryKey(t => t.ID);
-
-            CreateTable(
-                "dbo.UserRole",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
-                        RoleId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Role", t => t.RoleId, cascadeDelete: false)
                 .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: false)
+                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: false)
                 .Index(t => t.UserId)
-                .Index(t => t.RoleId);
+                .Index(t => t.GwclStationId);
             
             CreateTable(
                 "dbo.User",
@@ -291,20 +227,123 @@ namespace GwcltdApp.Data.Migrations
                 .Index(t => t.GwclStationId)
                 .Index(t => t.RoleId);
             
+            CreateTable(
+                "dbo.Role",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 50),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.UserRole",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
+                        RoleId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Role", t => t.RoleId, cascadeDelete: false)
+                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: false)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.UserRegion",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
+                        GwclRegionId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: false)
+                .ForeignKey("dbo.GwclRegion", t => t.GwclRegionId, cascadeDelete: false)
+                .Index(t => t.UserId)
+                .Index(t => t.GwclRegionId);
+            
+            CreateTable(
+                "dbo.Config",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        ConfigData = c.String(),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.Error",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Message = c.String(),
+                        StackTrace = c.String(),
+                        DateCreated = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.HourlyProduction",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        DateCreated = c.DateTime(nullable: false),
+                        DayToRecord = c.DateTime(nullable: false),
+                        HourlyActual = c.Double(nullable: false),
+                        Comment = c.String(),
+                        FRPH = c.Double(nullable: false),
+                        FRPS = c.Double(nullable: false),
+                        TFPD = c.Double(nullable: false),
+                        NTFPD = c.Double(nullable: false),
+                        LOG = c.Double(nullable: false),
+                        WSystemId = c.Int(nullable: false),
+                        OptionId = c.Int(nullable: false),
+                        OptionTypeId = c.Int(nullable: false),
+                        GwclStationId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.GwclStation", t => t.GwclStationId, cascadeDelete: false)
+                .ForeignKey("dbo.Option", t => t.OptionId, cascadeDelete: false)
+                .ForeignKey("dbo.OptionType", t => t.OptionTypeId, cascadeDelete: false)
+                .ForeignKey("dbo.WSystem", t => t.WSystemId, cascadeDelete: false)
+                .Index(t => t.WSystemId)
+                .Index(t => t.OptionId)
+                .Index(t => t.OptionTypeId)
+                .Index(t => t.GwclStationId);
+            
+            CreateTable(
+                "dbo.SMS_IN",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        SMS_TEXT = c.String(),
+                        SENDER_NUMBER = c.String(),
+                        SENT_DT = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.UserRole", "UserId", "dbo.User");
-            DropForeignKey("dbo.User", "RoleId", "dbo.Role");
-            DropForeignKey("dbo.User", "GwclStationId", "dbo.GwclStation");
-            DropForeignKey("dbo.User", "GwclRegionID", "dbo.GwclRegion");
-            DropForeignKey("dbo.UserRole", "RoleId", "dbo.Role");
+            DropForeignKey("dbo.HourlyProduction", "WSystemId", "dbo.WSystem");
+            DropForeignKey("dbo.HourlyProduction", "OptionTypeId", "dbo.OptionType");
+            DropForeignKey("dbo.HourlyProduction", "OptionId", "dbo.Option");
+            DropForeignKey("dbo.HourlyProduction", "GwclStationId", "dbo.GwclStation");
             DropForeignKey("dbo.AreaRegion", "GwclRegionId", "dbo.GwclRegion");
             DropForeignKey("dbo.UserRegion", "GwclRegionId", "dbo.GwclRegion");
+            DropForeignKey("dbo.UserRegion", "UserId", "dbo.User");
             DropForeignKey("dbo.RegionStation", "GwclRegionId", "dbo.GwclRegion");
             DropForeignKey("dbo.RegionStation", "GwclStationId", "dbo.GwclStation");
             DropForeignKey("dbo.UserStation", "GwclStationId", "dbo.GwclStation");
+            DropForeignKey("dbo.UserStation", "UserId", "dbo.User");
+            DropForeignKey("dbo.UserRole", "UserId", "dbo.User");
+            DropForeignKey("dbo.UserRole", "RoleId", "dbo.Role");
+            DropForeignKey("dbo.User", "RoleId", "dbo.Role");
+            DropForeignKey("dbo.User", "GwclStationId", "dbo.GwclStation");
+            DropForeignKey("dbo.User", "GwclRegionID", "dbo.GwclRegion");
             DropForeignKey("dbo.StationSystem", "GwclStationId", "dbo.GwclStation");
             DropForeignKey("dbo.StationSystem", "WSystemID", "dbo.WSystem");
             DropForeignKey("dbo.WSystemPlantDowntime", "WSystemId", "dbo.WSystem");
@@ -320,13 +359,19 @@ namespace GwcltdApp.Data.Migrations
             DropForeignKey("dbo.GwclStation", "GwclRegionId", "dbo.GwclRegion");
             DropForeignKey("dbo.GwclRegion", "GwclAreaID", "dbo.GwclArea");
             DropForeignKey("dbo.AreaRegion", "GwclAreaId", "dbo.GwclArea");
+            DropIndex("dbo.HourlyProduction", new[] { "GwclStationId" });
+            DropIndex("dbo.HourlyProduction", new[] { "OptionTypeId" });
+            DropIndex("dbo.HourlyProduction", new[] { "OptionId" });
+            DropIndex("dbo.HourlyProduction", new[] { "WSystemId" });
+            DropIndex("dbo.UserRegion", new[] { "GwclRegionId" });
+            DropIndex("dbo.UserRegion", new[] { "UserId" });
+            DropIndex("dbo.UserRole", new[] { "RoleId" });
+            DropIndex("dbo.UserRole", new[] { "UserId" });
             DropIndex("dbo.User", new[] { "RoleId" });
             DropIndex("dbo.User", new[] { "GwclStationId" });
             DropIndex("dbo.User", new[] { "GwclRegionID" });
-            DropIndex("dbo.UserRole", new[] { "RoleId" });
-            DropIndex("dbo.UserRole", new[] { "UserId" });
-            DropIndex("dbo.UserRegion", new[] { "GwclRegionId" });
             DropIndex("dbo.UserStation", new[] { "GwclStationId" });
+            DropIndex("dbo.UserStation", new[] { "UserId" });
             DropIndex("dbo.PlantDowntime", new[] { "WSystemId" });
             DropIndex("dbo.WSystemPlantDowntime", new[] { "PlantDowntimeId" });
             DropIndex("dbo.WSystemPlantDowntime", new[] { "WSystemId" });
@@ -345,13 +390,14 @@ namespace GwcltdApp.Data.Migrations
             DropIndex("dbo.GwclRegion", new[] { "GwclAreaID" });
             DropIndex("dbo.AreaRegion", new[] { "GwclRegionId" });
             DropIndex("dbo.AreaRegion", new[] { "GwclAreaId" });
-            DropTable("dbo.User");
-            DropTable("dbo.UserRole");
             DropTable("dbo.SMS_IN");
-            DropTable("dbo.Config");
-            DropTable("dbo.Role");
+            DropTable("dbo.HourlyProduction");
             DropTable("dbo.Error");
+            DropTable("dbo.Config");
             DropTable("dbo.UserRegion");
+            DropTable("dbo.UserRole");
+            DropTable("dbo.Role");
+            DropTable("dbo.User");
             DropTable("dbo.UserStation");
             DropTable("dbo.PlantDowntime");
             DropTable("dbo.WSystemPlantDowntime");

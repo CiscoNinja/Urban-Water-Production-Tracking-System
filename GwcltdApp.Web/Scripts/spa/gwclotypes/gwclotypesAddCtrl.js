@@ -12,18 +12,18 @@
         $scope.AddType = AddType;
 
         $scope.submission = {
-            successMessages: ['Successfull submission will appear here.'],
-            errorMessages: ['Submition errors will appear here.']
+            successMessages: [''],
+            errorMessages: ['']
         };
 
         function AddType() {
-            apiService.post('/api/gwclotypes/add', $scope.newType,
+            apiService.post('./api/gwclotypes/add', $scope.newType,
            addTypeSucceded,
            addTypeFailed);
         }
 
         function addTypeSucceded(response) {
-            $scope.submission.errorMessages = ['Submition errors will appear here.'];
+            //$scope.submission.errorMessages = ['Submition errors will appear here.'];
             console.log(response);
             var gwclotypeAdded = response.data;
             $scope.submission.successMessages = [];
@@ -34,9 +34,9 @@
         function addTypeFailed(response) {
             console.log(response);
             if (response.status == '400')
-                $scope.submission.errorMessages = response.data;
+                $scope.submission.errorMessages = 'Error: ' + response.data;
             else
-                $scope.submission.errorMessages = response.statusText;
+                $scope.submission.errorMessages = 'Error: enter appropriate values/' + response.statusText;
         }
     }
 

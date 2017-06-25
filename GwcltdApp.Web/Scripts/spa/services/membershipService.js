@@ -18,7 +18,7 @@
         }
 
         function loadWsystems(completed) {
-            apiService.get('/api/gwclsystems/loadsystems/' + $rootScope.repository.loggedUser.stationid, null,
+            apiService.get('./api/gwclsystems/loadsystems/' + $rootScope.repository.loggedUser.stationid, null,
             completed,
             wsystemsLoadFailed);
         }
@@ -38,13 +38,13 @@
         //}
 
         function login(user, completed) {
-            apiService.post('/api/account/authenticate', user,
+            apiService.post('./api/account/authenticate', user,
             completed,
             loginFailed);
         }
 
         function register(user, completed) {
-            apiService.post('/api/account/register', user,
+            apiService.post('./api/account/register', user,
             completed,
             registrationFailed);
         }

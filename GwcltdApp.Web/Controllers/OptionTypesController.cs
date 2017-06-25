@@ -43,6 +43,23 @@ namespace GwcltdApp.Web.Controllers
                 return response;
             });
         }
+
+        [AllowAnonymous]
+        [Route("loadoptypes")]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var optiontypes = _optiontypesRepository.GetAll().ToList();
+
+                IEnumerable<OptionTypeViewModel> optiontypesVM = Mapper.Map<IEnumerable<OptionType>, IEnumerable<OptionTypeViewModel>>(optiontypes);
+
+                response = request.CreateResponse<IEnumerable<OptionTypeViewModel>>(HttpStatusCode.OK, optiontypesVM);
+
+                return response;
+            });
+        }
         public HttpResponseMessage Get(HttpRequestMessage request, string filter)
         {
             filter = filter.ToLower().Trim();

@@ -13,7 +13,7 @@
 
         function updateOption() {
             console.log($scope.EditedOption);
-            apiService.post('/api/gwcloptions/update/', $scope.EditedOption,
+            apiService.post('./api/gwcloptions/update/', $scope.EditedOption,
             updateOptionCompleted,
             updateOptionLoadFailed);
         }

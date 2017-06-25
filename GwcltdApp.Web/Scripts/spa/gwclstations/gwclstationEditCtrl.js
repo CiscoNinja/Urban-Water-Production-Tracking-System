@@ -12,7 +12,7 @@
         $scope.regions = [];
 
         function loadRegions() {
-            apiService.get('/api/gwclregions/loadregions', null,
+            apiService.get('./api/gwclregions/loadregions', null,
             regionsLoadCompleted,
             regionsLoadFailed);
         }
@@ -28,7 +28,7 @@
         function updateStation()
         {
             console.log($scope.EditedStation);
-            apiService.post('/api/gwclstations/update/', $scope.EditedStation,
+            apiService.post('./api/gwclstations/update/', $scope.EditedStation,
             updateRegionCompleted,
             updateRegionLoadFailed);
         }

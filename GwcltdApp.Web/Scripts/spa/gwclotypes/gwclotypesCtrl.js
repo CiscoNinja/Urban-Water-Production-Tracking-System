@@ -33,7 +33,7 @@
                 }
             };
 
-            apiService.get('/api/gwclotypes/', config,
+            apiService.get('./api/gwclotypes/', config,
             gwclotypesLoadCompleted,
             gwclotypesLoadFailed);
         }
@@ -41,7 +41,7 @@
         function openEditDialog(gwclotype) {
             $scope.EditedType = gwclotype;
             $modal.open({
-                templateUrl: 'scripts/spa/gwclotypes/editGwclTypesModal.html',
+                templateUrl: './Scripts/spa/gwclotypes/editGwclTypesModal.html',
                 controller: 'gwclotypeEditCtrl',
                 scope: $scope
             }).result.then(function ($scope) {

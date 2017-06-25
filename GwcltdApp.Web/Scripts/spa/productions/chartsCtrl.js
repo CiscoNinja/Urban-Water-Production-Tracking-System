@@ -21,14 +21,14 @@
             });
 
             $scope.loadingCharts = true;
-            apiService.get('/api/productions/charts/' + $rootScope.repository.loggedUser.stationid +'/'+$routeParams.id, null,
+            apiService.get('./api/productions/charts/' + $rootScope.repository.loggedUser.stationid +'/'+$routeParams.id, null,
             chartsLoadCompleted,
             chartsLoadFailed);
         }
 
         function loadWsystems() {
 
-            apiService.get('/api/gwclsystems/syscodes/' + $rootScope.repository.loggedUser.stationid, null,
+            apiService.get('./api/gwclsystems/syscodes/' + $rootScope.repository.loggedUser.stationid, null,
             wsystemsLoadCompleted,
             wsystemsLoadFailed);
         }

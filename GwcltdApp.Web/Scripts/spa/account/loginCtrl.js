@@ -12,7 +12,7 @@
         $scope.userstation = {};
 
         function loadUserStation(user) {
-            apiService.get('/api/account/userstation/' + user.username, user,
+            apiService.get('./api/account/userstation/' + user.username, user,
             stationLoadCompleted,
             stationLoadFailed);
         }

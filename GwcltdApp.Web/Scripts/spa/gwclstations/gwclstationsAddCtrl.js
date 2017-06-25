@@ -13,18 +13,18 @@
         $scope.AddStation = AddStation;
 
         $scope.submission = {
-            successMessages: ['Successfull submission will appear here.'],
-            errorMessages: ['Submition errors will appear here.']
+            successMessages: [''],
+            errorMessages: ['']
         };
 
         function AddStation() {
-            apiService.post('/api/gwclstations/add', $scope.newStation,
+            apiService.post('./api/gwclstations/add', $scope.newStation,
            addStationSucceded,
            addStationFailed);
         }
 
         function loadRegions() {
-            apiService.get('/api/gwclregions/loadregions', null,
+            apiService.get('./api/gwclregions/loadregions', null,
             regionsLoadCompleted,
             regionsLoadFailed);
         }
@@ -38,7 +38,7 @@
         }
 
         function addStationSucceded(response) {
-            $scope.submission.errorMessages = ['Submition errors will appear here.'];
+            //$scope.submission.errorMessages = ['Submition errors will appear here.'];
             console.log(response);
             var gwclstationAdded = response.data;
             $scope.submission.successMessages = [];
@@ -49,9 +49,9 @@
         function addStationFailed(response) {
             console.log(response);
             if (response.status == '400')
-                $scope.submission.errorMessages = response.data;
+                $scope.submission.errorMessages = 'Error: ' + response.data;
             else
-                $scope.submission.errorMessages = response.statusText;
+                $scope.submission.errorMessages = 'Error: enter appropriate values/' + response.statusText;
         }
 
         loadRegions();

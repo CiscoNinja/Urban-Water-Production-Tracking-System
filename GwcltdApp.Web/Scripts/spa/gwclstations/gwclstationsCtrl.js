@@ -33,7 +33,7 @@
                 }
             };
 
-            apiService.get('/api/gwclstations/', config,
+            apiService.get('./api/gwclstations/', config,
             gwclstationsLoadCompleted,
             gwclstationsLoadFailed);
         }
@@ -41,7 +41,7 @@
         function openEditDialog(gwclstation) {
             $scope.EditedStation = gwclstation;
             $modal.open({
-                templateUrl: 'scripts/spa/gwclstations/editGwclStationsModal.html',
+                templateUrl: './Scripts/spa/gwclstations/editGwclStationsModal.html',
                 controller: 'gwclstationEditCtrl',
                 scope: $scope
             }).result.then(function ($scope) {
@@ -51,7 +51,7 @@
         }
 
         function gwclstationsLoadCompleted(result) {
-            $scope.GwclStations = result.data;
+            $scope.GwclStations = result.data.Items;
 
             $scope.page = result.data.Page;
             $scope.pagesCount = result.data.TotalPages;

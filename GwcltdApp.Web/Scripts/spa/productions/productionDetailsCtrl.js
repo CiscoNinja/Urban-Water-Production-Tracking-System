@@ -16,7 +16,7 @@
 
             $scope.loadingProduction = true;
 
-            apiService.get('/api/hrlyproductions/details/' + $routeParams.id, null,
+            apiService.get('./api/hrlyproductions/details/' + $routeParams.id, null,
             productionLoadCompleted,
             productionLoadFailed);
         }

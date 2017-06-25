@@ -22,17 +22,17 @@
         <div class="col-md-12">
             <div class="alert alert-success">
                 <ul>
-                    <li ng-repeat="message in submission.successMessages track by $index">
+                    <content ng-repeat="message in submission.successMessages track by $index">
                         <strong>{{message}}</strong>
-                    </li>
+                    </content>
                 </ul>
                 <strong ng-bind="submission.successMessage"><span class="glyphicon glyphicon-ok"></span> </strong>
             </div>
             <div class="alert alert-danger">
                 <ul>
-                    <li ng-repeat="error in submission.errorMessages track by $index">
+                    <content ng-repeat="error in submission.errorMessages track by $index">
                         <strong>{{error}}</strong>
-                    </li>
+                    </content>
                 </ul>
             </div>
         </div>

@@ -34,6 +34,20 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabases>true</PublishDatabases>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="GwcltdAppDBF-Deployment" Order="2" Enabled="True" xmlns="">
+          <Destination Path="Data Source=DESKTOP-TBVO77V\SQLEXPRESS%3bInitial Catalog=GwcltdAppDBF%3bIntegrated Security=True" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=.\SQLExpress%3bInitial Catalog=GwcltdAppDBF%3bIntegrated Security=True" ScriptSchema="False" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\GwcltdAppDBF-Deployment_DataOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +56,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="GwcltdAppDBF-Deployment" Order="1" xmlns="">
+          <Destination Path="Data Source=DESKTOP-TBVO77V\SQLEXPRESS%3bInitial Catalog=GwcltdAppDBF%3bIntegrated Security=True" />
+          <Object Type="DbFullSql" Enabled="True">
+            <PreSource Path="Data Source=DESKTOP-TBVO77V\SQLEXPRESS%3bInitial Catalog=GwcltdAppDBF%3bIntegrated Security=True" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Release\AutoScripts\GwcltdAppDBF-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+          <Object Type="DbFullSql" Enabled="True">
+            <Source Path="..\Grant.sql" Transacted="False" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <IncludeIisSettings>false</IncludeIisSettings>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
@@ -169,12 +198,6 @@
     <Content Include="Content\fonts\codropsicons\codropsicons.ttf" />
     <Content Include="Content\fonts\codropsicons\codropsicons.woff" />
     <Content Include="Content\fonts\codropsicons\license.txt" />
-    <Content Include="Content\images\raty\star-half-big.png" />
-    <Content Include="Content\images\raty\star-half.png" />
-    <Content Include="Content\images\raty\star-off-big.png" />
-    <Content Include="Content\images\raty\star-off.png" />
-    <Content Include="Content\images\raty\star-on-big.png" />
-    <Content Include="Content\images\raty\star-on.png" />
     <Content Include="Content\css\morris.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\toastr.css" />
@@ -374,6 +397,9 @@
     <Content Include="Logging\AutoAuditSetup.pdf" />
     <Content Include="Scripts\vendors\jquery-ui.min.js" />
     <Content Include="Views\Configs\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\GWCLtdApp.pubxml" />
+    <None Include="Properties\PublishProfiles\GWCLtdDeploy.pubxml" />
+    <None Include="Properties\PublishProfiles\GWCLtdWebDeploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -397,6 +423,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>

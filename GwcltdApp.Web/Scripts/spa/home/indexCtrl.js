@@ -16,11 +16,11 @@
         $scope.loadData = loadData;
 
         function loadData() {
-            apiService.get('/api/productions/latest/'+$rootScope.repository.loggedUser.stationid, null,
+            apiService.get('./api/productions/latest/'+$rootScope.repository.loggedUser.stationid, null,
                         productionsLoadCompleted,
                         productionsLoadFailed);
 
-            apiService.get("/api/productions/latest/"+$rootScope.repository.loggedUser.stationid, null,
+            apiService.get("./api/productions/latest/"+$rootScope.repository.loggedUser.stationid, null,
                 summaryLoadCompleted,
                 summaryLoadFailed);
         }

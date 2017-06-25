@@ -33,9 +33,9 @@ namespace GwcltdApp.Web.App_Start
                  "~/Scripts/Vendors/raphael.js",
                  "~/Scripts/Vendors/morris.js",
 
-                 //"~/Scripts/Vendors/d3.v4.min.js",
-                 //"~/Scripts/Vendors/jquery.stickyheader.js",
-                 //"~/Scripts/Vendors/debouncejs.js",
+                 //"./Scripts/Vendors/d3.v4.min.js",
+                 //"./Scripts/Vendors/jquery.stickyheader.js",
+                 //"./Scripts/Vendors/debouncejs.js",
                  "~/Scripts/Vendors/jquery.fancybox.js",
                  "~/Scripts/Vendors/jquery.fancybox-media.js",
                  "~/Scripts/Vendors/loading-bar.js"

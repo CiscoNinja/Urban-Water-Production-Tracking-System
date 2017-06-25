@@ -33,7 +33,7 @@
                 }
             };
 
-            apiService.get('/api/gwcloptions/', config,
+            apiService.get('./api/gwcloptions/', config,
             gwcloptionsLoadCompleted,
             gwcloptionsLoadFailed);
         }
@@ -41,7 +41,7 @@
         function openEditDialog(gwcloptions) {
             $scope.EditedOption = gwcloptions;
             $modal.open({
-                templateUrl: 'scripts/spa/gwcloptions/editGwclOptionsModal.html',
+                templateUrl: './Scripts/spa/gwcloptions/editGwclOptionsModal.html',
                 controller: 'gwcloptionEditCtrl',
                 scope: $scope
             }).result.then(function ($scope) {

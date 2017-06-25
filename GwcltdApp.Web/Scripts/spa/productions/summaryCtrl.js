@@ -19,7 +19,7 @@
                 $scope.waterType = $(this).text();
             });
             $scope.loadingStatistics = true;
-            apiService.get('/api/productions/summary/'+ $rootScope.repository.loggedUser.stationid + '/' + $routeParams.id, null,
+            apiService.get('./api/productions/summary/'+ $rootScope.repository.loggedUser.stationid + '/' + $routeParams.id, null,
             summaryLoadCompleted,
             summaryLoadFailed);
         }

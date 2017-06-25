@@ -11,7 +11,7 @@
         $scope.updateSystem = updateSystem;
 
         function loadStations() {
-            apiService.get('/api/gwclstations', null,
+            apiService.get('./api/gwclstations/loadstations', null,
             stationsLoadCompleted,
             stationsLoadFailed);
         }
@@ -27,7 +27,7 @@
         function updateSystem()
         {
             console.log($scope.EditedSystem);
-            apiService.post('/api/gwclsystems/update/', $scope.EditedSystem,
+            apiService.post('./api/gwclsystems/update/', $scope.EditedSystem,
             updateSystemCompleted,
             updateSystemLoadFailed);
         }

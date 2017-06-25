@@ -14,7 +14,7 @@
         $scope.gwclstations = [];
 
         function loadRoles() {
-            apiService.get('/api/roles/', null,
+            apiService.get('./api/roles/loadroles', null,
             rolesLoadCompleted,
             rolesLoadFailed);
         }
@@ -28,7 +28,7 @@
         }
 
         function loadGwclRegions() {
-            apiService.get('/api/gwclregions/loadregions', null,
+            apiService.get('./api/gwclregions/loadregions', null,
             gwclregionsLoadCompleted,
             gwclregionsLoadFailed);
         }
@@ -42,7 +42,7 @@
         }
 
         function loadGwclStations() {
-            apiService.get('/api/gwclstations', null,
+            apiService.get('./api/gwclstations/loadstations', null,
             gwclstationsLoadCompleted,
             gwclstationsLoadFailed);
         }

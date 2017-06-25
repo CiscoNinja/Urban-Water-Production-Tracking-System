@@ -42,5 +42,22 @@ namespace GwcltdApp.Web.Controllers
                 return response;
             });
         }
+
+        [AllowAnonymous]
+        [Route("loadroles")]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var roles = _rolesRepository.GetAll().ToList();
+
+                IEnumerable<RoleViewModel> rolesVM = Mapper.Map<IEnumerable<Role>, IEnumerable<RoleViewModel>>(roles);
+
+                response = request.CreateResponse<IEnumerable<RoleViewModel>>(HttpStatusCode.OK, rolesVM);
+
+                return response;
+            });
+        }
     }
 }

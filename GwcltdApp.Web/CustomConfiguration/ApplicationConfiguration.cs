@@ -25,7 +25,7 @@ namespace GwcltdApp.Web.CustomConfiguration
         {
             var provider = new SqlServerConfigurationProvider<ApplicationConfiguration>()
             {
-                ConnectionString = "Data Source=.\\SQLExpress;Initial Catalog=GwcltdAppDB6;Integrated Security=SSPI; MultipleActiveResultSets=true",
+                ConnectionString = "Data Source=.\\SQLExpress;Initial Catalog=GwcltdAppDBF;Integrated Security=SSPI; MultipleActiveResultSets=true",
                 Tablename = "ConfigData",
                 PropertiesToEncrypt = "ConnectionString",
                 EncryptionKey = "secret",

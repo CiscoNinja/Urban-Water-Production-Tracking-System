@@ -33,7 +33,7 @@
                 }
             };
 
-            apiService.get('/api/gwclregions/', config,
+            apiService.get('./api/gwclregions/', config,
             gwclregionsLoadCompleted,
             gwclregionsLoadFailed);
         }
@@ -41,7 +41,7 @@
         function openEditDialog(gwclregion) {
             $scope.EditedRegion = gwclregion;
             $modal.open({
-                templateUrl: 'scripts/spa/gwclregions/editGwclRegionsModal.html',
+                templateUrl: './Scripts/spa/gwclregions/editGwclRegionsModal.html',
                 controller: 'gwclregionEditCtrl',
                 scope: $scope
             }).result.then(function ($scope) {

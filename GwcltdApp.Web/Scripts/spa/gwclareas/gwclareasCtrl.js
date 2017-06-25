@@ -33,7 +33,7 @@
                 }
             };
 
-            apiService.get('/api/gwclareas/', config,
+            apiService.get('./api/gwclareas/', config,
             gwclareasLoadCompleted,
             gwclareasLoadFailed);
         }
@@ -41,7 +41,7 @@
         function openEditDialog(gwclarea) {
             $scope.EditedWArea = gwclarea;
             $modal.open({
-                templateUrl: 'scripts/spa/gwclareas/editGwclAreasModal.html',
+                templateUrl: './Scripts/spa/gwclareas/editGwclAreasModal.html',
                 controller: 'gwclareaEditCtrl',
                 scope: $scope
             }).result.then(function ($scope) {

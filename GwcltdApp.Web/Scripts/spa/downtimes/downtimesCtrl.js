@@ -40,7 +40,7 @@
                 }
             };
 
-            apiService.get('/api/downtimes/' + 1, config,
+            apiService.get('./api/downtimes/' + 1, config,
             downtimesLoadCompleted,
             downtimesLoadFailed);
         }

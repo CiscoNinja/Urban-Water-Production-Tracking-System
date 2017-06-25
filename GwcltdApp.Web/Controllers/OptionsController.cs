@@ -43,6 +43,22 @@ namespace GwcltdApp.Web.Controllers
                 return response;
             });
         }
+        [AllowAnonymous]
+        [Route("loadoptions")]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var options = _optionsRepository.GetAll().ToList();
+
+                IEnumerable<OptionViewModel> optionsVM = Mapper.Map<IEnumerable<Option>, IEnumerable<OptionViewModel>>(options);
+
+                response = request.CreateResponse<IEnumerable<OptionViewModel>>(HttpStatusCode.OK, optionsVM);
+
+                return response;
+            });
+        }
 
         public HttpResponseMessage Get(HttpRequestMessage request, string filter)
         {

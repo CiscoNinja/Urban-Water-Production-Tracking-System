@@ -73,7 +73,7 @@
 
             $scope.loadingDowntime = true;
 
-            apiService.get('/api/downtimes/details/' + $routeParams.id, null,
+            apiService.get('./api/downtimes/details/' + $routeParams.id, null,
             downtimeLoadCompleted,
             downtimeLoadFailed);
         }
@@ -90,7 +90,7 @@
         }
 
         function loadWsystems() {
-            apiService.get('/api/gwclsystems/loadsystems/' + $rootScope.repository.loggedUser.stationid, null,
+            apiService.get('./api/gwclsystems/loadsystems/' + $rootScope.repository.loggedUser.stationid, null,
             wsystemsLoadCompleted,
             wsystemsLoadFailed);
         }
@@ -109,7 +109,7 @@
         }
 
         function UpdateDowntimeModel() {
-            apiService.post('/api/downtimes/update', $scope.downtime,
+            apiService.post('./api/downtimes/update', $scope.downtime,
             updateDowntimeSucceded,
             updateDowntimeFailed);
         }

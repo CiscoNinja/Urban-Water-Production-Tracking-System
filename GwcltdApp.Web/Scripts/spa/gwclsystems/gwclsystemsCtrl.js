@@ -33,7 +33,7 @@
                 }
             };
 
-            apiService.get('/api/gwclsystems/', config,
+            apiService.get('./api/gwclsystems/', config,
             gwclsystemsLoadCompleted,
             gwclsystemsLoadFailed);
         }
@@ -41,7 +41,7 @@
         function openEditDialog(gwclsystem) {
             $scope.EditedSystem = gwclsystem;
             $modal.open({
-                templateUrl: 'scripts/spa/gwclsystems/editGwclSystemsModal.html',
+                templateUrl: './Scripts/spa/gwclsystems/editGwclSystemsModal.html',
                 controller: 'gwclsystemEditCtrl',
                 scope: $scope
             }).result.then(function ($scope) {

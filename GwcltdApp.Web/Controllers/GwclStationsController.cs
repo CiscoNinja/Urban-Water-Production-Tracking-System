@@ -11,8 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace GwcltdApp.Web.Controllers
 {
@@ -36,6 +35,23 @@ namespace GwcltdApp.Web.Controllers
 
         [AllowAnonymous]
         public HttpResponseMessage Get(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var gwclstations = _gwclstationsRepository.GetAll().ToList();
+
+                IEnumerable<GwclStationViewModel> gwclstationsVM = Mapper.Map<IEnumerable<GwclStation>, IEnumerable<GwclStationViewModel>>(gwclstations);
+
+                response = request.CreateResponse<IEnumerable<GwclStationViewModel>>(HttpStatusCode.OK, gwclstationsVM);
+
+                return response;
+            });
+        }
+
+        [AllowAnonymous]
+        [Route("loadstations")]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
