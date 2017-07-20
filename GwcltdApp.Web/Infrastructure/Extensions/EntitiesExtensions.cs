@@ -122,10 +122,10 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
 
         public static void UpdateSystem(this WSystem gwclsysytem, WSystemViewModel gwclsysytemVm)
         {
-            gwclsysytem.Name = gwclsysytem.Name;
-            gwclsysytem.Code = gwclsysytem.Code;
-            gwclsysytem.Capacity = gwclsysytem.Capacity;
-            gwclsysytem.GwclStationId = gwclsysytem.GwclStationId;
+            gwclsysytem.Name = gwclsysytemVm.Name;
+            gwclsysytem.Code = gwclsysytemVm.Code;
+            gwclsysytem.Capacity = gwclsysytemVm.Capacity;
+            gwclsysytem.GwclStationId = gwclsysytemVm.GwclStationId;
         }
 
         public static void UpdateOption(this Option gwcloption, OptionViewModel gwcloptionVm)

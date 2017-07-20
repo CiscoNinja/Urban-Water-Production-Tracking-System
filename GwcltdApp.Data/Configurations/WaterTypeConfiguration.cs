@@ -12,7 +12,7 @@ namespace GwcltdApp.Data.Configurations
     {
         public WaterTypeConfiguration()
         {
-            Property(ot => ot.Name).IsRequired().HasMaxLength(50);
+            Property(ot => ot.Name).IsRequired();
         }
     }
 }

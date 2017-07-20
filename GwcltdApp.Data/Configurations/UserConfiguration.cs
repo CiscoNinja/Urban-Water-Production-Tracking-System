@@ -12,10 +12,10 @@ namespace GwcltdApp.Data.Configurations
     {
         public UserConfiguration()
         {
-            Property(u => u.Username).IsRequired().HasMaxLength(100);
-            Property(u => u.Email).IsRequired().HasMaxLength(200);
-            Property(u => u.HashedPassword).IsRequired().HasMaxLength(200);
-            Property(u => u.Salt).IsRequired().HasMaxLength(200);
+            Property(u => u.Username).IsRequired();
+            Property(u => u.Email).IsRequired();
+            Property(u => u.HashedPassword).IsRequired();
+            Property(u => u.Salt).IsRequired();
             Property(u => u.IsLocked).IsRequired();
             Property(u => u.DateCreated);
             Property(u => u.GwclRegionID).IsRequired();

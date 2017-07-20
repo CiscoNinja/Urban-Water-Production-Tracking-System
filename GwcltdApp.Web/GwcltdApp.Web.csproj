@@ -58,19 +58,10 @@
     <WarningLevel>4</WarningLevel>
     <PublishDatabaseSettings>
       <Objects>
-        <ObjectGroup Name="GwcltdAppDBF-Deployment" Order="1" xmlns="">
-          <Destination Path="Data Source=DESKTOP-TBVO77V\SQLEXPRESS%3bInitial Catalog=GwcltdAppDBF%3bIntegrated Security=True" />
-          <Object Type="DbFullSql" Enabled="True">
-            <PreSource Path="Data Source=DESKTOP-TBVO77V\SQLEXPRESS%3bInitial Catalog=GwcltdAppDBF%3bIntegrated Security=True" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
-            <Source Path="obj\Release\AutoScripts\GwcltdAppDBF-Deployment_SchemaAndData.sql" Transacted="True" />
-          </Object>
-          <Object Type="DbFullSql" Enabled="True">
-            <Source Path="..\Grant.sql" Transacted="False" />
-          </Object>
-        </ObjectGroup>
       </Objects>
     </PublishDatabaseSettings>
     <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">

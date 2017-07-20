@@ -12,7 +12,7 @@ namespace GwcltdApp.Data.Configurations
     {
         public RoleConfiguration()
         {
-            Property(ur => ur.Name).IsRequired().HasMaxLength(50);
+            Property(ur => ur.Name).IsRequired();
         }
     }
 }

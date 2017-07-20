@@ -12,7 +12,7 @@ namespace GwcltdApp.Data.Configurations
     {
         public TypeOptionConfiguration()
         {
-            Property(g => g.Name).IsRequired().HasMaxLength(50);
+            Property(g => g.Name).IsRequired();
         }
     }
 }

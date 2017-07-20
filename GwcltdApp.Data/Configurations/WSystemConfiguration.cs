@@ -12,8 +12,9 @@ namespace GwcltdApp.Data.Configurations
     {
         public WSystemConfiguration()
         {
-            Property(ws => ws.Code).IsRequired().HasMaxLength(5);
-            Property(ws => ws.Name).IsRequired().HasMaxLength(20);
+            Property(ws => ws.Code).IsRequired();
+            Property(ws => ws.Name).IsRequired();
+            Property(ws => ws.Capacity).IsRequired();
         }
     }
 }

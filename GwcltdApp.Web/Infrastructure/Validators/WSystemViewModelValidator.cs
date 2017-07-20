@@ -21,7 +21,7 @@ namespace GwcltdApp.Web.Infrastructure.Validators
                 .WithMessage("please enter a value");
 
             RuleFor(ws => ws.GwclStationId).NotNull()
-               .WithMessage("Select Area");
+               .WithMessage("Select Station");
         }
     }
 }

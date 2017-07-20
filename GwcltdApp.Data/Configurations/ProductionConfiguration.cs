@@ -20,7 +20,7 @@ namespace GwcltdApp.Data.Configurations
             Property(pc => pc.TFPD).IsRequired();
             Property(pc => pc.NTFPD).IsRequired();
             Property(pc => pc.LOG).IsRequired();
-            Property(pc => pc.Comment).IsOptional().HasMaxLength(2000);
+            Property(pc => pc.Comment).IsOptional();
             Property(o => o.OptionId).IsRequired();
             Property(ot => ot.OptionTypeId).IsRequired();
             Property(ws => ws.WSystemId).IsRequired();
