@@ -59,7 +59,7 @@
             $scope.loadingGwclSystems = false;
 
             if ($scope.filterGwclSystems && $scope.filterGwclSystems.length) {
-                notificationService.displayInfo(result.data.Items.length + ' no system found');
+                notificationService.displayInfo(result.data.Items.length + ' item(s) found');
             }
 
         }

@@ -54,7 +54,7 @@
 
             if ($scope.filterLeft || $scope.filterRight && $scope.filterLeft.length && $scope.filterRight.length)
             {
-                notificationService.displayInfo(result.data.TotalCount + ' downtimes found');
+                notificationService.displayInfo(result.data.TotalCount + ' item(s) found');
             }
             
         }

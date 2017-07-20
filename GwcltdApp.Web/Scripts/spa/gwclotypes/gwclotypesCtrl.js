@@ -59,7 +59,7 @@
             $scope.loadingGwclTypes = false;
 
             if ($scope.filterGwclTypes && $scope.filterGwclTypes.length) {
-                notificationService.displayInfo(result.data.Items.length + ' type(s) found');
+                notificationService.displayInfo(result.data.Items.length + ' item(s) found');
             }
 
         }

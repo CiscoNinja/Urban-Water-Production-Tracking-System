@@ -59,7 +59,7 @@
             $scope.loadingGwclAreas = false;
 
             if ($scope.filterGwclAreas && $scope.filterGwclAreas.length) {
-                notificationService.displayInfo(result.data.Items.length + ' no area found');
+                notificationService.displayInfo(result.data.Items.length + ' item(s) found');
             }
 
         }

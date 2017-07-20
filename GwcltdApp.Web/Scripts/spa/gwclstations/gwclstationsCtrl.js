@@ -59,7 +59,7 @@
             $scope.loadingGwclStations = false;
 
             if ($scope.filterGwclStations && $scope.filterGwclStations.length) {
-                notificationService.displayInfo(result.data.Items.length + ' no station found');
+                notificationService.displayInfo(result.data.Items.length + ' item(s) found');
             }
 
         }

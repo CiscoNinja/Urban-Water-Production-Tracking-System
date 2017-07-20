@@ -59,7 +59,7 @@
             $scope.loadingGwclRegions = false;
 
             if ($scope.filterGwclRegions && $scope.filterGwclRegions.length) {
-                notificationService.displayInfo(result.data.Items.length + ' no region found');
+                notificationService.displayInfo(result.data.Items.length + ' item(s) found');
             }
 
         }
