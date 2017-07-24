@@ -65,11 +65,11 @@ namespace GwcltdApp.Web.DAL
             }
         }
 
-        public static double GetTFbyDate(DateTime date) //gets total flow by date
+        public static double GetTFbyDate(DateTime date, int systemId, int wtype) //gets total flow by date and water type (eg. Raw Water)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                return context.ProductionSet.Where(x => DbFunctions.TruncateTime(x.DayToRecord) == date.Date).Select(x => x.TFPD).DefaultIfEmpty().Single();
+                return context.ProductionSet.Where(x => (DbFunctions.TruncateTime(x.DayToRecord) == date.Date) && x.WSystemId == systemId && x.OptionId == wtype).Select(x => x.TFPD).DefaultIfEmpty().Single();
             }
         }
 
@@ -89,11 +89,11 @@ namespace GwcltdApp.Web.DAL
                 return context.OptionTypeSet.Where(x => x.Name == name).Select(x => x.ID).Single();
             }
         }
-        public static double DailyActual(double currentTotal, DateTime previousDate)
+        public static double DailyActual(double currentTotal, DateTime previousDate, int sysId, int waterType)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                var previoousTotal = GetTFbyDate(previousDate);
+                var previoousTotal = GetTFbyDate(previousDate, sysId, waterType);
                 double res = currentTotal - previoousTotal;
                 return Math.Round(res, 2, MidpointRounding.AwayFromZero);
             }

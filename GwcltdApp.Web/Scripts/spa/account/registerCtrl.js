@@ -64,7 +64,7 @@
                 //membershipService.saveCredentials($scope.user);
                 notificationService.displaySuccess('you have successully registered ' + $scope.user.username);
                 //$scope.userData.displayUserInfo();
-                $location.path('#/register');
+                //$location.path('#/register');
             }
             else {
                 notificationService.displayError('Registration failed. Username already exists. Try again.');

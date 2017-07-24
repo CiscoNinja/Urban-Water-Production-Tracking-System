@@ -37,7 +37,7 @@
                             <h4 class="media-heading">
                                 <label class="label label-info">{{production.WSystemCode}}</label>&nbsp;
                                 <a class="" ng-href="#/productions/{{production.ID}}" title="View {{production.DayToRecord | date: 'MMMM d, y h:mm a'}} details">
-                                    {{production.DayToRecord | date: 'MMMM d, y h:mm a'}}
+                                    {{production.DayToRecord | date: 'medium'}}
                                 </a>
                             </h4>
                             Date Recorded: <strong>{{production.DateCreated | date: 'MMMM d, y h:mm a'}}</strong>

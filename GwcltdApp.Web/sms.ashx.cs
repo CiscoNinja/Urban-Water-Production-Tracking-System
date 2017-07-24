@@ -179,7 +179,7 @@ namespace GwcltdApp.Web
                         productionVM.DateCreated = Convert.ToDateTime(lines[2] + " " + lines[1]);
                         productionVM.DayToRecord = Convert.ToDateTime(lines[2] + " " + lines[1]);
                         productionVM.DailyActual = SummaryManager.DailyActual(Math.Round(Convert.ToDouble(lines[8]), 2, MidpointRounding.AwayFromZero),
-                            Convert.ToDateTime(lines[2] + " " + lines[1]).AddDays(-1));
+                            Convert.ToDateTime(lines[2] + " " + lines[1]).AddDays(-1), SummaryManager.GetSystemId(lines[0]), optionid);
                         productionVM.Comment = "Sent Via Text Message from " + senderNumber;
                         productionVM.FRPH = Math.Round(Convert.ToDouble(lines[4]), 2, MidpointRounding.AwayFromZero);
                         productionVM.FRPS = Math.Round(Convert.ToDouble(lines[6].Remove(0, 2)), 2, MidpointRounding.AwayFromZero);

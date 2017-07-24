@@ -165,13 +165,13 @@ namespace GwcltdApp.Web.Controllers
 
                     _unitOfWork.Commit();
 
-                    DateTime firstHour = Convert.ToDateTime("01/01/2017 01:00");
+                    DateTime firstHour = Convert.ToDateTime("1/1/2017 1:00:00 AM");
                     if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
                     {
                         Production newproduction = new Production();
                         var currenttotal = hrlyproduction.TFPD;
                         var prviousdate = hrlyproduction.DayToRecord.AddDays(-1);
-                        var dayActual = SummaryManager.DailyActual(currenttotal, prviousdate);
+                        var dayActual = SummaryManager.DailyActual(currenttotal, prviousdate, hrlyproduction.WSystemId, hrlyproduction.OptionId);
                         hrlyproduction.DailyActual = dayActual;
                         newproduction.UpdateProduction(hrlyproduction);
 
@@ -213,7 +213,7 @@ namespace GwcltdApp.Web.Controllers
 
                         _unitOfWork.Commit();
 
-                        DateTime firstHour = Convert.ToDateTime("01/01/2017 01:00");
+                        DateTime firstHour = Convert.ToDateTime("1/1/2017 1:00:00 AM");
                         if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
                         {
                             var newproductionDb = _newproductionsRepository.GetAll().FirstOrDefault(x => x.DayToRecord == hrlyproduction.DayToRecord);
@@ -223,7 +223,7 @@ namespace GwcltdApp.Web.Controllers
                             {
                                 var currenttotal = hrlyproduction.TFPD;
                                 var prviousdate = hrlyproduction.DayToRecord.AddDays(-1);
-                                hrlyproduction.DailyActual = SummaryManager.DailyActual(currenttotal, prviousdate);
+                                hrlyproduction.DailyActual = SummaryManager.DailyActual(currenttotal, prviousdate, hrlyproduction.WSystemId, hrlyproduction.OptionId);
                                 newproductionDb.UpdateProduction(hrlyproduction);
 
                                 _newproductionsRepository.Edit(newproductionDb);
