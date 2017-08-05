@@ -219,7 +219,7 @@ namespace GwcltdApp.Web.Controllers
                 xlApp = new Excel.Application();
                 xlWorkBook = xlApp.Workbooks.Open(@hrlyproduction.filePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
 
-                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item("S01");
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item("S02");
 
                 int cmonth = 0;
                 int rday;
@@ -309,7 +309,7 @@ namespace GwcltdApp.Web.Controllers
                     
                 }
 
-                xlWorkBook.Close(true, null, null);
+                xlWorkBook.Close(false, null, null);
                 xlApp.Quit();
 
                 Marshal.ReleaseComObject(xlWorkSheet);

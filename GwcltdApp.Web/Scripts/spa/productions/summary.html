@@ -5,6 +5,19 @@
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script>
+    var userselection;
+    for (i = 2016 ; i < 2050; i++) {
+        if (userselection == i) {
+            $('#yearpicker').append($('<option/>').val(i).attr("selected", "selected").html(i));
+        } else {
+            $('#yearpicker').append($('<option/>').val(i).html(i));
+        }
+    }
+    </script>
+    <script src="/Scripts/vendors/jquery.js"></script>
+    <script src="/Scripts/vendors/debouncejs.js"></script>
+    <script src="/Scripts/vendors/jquery.stickyheader.js"></script>
 </head>
 
 <div class="row">
@@ -16,7 +29,7 @@
             <div class="">
                 <div class="media">
                     <div class="media-body">
-                        <!--<div class="container">-->
+                        <div class="container">
                         <div class="component">
                             <table class="">
                                 <thead>
@@ -57,7 +70,7 @@
                                     </tbody>
                             </table>
                         </div>
-                        <!--</div>-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,16 +109,3 @@
         </div>
     </div>
 </div>
-<script>
-    var userselection;
-    for (i = 2016 ; i < 2050; i++) {
-        if (userselection == i) {
-            $('#yearpicker').append($('<option/>').val(i).attr("selected", "selected").html(i));
-        } else {
-            $('#yearpicker').append($('<option/>').val(i).html(i));
-        }
-    }
-</script>
-<script src="/Scripts/vendors/jquery.js"></script>
-<script src="/Scripts/vendors/debouncejs.js"></script>
-<script src="/Scripts/vendors/jquery.stickyheader.js"></script>
