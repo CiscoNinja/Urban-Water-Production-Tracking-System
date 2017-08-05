@@ -49,6 +49,22 @@ namespace GwcltdApp.Web.Controllers
                 return response;
             });
         }
+        [AllowAnonymous]
+        [Route("loadsystems")]
+        public HttpResponseMessage GetAllSys(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var wsystems = _wsystemsRepository.GetAll().ToList();
+
+                IEnumerable<WSystemViewModel> wsystemsVM = Mapper.Map<IEnumerable<WSystem>, IEnumerable<WSystemViewModel>>(wsystems);
+
+                response = request.CreateResponse<IEnumerable<WSystemViewModel>>(HttpStatusCode.OK, wsystemsVM);
+
+                return response;
+            });
+        }
 
         [AllowAnonymous]
         [Route("syscodes/{stationid:int}")]

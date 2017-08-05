@@ -92,6 +92,11 @@
                 controller: "productionAddCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
+                .when("/productions/exceldata", {
+                    templateUrl: "./Scripts/spa/productions/exceldata.html",
+                    controller: "excelDataCtrl",
+                    resolve: { isAuthenticated: isAuthenticated }
+                })
             .when("/productions/summary/:id", {
                 templateUrl: "./Scripts/spa/productions/summary.html",
                 controller: "summaryCtrl",

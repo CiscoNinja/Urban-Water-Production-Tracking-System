@@ -15,9 +15,6 @@
 
         $scope.search = search;
         $scope.clearSearch = clearSearch;
-
-        $scope.search = search;
-        $scope.clearSearch = clearSearch;
         $scope.openEditDialog = openEditDialog;
 
         function search(page) {

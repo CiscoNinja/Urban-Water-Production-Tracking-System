@@ -1,0 +1,142 @@
+﻿<div id="editProductionWrapper">
+    <hr>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-xs-2">
+
+        </div>
+
+        <!-- edit form column -->
+        <div class="col-xs-8 personal-info">
+            <div class="alert alert-info alert-info">
+                <i class="fa fa-bell"></i>
+                Select Only the <strong>excel file </strong>, the <strong>System</strong> and the <strong>Station</strong>
+            </div>
+            <form class="form-horizontal" role="form" novalidate angular-validator name="addProductionForm" angular-validator-submit="AddProduction()">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 selectContainer">
+                            <input id="fileName" class="fileName form-control" type="file" ng-model="fileName" name="fileName" readonly>
+                        </div>
+                        <!--<div class="col-xs-4 col-sm-4 selectContainer">
+                            <input class="form-control" type="text" ng-value="fileName"
+                                   validate-on="blur" required required-message="'required'" readonly />
+                        </div>-->
+                    </div>
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 selectContainer">
+                                <label class="control-label">Select System</label>
+                                <select ng-model="production.WSystemId" class="form-control black" ng-options="wsystem.ID as wsystem.Name for wsystem in wsystems" required></select>
+                                <input type="hidden" name="WSystemId" ng-value="production.WSystemId" />
+                            </div>
+                            <div class="col-xs-4 col-sm-4 selectContainer">
+                                <label class="control-label">Select Water Type</label>
+                                <select ng-model="production.OptionId" class="form-control black" ng-options="option.ID as option.Name for option in options" required></select>
+                                <input type="hidden" name="OptionId" ng-value="production.OptionId" />
+                            </div>
+                            <div class="col-xs-4 col-sm-4 selectContainer">
+                                <label class="control-label">Select Type</label>
+                                <select ng-model="production.OptionTypeId" class="form-control black" ng-options="optiontype.ID as optiontype.Name for optiontype in optiontypes" required></select>
+                                <input type="hidden" name="OptionTypeId" ng-value="production.OptionTypeId" />
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 selectContainer">
+                            <label class="control-label">Select Station</label>
+                            <select ng-model="production.GwclStationId" class="form-control black" ng-options="station.ID as station.Name for station in stations" required></select>
+                            <input type="hidden" name="GwclStationId" ng-value="production.GwclStationId" />
+                        </div>
+                        <div class="col-xs-4">
+                            <label class="control-label">Start Time</label>
+                            <p class="input-group">
+                                <input id="date_picker" name="date_picker" type="text" class="form-control" ng-model="production.DateCreated"
+                                       readonly validate-on="blur" required required-message="'required'" />
+                                <span class="input-group-btn">
+                                    <button type="button" id="btndatetime1" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <label class="control-label">End Time</label>
+                            <p class="input-group">
+                                <input id="date_picker2" name="date_picker2" type="text" class="form-control" ng-model="production.DayToRecord"
+                                       readonly validate-on="blur" required required-message="'required'" />
+                                <span class="input-group-btn">
+                                    <button type="button" id="btndatetime2" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-xs-4">
+                            <label class="control-label">Daily Actual</label>(m&sup3/d)
+                            <input class="form-control" type="number" ng-model="production.DailyActual" name="dailyactual"
+                                   validate-on="blur" required required-message="'required'" readonly>
+                        </div>
+                        <div class="col-xs-4">
+                            <label class="control-label">Flow Rate</label>(m&sup3/h)
+                            <input class="form-control" type="number" ng-model="production.FRPH" name="frph"
+                                   validate-on="blur" required required-message="'required'" readonly>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <label class="control-label">Flow Rate</label>(m&sup3/s)
+                            <input class="form-control" type="number" ng-model="production.FRPS" name="frps"
+                                   validate-on="blur" required required-message="'required'" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-xs-4">
+                            <label class="control-label">Total Flow</label>(m&sup3)
+                            <input class="form-control" type="number" ng-model="production.TFPD" name="tfpd"
+                                   validate-on="blur" required required-message="'required'">
+                        </div>
+                        <div class="col-xs-4">
+                            <label class="control-label">Negative Flow</label>(m&sup3)
+                            <input class="form-control" type="number" ng-model="production.NTFPD" name="ntfpd"
+                                   validate-on="blur" required required-message="'required'" readonly>
+                        </div>
+                        <div class="col-xs-4">
+                            <label class="control-label">Log</label>
+                            <input class="form-control" type="number" ng-model="production.LOG" name="log"
+                                   validate-on="blur" required required-message="'required'" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Comments</label>
+                    <textarea class="form-control" ng-model="production.Comment" name="comment" rows="3" readonly />
+                </div>
+                <br />
+
+                <div class="form-group col-xs-4">
+                    <label class="control-label"></label>
+                    <div class="">
+                        <input type="submit" class="btn btn-primary" value="Submit" />
+                        <span></span>
+                        <a class="btn btn-default" ng-href="#/productions/{{production.ID}}">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+</div>
+<script>
+    $(document).on('change', '.fileName', function (event) {
+        event.preventDefault();
+        var $this = $(this);
+        fileName = $(this).text();
+    });
+
+</script>

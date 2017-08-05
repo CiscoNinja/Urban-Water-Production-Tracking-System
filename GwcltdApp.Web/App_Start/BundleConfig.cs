@@ -76,6 +76,7 @@ namespace GwcltdApp.Web.App_Start
                 "~/Scripts/spa/gwclotypes/gwclotypeEditCtrl.js",
                 "~/Scripts/spa/productions/productionsCtrl.js",
                 "~/Scripts/spa/productions/productionAddCtrl.js",
+                "~/Scripts/spa/productions/excelDataCtrl.js",
                 "~/Scripts/spa/productions/productionDetailsCtrl.js",
                 "~/Scripts/spa/productions/productionEditCtrl.js",
                 "~/Scripts/spa/productions/summaryCtrl.js",

@@ -29,7 +29,7 @@ namespace GwcltdApp.Web.Infrastructure.Extensions
         public static void UpdateHrlyProduction(this HourlyProduction production, ProductionViewModel productionVm)
         {
             production.Comment = productionVm.Comment;
-            production.HourlyActual = productionVm.TFPD;
+            production.HourlyActual = productionVm.DailyActual;
             production.DateCreated = productionVm.DateCreated;
             production.DayToRecord = productionVm.DayToRecord;
             production.FRPH = productionVm.FRPH;

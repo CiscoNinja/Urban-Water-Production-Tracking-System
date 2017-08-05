@@ -32,6 +32,7 @@
 /// <reference path="spa/modules/common.core.js" />
 /// <reference path="spa/modules/common.ui.js" />
 /// <reference path="spa/productions/chartsctrl.js" />
+/// <reference path="spa/productions/excelDataCtrl.js" />
 /// <reference path="spa/productions/productionAddCtrl.js" />
 /// <reference path="spa/productions/productionDetailsCtrl.js" />
 /// <reference path="spa/productions/productioneditctrl.js" />

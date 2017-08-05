@@ -18,6 +18,9 @@ using GwcltdApp.Data.Extensions;
 using GwcltdApp.Web.DAL;
 using System.Globalization;
 using System.Data.Entity;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
+using GwcltdApp.Web.viewModel;
 
 namespace GwcltdApp.Web.Controllers
 {
@@ -189,6 +192,139 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
+
+        [HttpPost]
+        [Route("importExcel")]
+        public HttpResponseMessage ImportFromExcel(HttpRequestMessage request, ExcelViewModel hrlyproduction)
+        {
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+
+            //int rpositn = 0;
+            object[,] rawWater = null;
+            object[,] TrtdWater = null;
+            string[] xrmonths = { "E6", "AI6", "E19", "AF19", "E32", "AI32", "E45", "AH45", "E58", "AI58" }; // starting and ending cells of raw water on excel sheet
+            string[] xtmonths = { "E12", "AI12", "E25", "AF25", "E38", "AI38", "E51", "AH51", "E64", "AI64" }; // starting and ending cells of treated water on excel sheet
+
+            return CreateHttpResponse(request, () =>
+            {
+
+                HttpResponseMessage response = null;
+
+                ProductionViewModel newViewModel = new ProductionViewModel();
+                HourlyProduction newhrlyProduction = new HourlyProduction();
+                Production newproduction = new Production();
+                //string fullpath = Path.GetFullPath(fileName);
+                xlApp = new Excel.Application();
+                xlWorkBook = xlApp.Workbooks.Open(@hrlyproduction.filePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item("S01");
+
+                int cmonth = 0;
+                int rday;
+                int tday;
+                double rTFPD = 0;
+                double tTFPD = 0;
+
+                for(int valPos = 0; valPos < 10; valPos+=2)
+                {
+                    rday = 1;
+                    tday = 1;
+                    cmonth++;
+                    int nextpost = valPos + 1;
+                    Excel.Range rRange = xlWorkSheet.Range[xlWorkSheet.Range[xrmonths[valPos]], xlWorkSheet.Range[xrmonths[nextpost]]];
+                    Excel.Range tRange = xlWorkSheet.Range[xlWorkSheet.Range[xtmonths[valPos]], xlWorkSheet.Range[xtmonths[nextpost]]];
+                    //double rangeVal = rRange.Cells.Value2;
+                    rawWater = rRange.Value2;
+                    TrtdWater = tRange.Value2;
+
+                    foreach (double r in rawWater)
+                    {
+                        rTFPD += r;
+                        newViewModel.Comment = hrlyproduction.Comment;
+                        newViewModel.DailyActual = r;
+                        newViewModel.DateCreated = Convert.ToDateTime((cmonth + "/" + rday + "/2017 01:00 am").ToString());
+                        newViewModel.DayToRecord = Convert.ToDateTime((cmonth + "/" + rday + "/2017 01:00 am").ToString());
+                        newViewModel.FRPH = hrlyproduction.FRPH;
+                        newViewModel.FRPS = hrlyproduction.FRPS;
+                        newViewModel.GwclStation = hrlyproduction.GwclStation;
+                        newViewModel.GwclStationId = hrlyproduction.GwclStationId;
+                        newViewModel.LOG = hrlyproduction.LOG;
+                        newViewModel.NTFPD = hrlyproduction.NTFPD;
+                        newViewModel.Option = hrlyproduction.Option;
+                        newViewModel.OptionId = 14;
+                        newViewModel.OptionType = hrlyproduction.OptionType;
+                        newViewModel.OptionTypeId = 21;
+                        newViewModel.StationCode = hrlyproduction.StationCode;
+                        newViewModel.TFPD = rTFPD;
+                        newViewModel.WSystem = hrlyproduction.WSystem;
+                        newViewModel.WSystemCode = hrlyproduction.WSystemCode;
+                        newViewModel.WSystemId = hrlyproduction.WSystemId;
+
+                        newhrlyProduction.UpdateHrlyProduction(newViewModel);
+                        newproduction.UpdateProduction(newViewModel);
+
+                        _newproductionsRepository.Add(newproduction);
+                        _hrlyproductionsRepository.Add(newhrlyProduction);
+
+                        _unitOfWork.Commit();
+
+                        rday++;
+                    }
+
+                    foreach (double t in TrtdWater)
+                    {
+                        tTFPD += t;
+                        newViewModel.Comment = hrlyproduction.Comment;
+                        newViewModel.DailyActual = t;
+                        newViewModel.DateCreated = Convert.ToDateTime((cmonth + "/" + tday + "/2017 01:00 am").ToString());
+                        newViewModel.DayToRecord = Convert.ToDateTime((cmonth + "/" + tday + "/2017 01:00 am").ToString());
+                        newViewModel.FRPH = hrlyproduction.FRPH;
+                        newViewModel.FRPS = hrlyproduction.FRPS;
+                        newViewModel.GwclStation = hrlyproduction.GwclStation;
+                        newViewModel.GwclStationId = hrlyproduction.GwclStationId;
+                        newViewModel.LOG = hrlyproduction.LOG;
+                        newViewModel.NTFPD = hrlyproduction.NTFPD;
+                        newViewModel.Option = hrlyproduction.Option;
+                        newViewModel.OptionId = 13;
+                        newViewModel.OptionType = hrlyproduction.OptionType;
+                        newViewModel.OptionTypeId = 17;
+                        newViewModel.StationCode = hrlyproduction.StationCode;
+                        newViewModel.TFPD = tTFPD;
+                        newViewModel.WSystem = hrlyproduction.WSystem;
+                        newViewModel.WSystemCode = hrlyproduction.WSystemCode;
+                        newViewModel.WSystemId = hrlyproduction.WSystemId;
+
+                        newproduction.UpdateProduction(newViewModel);
+                        newhrlyProduction.UpdateHrlyProduction(newViewModel);
+
+                        _newproductionsRepository.Add(newproduction);
+                        _hrlyproductionsRepository.Add(newhrlyProduction);
+
+                        _unitOfWork.Commit();
+
+                        tday++;
+                    }
+                    
+                }
+
+                xlWorkBook.Close(true, null, null);
+                xlApp.Quit();
+
+                Marshal.ReleaseComObject(xlWorkSheet);
+                Marshal.ReleaseComObject(xlWorkBook);
+                Marshal.ReleaseComObject(xlApp);
+
+                // Update view model
+                newViewModel = Mapper.Map<HourlyProduction, ProductionViewModel>(newhrlyProduction);
+                response = request.CreateResponse<ProductionViewModel>(HttpStatusCode.Created, newViewModel);
+
+
+                return response;
+            });
+        }
+
         [HttpPost]
         [Route("update")]
         public HttpResponseMessage Update(HttpRequestMessage request, ProductionViewModel hrlyproduction)
@@ -240,6 +376,24 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
+
+        double[] ConvertToDoubleArray(System.Array values)
+        {
+
+            // create a new string array
+            double[] theArray = new double[values.Length];
+
+            // loop through the 2-D System.Array and populate the 1-D String Array
+            for (int i = 1; i <= values.Length; i++)
+            {
+                if (values.GetValue(1, i) == null)
+                    theArray[i - 1] = 0;
+                else
+                    theArray[i - 1] = (double)values.GetValue(1, i);
+            }
+
+            return theArray;
+        }
         //[MimeMultipart]
         //[Route("images/upload")]
         //public HttpResponseMessage Post(HttpRequestMessage request, int movieId)

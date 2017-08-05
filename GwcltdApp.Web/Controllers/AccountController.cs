@@ -15,7 +15,7 @@ using System.Web.Http;
 
 namespace GwcltdApp.Web.Controllers
 {
-    [Authorize(Roles="Super, Admin")]
+    [Authorize(Roles="Super")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiControllerBase
     {
