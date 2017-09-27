@@ -206,6 +206,8 @@ namespace GwcltdApp.Web.Controllers
             object[,] TrtdWater = null;
             string[] xrmonths = { "E6", "AI6", "E19", "AF19", "E32", "AI32", "E45", "AH45", "E58", "AI58" }; // starting and ending cells of raw water on excel sheet
             string[] xtmonths = { "E12", "AI12", "E25", "AF25", "E38", "AI38", "E51", "AH51", "E64", "AI64" }; // starting and ending cells of treated water on excel sheet
+            //string[] xrmonths = { "E7", "AI7", "E20", "AF20", "E33", "AI33", "E46", "AH46", "E59", "AI59" }; // starting and ending cells of raw water on excel sheet
+            //string[] xtmonths = { "E13", "AI13", "E26", "AF26", "E39", "AI39", "E52", "AH52", "E65", "AI65" }; // starting and ending cells of treated water on excel sheet
 
             return CreateHttpResponse(request, () =>
             {
@@ -219,7 +221,7 @@ namespace GwcltdApp.Web.Controllers
                 xlApp = new Excel.Application();
                 xlWorkBook = xlApp.Workbooks.Open(@hrlyproduction.filePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
 
-                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item("S02");
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item("S05");
 
                 int cmonth = 0;
                 int rday;
@@ -239,11 +241,21 @@ namespace GwcltdApp.Web.Controllers
                     rawWater = rRange.Value2;
                     TrtdWater = tRange.Value2;
 
-                    foreach (double r in rawWater)
+                    foreach (var r in rawWater)
                     {
-                        rTFPD += r;
-                        newViewModel.Comment = hrlyproduction.Comment;
-                        newViewModel.DailyActual = r;
+                        if (r.GetType() == typeof(string)|| r.GetType() == null )
+                        {
+                            rTFPD += 0;
+                            newViewModel.Comment = "Faulty";
+                            newViewModel.DailyActual = 0;
+                        }
+                        else
+                        {
+                            rTFPD += Convert.ToDouble(r);
+                            newViewModel.Comment = hrlyproduction.Comment;
+                            newViewModel.DailyActual = Convert.ToDouble(r);
+                        }
+                        
                         newViewModel.DateCreated = Convert.ToDateTime((cmonth + "/" + rday + "/2017 01:00 am").ToString());
                         newViewModel.DayToRecord = Convert.ToDateTime((cmonth + "/" + rday + "/2017 01:00 am").ToString());
                         newViewModel.FRPH = hrlyproduction.FRPH;
