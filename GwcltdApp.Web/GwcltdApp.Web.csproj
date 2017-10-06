@@ -62,6 +62,7 @@
     </PublishDatabaseSettings>
     <IncludeIisSettings>false</IncludeIisSettings>
     <PublishDatabases>false</PublishDatabases>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
@@ -168,17 +169,20 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\fancybox_overlay.png" />
     <Content Include="Content\css\fancybox_sprite.png" />
+    <Content Include="Content\css\images\tiny-loader.gif" />
     <Content Include="Content\css\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\css\images\ui-icons_555555_256x240.png" />
     <Content Include="Content\css\images\ui-icons_777620_256x240.png" />
     <Content Include="Content\css\images\ui-icons_777777_256x240.png" />
     <Content Include="Content\css\images\ui-icons_cc0000_256x240.png" />
     <Content Include="Content\css\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\css\images\void.png" />
     <Content Include="Content\css\jquery-ui-timepicker-addon.css" />
     <Content Include="Content\css\jquery-ui.min.css" />
     <Content Include="Content\css\jquery-ui.structure.min.css" />
     <Content Include="Content\css\jquery-ui.theme.min.css" />
     <Content Include="Content\css\loading-bar.css" />
+    <Content Include="Content\css\masterSummary\style.css" />
     <Content Include="Content\css\normalize.css" />
     <Content Include="Content\fonts\blokk\BLOKKRegular.eot" />
     <Content Include="Content\fonts\blokk\BLOKKRegular.svg" />
@@ -250,6 +254,8 @@
     <Content Include="Scripts\spa\productions\add.html" />
     <Content Include="Scripts\spa\productions\exceldata.html" />
     <Content Include="Scripts\spa\productions\excelDataCtrl.js" />
+    <Content Include="Scripts\spa\productions\masterSummary.html" />
+    <Content Include="Scripts\spa\productions\masterSummaryCtrl.js" />
     <Content Include="Scripts\spa\productions\productionEditCtrl.js" />
     <Content Include="Scripts\spa\productions\productionAddCtrl.js" />
     <Content Include="Scripts\spa\productions\charts.html" />
@@ -284,6 +290,14 @@
     <Content Include="Scripts\vendors\jquery.fancybox-media.js" />
     <Content Include="Scripts\vendors\jquery.fancybox.js" />
     <Content Include="Scripts\vendors\jquery.stickyheader.js" />
+    <Content Include="Scripts\vendors\jquery.table_to_div.js" />
+    <Content Include="Scripts\vendors\kingTable\kingtable.js" />
+    <Content Include="Scripts\vendors\kingTable\kingtable.xlsx.js" />
+    <Content Include="Scripts\vendors\kingTable\locale\kingtable.it.js" />
+    <Content Include="Content\fonts\open-iconic.svg" />
+    <Content Include="Content\css\kingtable.core.css" />
+    <Content Include="Scripts\vendors\kingTable\promise.js" />
+    <Content Include="Scripts\vendors\kingTable\xlsx.core.min.js" />
     <Content Include="Scripts\vendors\loading-bar.js" />
     <Content Include="Scripts\vendors\ui-bootstrap-tpls-0.13.1.js" />
     <Content Include="Scripts\spa\account\login.html" />
@@ -394,6 +408,12 @@
     <None Include="Properties\PublishProfiles\GWCLtdApp.pubxml" />
     <None Include="Properties\PublishProfiles\GWCLtdDeploy.pubxml" />
     <None Include="Properties\PublishProfiles\GWCLtdWebDeploy.pubxml" />
+    <Content Include="Content\fonts\FONT-LICENSE" />
+    <Content Include="Content\fonts\ICON-LICENSE" />
+    <Content Include="Content\fonts\open-iconic.eot" />
+    <Content Include="Content\fonts\open-iconic.otf" />
+    <Content Include="Content\fonts\open-iconic.ttf" />
+    <Content Include="Content\fonts\open-iconic.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -417,7 +437,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

@@ -32,7 +32,10 @@ namespace GwcltdApp.Web.App_Start
                  "~/Scripts/Vendors/underscore.js",
                  "~/Scripts/Vendors/raphael.js",
                  "~/Scripts/Vendors/morris.js",
-
+                 "~/Scripts/Vendors/kingTable/kingtable.js",
+                 "~/Scripts/Vendors/kingTable/promise.js",
+                  "~/Scripts/Vendors/kingTable/kingtable.xlsx.js",
+                  "~/Scripts/Vendors/kingTable/xlsx.core.min.js",
                  //"./Scripts/Vendors/d3.v4.min.js",
                  //"./Scripts/Vendors/jquery.stickyheader.js",
                  //"./Scripts/Vendors/debouncejs.js",
@@ -80,6 +83,7 @@ namespace GwcltdApp.Web.App_Start
                 "~/Scripts/spa/productions/productionDetailsCtrl.js",
                 "~/Scripts/spa/productions/productionEditCtrl.js",
                 "~/Scripts/spa/productions/summaryCtrl.js",
+                "~/Scripts/spa/productions/masterSummaryCtrl.js",
                 "~/Scripts/spa/productions/chartsCtrl.js",
                "~/Scripts/spa/downtimes/downtimesCtrl.js",
                 "~/Scripts/spa/downtimes/downtimeAddCtrl.js",
@@ -97,8 +101,10 @@ namespace GwcltdApp.Web.App_Start
                 "~/content/css/jquery-ui.min.css",
                 //"~/content/css/jquery-ui.theme.min.css",
                 //"~/content/css/jquery-ui.structure.min.css",
+                "~/content/css/kingtable.core.css",
                 "~/content/css/jquery.fancybox.css",
                 "~/content/css/jquery-ui-timepicker-addon.css",
+                "~/content/css/images/",
                 "~/content/css/loading-bar.css"));
 
             BundleTable.EnableOptimizations = false;

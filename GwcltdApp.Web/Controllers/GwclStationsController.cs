@@ -39,7 +39,7 @@ namespace GwcltdApp.Web.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var gwclstations = _gwclstationsRepository.GetAll().ToList();
+                var gwclstations = _gwclstationsRepository.GetAll().OrderBy(x => x.ID).ToList();
 
                 IEnumerable<GwclStationViewModel> gwclstationsVM = Mapper.Map<IEnumerable<GwclStation>, IEnumerable<GwclStationViewModel>>(gwclstations);
 

@@ -1,0 +1,37 @@
+﻿<head>
+   
+    <script>
+        var userselection;
+        for (i = 2016 ; i < 2050; i++) {
+            if (userselection == i) {
+                $('#yearpicker').append($('<option/>').val(i).attr("selected", "selected").html(i));
+            } else {
+                $('#yearpicker').append($('<option/>').val(i).html(i));
+            }
+        }
+    </script>
+</head>
+
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><strong>Production - {{waterType}}</strong></h4>
+        </div>
+        <div class="clearfix panel-footer">
+            <div class="col-xs-3 col-sm-3 selectContainer">
+                <label class="control-label">Select Year</label>
+                <select id="yearpicker" class="form-control black"></select>
+                <input type="hidden" name="WSystemId" ng-value="" />
+            </div>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treated Water(m&sup3;)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Raw Water(m&sup3;)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Losses(m&sup3;m)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Losses</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Daily Average(m&sup3;m)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Capacity</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Service Standard</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Hours Loss(m&sup3)</a></p>
+        </div>
+        <div id="my-table" class="panel-body"> </div>
+    </div>
+</div>

@@ -14,7 +14,7 @@ namespace GwcltdApp.Web.DAL
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                return context.WSystemSet.OrderBy(x => x.Code).ToList();
+                return context.WSystemSet.OrderBy(x => x.GwclStationId).ToList();
             }
         }
         public static List<WSystem> GetAllUserSystems(int userstation)//change code to get systems from the logged in user's station

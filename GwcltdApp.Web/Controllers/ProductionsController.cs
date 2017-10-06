@@ -21,7 +21,7 @@ using System.Data.Entity;
 
 namespace GwcltdApp.Web.Controllers
 {
-    [Authorize(Roles = "Super, Admin, User")]
+    //[Authorize(Roles = "Super, Admin, User")]
     [RoutePrefix("api/productions")]
     public class ProductionsController : ApiControllerBase
     {
@@ -48,7 +48,173 @@ namespace GwcltdApp.Web.Controllers
                 return response;
             });
         }
-        
+
+        //[Authorize (Roles = "Super")]
+        [Route("masterSummary/{id}")]
+        public HttpResponseMessage GetMasterTable(HttpRequestMessage request, string id)
+        {
+            var allsys = SummaryManager.GetAllSystems();//change underying code to get systems from the logged in user's station
+            //List<GraphData> list = new List<GraphData>();
+            var graph = new MyDictionary();
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var allProductions = _productionsRepository.GetAll();
+                switch (id)
+                {
+                    case "Treatment Plant Losses(m³m)":
+                        {
+                            foreach (var item in allsys)
+                            {
+                                var janTotal = SummaryManager.PlantLoss_metre(item.Code, 1);
+                                var febTotal = SummaryManager.PlantLoss_metre(item.Code, 2);
+                                var marchTotal = SummaryManager.PlantLoss_metre(item.Code, 3);
+                                var aprilTotal = SummaryManager.PlantLoss_metre(item.Code, 4);
+                                var mayTotal = SummaryManager.PlantLoss_metre(item.Code, 5);
+                                var juneTotal = SummaryManager.PlantLoss_metre(item.Code, 6);
+                                var july7Total = SummaryManager.PlantLoss_metre(item.Code, 7);
+                                var augTotal = SummaryManager.PlantLoss_metre(item.Code, 8);
+                                var septTotal = SummaryManager.PlantLoss_metre(item.Code, 9);
+                                var octTotal = SummaryManager.PlantLoss_metre(item.Code, 10);
+                                var novTotal = SummaryManager.PlantLoss_metre(item.Code, 11);
+                                var decTotal = SummaryManager.PlantLoss_metre(item.Code, 12);
+                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                            }
+
+                            response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
+                            break;
+                        }
+                    case "Treatment Plant Losses":
+                        {
+                            foreach (var item in allsys)
+                            {
+                                //string thismonth = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthvalue.Month);
+                                var janTotal = SummaryManager.PlantLoss_percent(item.Code, 1);
+                                var febTotal = SummaryManager.PlantLoss_percent(item.Code, 2);
+                                var marchTotal = SummaryManager.PlantLoss_percent(item.Code, 3);
+                                var aprilTotal = SummaryManager.PlantLoss_percent(item.Code, 4);
+                                var mayTotal = SummaryManager.PlantLoss_percent(item.Code, 5);
+                                var juneTotal = SummaryManager.PlantLoss_percent(item.Code, 6);
+                                var july7Total = SummaryManager.PlantLoss_percent(item.Code, 7);
+                                var augTotal = SummaryManager.PlantLoss_percent(item.Code, 8);
+                                var septTotal = SummaryManager.PlantLoss_percent(item.Code, 9);
+                                var octTotal = SummaryManager.PlantLoss_percent(item.Code, 10);
+                                var novTotal = SummaryManager.PlantLoss_percent(item.Code, 11);
+                                var decTotal = SummaryManager.PlantLoss_percent(item.Code, 12);
+                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                            }
+
+                            response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
+                            break;
+                        }
+                    case "Daily Average(m³m)":
+                        {
+                            foreach (var item in allsys)
+                            {
+                                var janTotal = SummaryManager.getDailyAverage(item.Code, 1);
+                                var febTotal = SummaryManager.getDailyAverage(item.Code, 2);
+                                var marchTotal = SummaryManager.getDailyAverage(item.Code, 3);
+                                var aprilTotal = SummaryManager.getDailyAverage(item.Code, 4);
+                                var mayTotal = SummaryManager.getDailyAverage(item.Code, 5);
+                                var juneTotal = SummaryManager.getDailyAverage(item.Code, 6);
+                                var july7Total = SummaryManager.getDailyAverage(item.Code, 7);
+                                var augTotal = SummaryManager.getDailyAverage(item.Code, 8);
+                                var septTotal = SummaryManager.getDailyAverage(item.Code, 9);
+                                var octTotal = SummaryManager.getDailyAverage(item.Code, 10);
+                                var novTotal = SummaryManager.getDailyAverage(item.Code, 11);
+                                var decTotal = SummaryManager.getDailyAverage(item.Code, 12);
+                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                            }
+
+                            response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
+                            break;
+                        }
+                    case "Treatment Plant Capacity":
+                        {
+                            foreach (var item in allsys)
+                            {
+                                var janTotal = SummaryManager.getPlantCap(item.Code, 1, item.Code);
+                                var febTotal = SummaryManager.getPlantCap(item.Code, 2, item.Code);
+                                var marchTotal = SummaryManager.getPlantCap(item.Code, 3, item.Code);
+                                var aprilTotal = SummaryManager.getPlantCap(item.Code, 4, item.Code);
+                                var mayTotal = SummaryManager.getPlantCap(item.Code, 5, item.Code);
+                                var juneTotal = SummaryManager.getPlantCap(item.Code, 6, item.Code);
+                                var july7Total = SummaryManager.getPlantCap(item.Code, 7, item.Code);
+                                var augTotal = SummaryManager.getPlantCap(item.Code, 8, item.Code);
+                                var septTotal = SummaryManager.getPlantCap(item.Code, 9, item.Code);
+                                var octTotal = SummaryManager.getPlantCap(item.Code, 10, item.Code);
+                                var novTotal = SummaryManager.getPlantCap(item.Code, 11, item.Code);
+                                var decTotal = SummaryManager.getPlantCap(item.Code, 12, item.Code);
+                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                            }
+
+                            response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
+                            break;
+                        }
+                    case "Service Standard":
+                        {
+                            break;
+                        }
+                    case "Hours Loss(M\xB3)":
+                        {
+                            break;
+                        }
+                    case "Treated Water(m³)":
+                        {
+                            foreach (var item in allsys)
+                            {
+                                var janTotal = SummaryManager.getWaterTable(item.Code, 1, "Treated Water");
+                                var febTotal = SummaryManager.getWaterTable(item.Code, 2, "Treated Water");
+                                var marchTotal = SummaryManager.getWaterTable(item.Code, 3, "Treated Water");
+                                var aprilTotal = SummaryManager.getWaterTable(item.Code, 4, "Treated Water");
+                                var mayTotal = SummaryManager.getWaterTable(item.Code, 5, "Treated Water");
+                                var juneTotal = SummaryManager.getWaterTable(item.Code, 6, "Treated Water");
+                                var july7Total = SummaryManager.getWaterTable(item.Code, 7, "Treated Water");
+                                var augTotal = SummaryManager.getWaterTable(item.Code, 8, "Treated Water");
+                                var septTotal = SummaryManager.getWaterTable(item.Code, 9, "Treated Water");
+                                var octTotal = SummaryManager.getWaterTable(item.Code, 10, "Treated Water");
+                                var novTotal = SummaryManager.getWaterTable(item.Code, 11, "Treated Water");
+                                var decTotal = SummaryManager.getWaterTable(item.Code, 12, "Treated Water");
+                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                            }
+
+                            response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
+                            break;
+                        }
+                    case "Raw Water(m³)":
+                        {
+                            foreach (var item in allsys)
+                            {
+                                var janTotal = SummaryManager.getWaterTable(item.Code, 1, "Raw Water");
+                                var febTotal = SummaryManager.getWaterTable(item.Code, 2, "Raw Water");
+                                var marchTotal = SummaryManager.getWaterTable(item.Code, 3, "Raw Water");
+                                var aprilTotal = SummaryManager.getWaterTable(item.Code, 4, "Raw Water");
+                                var mayTotal = SummaryManager.getWaterTable(item.Code, 5, "Raw Water");
+                                var juneTotal = SummaryManager.getWaterTable(item.Code, 6, "Raw Water");
+                                var july7Total = SummaryManager.getWaterTable(item.Code, 7, "Raw Water");
+                                var augTotal = SummaryManager.getWaterTable(item.Code, 8, "Raw Water");
+                                var septTotal = SummaryManager.getWaterTable(item.Code, 9, "Raw Water");
+                                var octTotal = SummaryManager.getWaterTable(item.Code, 10, "Raw Water");
+                                var novTotal = SummaryManager.getWaterTable(item.Code, 11, "Raw Water");
+                                var decTotal = SummaryManager.getWaterTable(item.Code, 12, "Raw Water");
+                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                            }
+
+                            response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
+                            break;
+                        }
+                    default:
+                        {
+                            response = request.CreateResponse<string>(HttpStatusCode.OK, null);
+                            break;
+                        }
+                }
+
+
+                return response;
+            });
+        }
+
         [Route("summary/{userstation:int}/{id}")]
         public HttpResponseMessage GetTable(HttpRequestMessage request, int userstation, string id)
         {

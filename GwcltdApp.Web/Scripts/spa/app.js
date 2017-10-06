@@ -102,6 +102,11 @@
                 controller: "summaryCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
+            .when("/productions/masterSummary/:id", {
+                templateUrl: "./Scripts/spa/productions/masterSummary.html",
+                controller: "masterSummaryCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
+            })
                 .when("/productions/charts/:id", {
                     templateUrl: "./Scripts/spa/productions/charts.html",
                     controller: "chartsCtrl",
