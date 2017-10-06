@@ -15,14 +15,14 @@
                 event.preventDefault();
                 var $this = $(this);
                 $scope.waterType = $(this).text();
-                KingTable.defaults.excelWorkbookName = "data";
+
                 var table = new KingTable({
                     element: document.getElementById("my-table"),
-                    url: "/api/productions/masterSummary/"+$scope.waterType+"",
-                    fixed: true
+                    url: "/api/productions/masterSummary/" + $scope.waterType + "",
+                    sortBy: "systemName asc",
+                    fixed: true,
                 });
                 table.render();
-                table.setColumnsOrder;
             });
         }
 
