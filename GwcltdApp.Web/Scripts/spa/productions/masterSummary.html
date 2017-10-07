@@ -23,15 +23,23 @@
                 <select id="yearpicker" class="form-control black"></select>
                 <input type="hidden" name="WSystemId" ng-value="" />
             </div>
-            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treated Water(m&sup3;)</a></p>
-            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Raw Water(m&sup3;)</a></p>
-            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Losses(m&sup3;m)</a></p>
-            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Losses</a></p>
-            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Daily Average(m&sup3;m)</a></p>
-            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Capacity</a></p>
-            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Service Standard</a></p>
-            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Hours Loss(m&sup3)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Treated Water(m&sup3;)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Raw Water(m&sup3;)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Treatment Plant Losses(m&sup3;m)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Treatment Plant Losses</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Daily Average(m&sup3;m)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Treatment Plant Capacity</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Service Standard</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Hours Loss(m&sup3)</a></p>
         </div>
-        <div id="my-table" class="panel-body"> </div>
+        <div id="my-table" class="panel-body">
+            <div ng-if="loadingStatistics">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Loading production data...</label>
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
+        </div>
     </div>
 </div>

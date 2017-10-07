@@ -163,8 +163,6 @@
     <Content Include="Content\css\blank.gif" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap.css" />
-    <Content Include="Content\css\component.css" />
-    <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\demo.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\fancybox_overlay.png" />
@@ -183,7 +181,6 @@
     <Content Include="Content\css\jquery-ui.theme.min.css" />
     <Content Include="Content\css\loading-bar.css" />
     <Content Include="Content\css\masterSummary\style.css" />
-    <Content Include="Content\css\normalize.css" />
     <Content Include="Content\fonts\blokk\BLOKKRegular.eot" />
     <Content Include="Content\fonts\blokk\BLOKKRegular.svg" />
     <Content Include="Content\fonts\blokk\BLOKKRegular.ttf" />
@@ -284,12 +281,9 @@
     <Content Include="Scripts\vendors\angular-cookies.js" />
     <Content Include="Scripts\vendors\angular-file-upload.js" />
     <Content Include="Scripts\vendors\angular-validator.js" />
-    <Content Include="Scripts\vendors\d3.v4.min.js" />
-    <Content Include="Scripts\vendors\debouncejs.js" />
     <Content Include="Scripts\vendors\jquery-ui-timepicker-addon.min.js" />
     <Content Include="Scripts\vendors\jquery.fancybox-media.js" />
     <Content Include="Scripts\vendors\jquery.fancybox.js" />
-    <Content Include="Scripts\vendors\jquery.stickyheader.js" />
     <Content Include="Scripts\vendors\jquery.table_to_div.js" />
     <Content Include="Scripts\vendors\kingTable\kingtable.js" />
     <Content Include="Scripts\vendors\kingTable\kingtable.xlsx.js" />

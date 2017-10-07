@@ -50,7 +50,7 @@
             .when("/gwclstations/add", {
                 templateUrl: "./Scripts/spa/gwclstations/add.html",
                 controller: "gwclstationsAddCtrl",
-                resolve: { isAuthenticated: isAuthenticated}
+                resolve: { isAuthenticated: isAuthenticated }
             })
             .when("/gwclsystems", {
                 templateUrl: "./Scripts/spa/gwclsystems/gwclsystems.html",

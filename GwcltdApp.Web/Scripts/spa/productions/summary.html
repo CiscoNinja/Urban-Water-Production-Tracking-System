@@ -1,10 +1,4 @@
 ﻿<head>
-    <link rel="stylesheet" type="text/css" ng-href="/Content/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" ng-href="/Content/css/demo.css" />
-    <link rel="stylesheet" type="text/css" ng-href="/Content/css/component.css" />
-    <!--[if IE]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
     <script>
     var userselection;
     for (i = 2016 ; i < 2050; i++) {
@@ -15,9 +9,6 @@
         }
     }
     </script>
-    <script src="/Scripts/vendors/jquery.js"></script>
-    <script src="/Scripts/vendors/debouncejs.js"></script>
-    <script src="/Scripts/vendors/jquery.stickyheader.js"></script>
 </head>
 
 <div class="row">
@@ -25,64 +16,22 @@
         <div class="panel-heading clearfix">
             <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><strong>Production - {{waterType}}</strong></h4>
         </div>
-        <div class="panel-body">
-            <div class="">
-                <div class="media">
-                    <div class="media-body">
-                        <div class="container">
-                        <div class="component">
-                            <table class="">
-                                <thead>
-                                    <tr>
-                                        <th class="col-md-1" style="background-color: gray">System</th>
-                                        <th class="col-md-1">January</th>
-                                        <th class="col-md-1">Febuary</th>
-                                        <th class="col-md-1">March</th>
-                                        <th class="col-md-1">April</th>
-                                        <th class="col-md-1">May</th>
-                                        <th class="col-md-1">June</th>
-                                        <th class="col-md-1">July</th>
-                                        <th class="col-md-1">August</th>
-                                        <th class="col-md-1">September</th>
-                                        <th class="col-md-1">October</th>
-                                        <th class="col-md-1">November</th>
-                                        <th class="col-md-1">December</th>
-                                    </tr>
-                                </thead>
-                                    <tbody ng-repeat="production in Summary">
-                                        <tr>
-                                            <th class="col-md-1">
-                                                {{production.systemName}}
-                                            </th>
-                                            <td class="col-md-1">{{production.Jan | number}}</td>
-                                            <td class="col-md-1">{{production.Feb | number}}</td>
-                                            <td class="col-md-1">{{production.March | number}}</td>
-                                            <td class="col-md-1">{{production.April | number}}</td>
-                                            <td class="col-md-1">{{production.May | number}}</td>
-                                            <td class="col-md-1">{{production.June | number}}</td>
-                                            <td class="col-md-1">{{production.July | number}}</td>
-                                            <td class="col-md-1">{{production.Aug | number}}</td>
-                                            <td class="col-md-1">{{production.Sept | number}}</td>
-                                            <td class="col-md-1">{{production.Oct | number}}</td>
-                                            <td class="col-md-1">{{production.Nov | number}}</td>
-                                            <td class="col-md-1">{{production.Dec | number}}</td>
-                                        </tr> <!-- end row -->
-                                    </tbody>
-                            </table>
-                        </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="clearfix panel-footer">
+            <div class="col-xs-3 col-sm-3 selectContainer">
+                <label class="control-label">Select Year</label>
+                <select id="yearpicker" class="form-control black"></select>
+                <input type="hidden" name="WSystemId" ng-value="" />
             </div>
-            <div ng-if="emptyStatistics">
-                <div class="col-xs-4"></div>
-                <div class="col-xs-4">
-                    <br />
-                    <label class="label label-primary">Click Any Button Bellow to View Summary</label>
-                    <div class="bounce"><i class="fa fa-arrow-down fa-4x" style="position: center; "></i> </div>
-                </div>
-                <div class="col-xs-4"></div>
-            </div>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treated Water(m&sup3;)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Raw Water(m&sup3;)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Losses(m&sup3;m)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Losses</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Daily Average(m&sup3;m)</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Capacity</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Service Standard</a></p>
+            <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Hours Loss(m&sup3)</a></p>
+        </div>
+        <div id="my-table" class="panel-body">
             <div ng-if="loadingStatistics">
                 <div class="col-xs-4"></div>
                 <div class="col-xs-4">
@@ -90,22 +39,6 @@
                 </div>
                 <div class="col-xs-4"></div>
             </div>
-        </div>
-
-        <div class="clearfix panel-footer">
-            <div class="col-xs-3 col-sm-3 selectContainer">
-                <label class="control-label">Select Year</label>
-                <select id="yearpicker" class="form-control black"></select>
-                <input type="hidden" name="WSystemId" ng-value="" />
-            </div>
-            <p style="float:left; margin-right: 2px"><a ng-href="#/productions/summary/Treated Water" class="mybtn btn btn-default">Treated Water(m&sup3;)</a></p>
-            <p style="float:left; margin-right: 2px"><a ng-href="#/productions/summary/Raw Water" class="mybtn btn btn-default">Raw Water(m&sup3;)</a></p>
-            <p style="float:left; margin-right: 2px"><a ng-href="#/productions/summary/Plant Losses1" class="mybtn btn btn-default">Treatment Plant Losses(m&sup3;/m)</a></p>
-            <p style="float:left; margin-right: 2px"><a ng-href="#/productions/summary/Plant Losses2" class="mybtn btn btn-default">Treatment Plant Losses(%)</a></p>
-            <p style="float:left; margin-right: 2px"><a ng-href="#/productions/summary/Daily Average" class="mybtn btn btn-default">Daily Average(m&sup3;/m)</a></p>
-            <p style="float:left; margin-right: 2px"><a ng-href="#/productions/summary/Plant Capacity" class="mybtn btn btn-default">Treatment Plant Capacity(%)</a></p>
-            <p style="float:left; margin-right: 2px"><a ng-href="" class="mybtn btn btn-default">Service Standard(m&sup3/d)</a></p>
-            <p style="float:left; margin-right: 2px"><a ng-href="" class="mybtn btn btn-default">Hours Loss(m&sup3)</a></p>
         </div>
     </div>
 </div>
