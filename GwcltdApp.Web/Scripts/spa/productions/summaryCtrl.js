@@ -6,7 +6,7 @@
     summaryCtrl.$inject = ['$scope', '$routeParams', 'apiService', 'notificationService', '$timeout', '$rootScope'];
 
     function summaryCtrl($scope, $routeParams, apiService, notificationService, $timeout, $rootScope) {
-        $scope.loadingStatistics = true;
+        $scope.loadingStatistics = false;
         $scope.waterType = "";
 
         $(document).on('click', '.mybtn', function (event) {

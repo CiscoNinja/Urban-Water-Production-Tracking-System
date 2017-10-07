@@ -227,7 +227,7 @@ namespace GwcltdApp.Web.Controllers
                 var allProductions = _productionsRepository.GetAll();
                 switch (id)
                 {
-                    case "Plant Losses1":
+                    case "Treatment Plant Losses(m³m)":
                         {
                             foreach (var item in allsys)
                             {
@@ -243,13 +243,13 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.PlantLoss_metre(item.Code, 10);
                                 var novTotal = SummaryManager.PlantLoss_metre(item.Code, 11);
                                 var decTotal = SummaryManager.PlantLoss_metre(item.Code, 12);
-                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
                         }
-                    case "Plant Losses2":
+                    case "Treatment Plant Losses":
                         {
                             foreach (var item in allsys)
                             {
@@ -266,13 +266,13 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.PlantLoss_percent(item.Code, 10);
                                 var novTotal = SummaryManager.PlantLoss_percent(item.Code, 11);
                                 var decTotal = SummaryManager.PlantLoss_percent(item.Code, 12);
-                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
                         }
-                    case "Daily Average":
+                    case "Daily Average(m³m)":
                         {
                             foreach (var item in allsys)
                             {
@@ -288,13 +288,13 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getDailyAverage(item.Code, 10);
                                 var novTotal = SummaryManager.getDailyAverage(item.Code, 11);
                                 var decTotal = SummaryManager.getDailyAverage(item.Code, 12);
-                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
                         }
-                    case "Plant Capacity":
+                    case "Treatment Plant Capacity":
                         {
                             foreach (var item in allsys)
                             {
@@ -310,7 +310,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getPlantCap(item.Code, 10, item.Code);
                                 var novTotal = SummaryManager.getPlantCap(item.Code, 11, item.Code);
                                 var decTotal = SummaryManager.getPlantCap(item.Code, 12, item.Code);
-                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
@@ -324,7 +324,7 @@ namespace GwcltdApp.Web.Controllers
                         {
                             break;
                         }
-                    case "Treated Water":
+                    case "Treated Water(m³)":
                         {
                             foreach (var item in allsys)
                             {
@@ -340,13 +340,13 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getWaterTable(item.Code, 10, "Treated Water");
                                 var novTotal = SummaryManager.getWaterTable(item.Code, 11, "Treated Water");
                                 var decTotal = SummaryManager.getWaterTable(item.Code, 12, "Treated Water");
-                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
                         }
-                    case "Raw Water":
+                    case "Raw Water(m³)":
                         {
                             foreach (var item in allsys)
                             {
@@ -362,7 +362,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getWaterTable(item.Code, 10, "Raw Water");
                                 var novTotal = SummaryManager.getWaterTable(item.Code, 11, "Raw Water");
                                 var decTotal = SummaryManager.getWaterTable(item.Code, 12, "Raw Water");
-                                graph.Add(item.Name + " (" + item.Code + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
