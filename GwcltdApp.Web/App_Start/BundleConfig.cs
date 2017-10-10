@@ -102,6 +102,7 @@ namespace GwcltdApp.Web.App_Start
                 //"~/content/css/jquery-ui.theme.min.css",
                 //"~/content/css/jquery-ui.structure.min.css",
                 "~/content/css/kingtable.core.css",
+                "~/content/css/kingtable.clear.css",
                 "~/content/css/jquery.fancybox.css",
                 "~/content/css/jquery-ui-timepicker-addon.css",
                 "~/content/css/images/",

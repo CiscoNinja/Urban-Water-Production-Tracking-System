@@ -195,6 +195,7 @@
     <Content Include="Content\css\toastr.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\css\kingtable.clear.css" />
     <Content Include="Global.asax" />
     <Content Include="Logging\AutoAudit 3.30a.sql" />
     <Content Include="Scripts\spa\account\registerCtrl.js" />

@@ -1,7 +1,7 @@
 ﻿<head>
     <script>
     var userselection;
-    for (i = 2016 ; i < 2050; i++) {
+    for (i = 2016 ; i < 2030; i++) {
         if (userselection == i) {
             $('#yearpicker').append($('<option/>').val(i).attr("selected", "selected").html(i));
         } else {
@@ -19,7 +19,9 @@
         <div class="clearfix panel-footer">
             <div class="col-xs-3 col-sm-3 selectContainer">
                 <label class="control-label">Select Year</label>
-                <select id="yearpicker" class="form-control black"></select>
+                <select id="yearpicker" class="form-control black">
+                    <option> All</option>
+                </select>
                 <input type="hidden" name="WSystemId" ng-value="" />
             </div>
             <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treated Water(m&sup3;)</a></p>
@@ -31,7 +33,7 @@
             <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Service Standard</a></p>
             <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Hours Loss(m&sup3)</a></p>
         </div>
-        <div id="my-table" class="panel-body">
+        <div id="my-table" class="theme-clear">
             <div ng-if="loadingStatistics">
                 <div class="col-xs-4"></div>
                 <div class="col-xs-4">
