@@ -43,9 +43,9 @@
                 },
                 page: 1,
                 size: 200,
-                sortBy: "systemName asc"
-            }, {
-                build: function () { }
+                sortBy: "systemName asc",
+                collectionName: $scope.waterType,
+                excelWorkbookName: $scope.waterType
             });
             table.render();
             $('.mybtn').prop('disabled', false);

@@ -82,7 +82,9 @@
                 },
                 page: 1,
                 size: 200,
-                sortBy: "systemName asc"
+                sortBy: "systemName asc",
+                collectionName: $scope.waterType,
+                excelWorkbookName: $scope.waterType
             });
             table.render();
             $('.mymbtn').prop('disabled', false);
