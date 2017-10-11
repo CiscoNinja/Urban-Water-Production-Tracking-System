@@ -8,14 +8,31 @@
     function summaryCtrl($scope, $routeParams, apiService, notificationService, $timeout, $rootScope) {
         $scope.loadingStatistics = false;
         $scope.waterType = "";
+        $scope.buttonVal = "";
 
         $(document).on('click', '.mybtn', function (event) {
             event.preventDefault();
             $('.mybtn').prop('disabled', true);
             var $this = $(this);
-            $scope.waterType = $(this).text();
+            $scope.buttonVal = $(this).text()
+
+            switch ($scope.buttonVal) {
+                case "Treatment Plant Losses": {
+                    $scope.waterType = "Treatment Plant Losses(%)";
+                    break;
+                }
+                case "Treatment Plant Capacity": {
+                    $scope.waterType = "Treatment Plant Capacity(%)";
+                    break;
+                }
+                default: {
+                    $scope.waterType = $scope.buttonVal;
+                    break;
+                }
+            };
+
             $scope.loadingStatistics = true;
-            apiService.get('./api/productions/summary/'+ $rootScope.repository.loggedUser.stationid + '/' + $scope.waterType, null,
+            apiService.get('./api/productions/summary/' + $rootScope.repository.loggedUser.stationid + '/' + $scope.buttonVal, null,
             summaryLoadCompleted,
             summaryLoadFailed);
         });

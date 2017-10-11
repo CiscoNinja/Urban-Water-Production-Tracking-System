@@ -1,42 +1,4 @@
-﻿//(function (app) {
-//    'use strict';
-
-//    app.controller('masterSummaryCtrl', masterSummaryCtrl);
-
-//    masterSummaryCtrl.$inject = ['$scope', '$routeParams', 'apiService', 'notificationService', '$timeout', '$rootScope'];
-
-//    function masterSummaryCtrl($scope, $routeParams, apiService, notificationService, $timeout, $rootScope) {
-//        $scope.loadTable = loadTable;
-//        $scope.emptyStatistics = false;
-//        $scope.waterType = "";
-
-//        $(document).on('click', '.mybtn', function (event) {
-//            event.preventDefault();
-//            var $this = $(this);
-//            $scope.waterType = $(this).text();
-//            loadTableDetails();
-//        });
-
-//        function loadTable() {
-//            var table = new KingTable({
-//                element: document.getElementById("my-table"),
-//                url: "/api/productions/masterSummary/" + $scope.waterType + "",
-//                sortBy: "systemName asc",
-//                fixed: true,
-//            });
-//            table.render();
-//        }
-
-//        function loadTableDetails() {
-//            loadTable();
-//        }
-
-       
-//    }
-
-//})(angular.module('gwcltdApp'));
-
-(function (app) {
+﻿(function (app) {
     'use strict';
 
     app.controller('masterSummaryCtrl', masterSummaryCtrl);
@@ -46,14 +8,31 @@
     function masterSummaryCtrl($scope, $routeParams, apiService, notificationService, $timeout, $rootScope) {
         $scope.loadingStatistics = false;
         $scope.waterType = "";
+        $scope.buttonVal = "";
 
         $(document).on('click', '.mymbtn', function (event) {
             event.preventDefault();
             $('.mymbtn').prop('disabled', true);
             var $this = $(this);
-            $scope.waterType = $(this).text();
+            $scope.buttonVal = $(this).text();
+
+            switch ($scope.buttonVal) {
+                case "Treatment Plant Losses": {
+                    $scope.waterType = "Treatment Plant Losses(%)";
+                    break;
+                }
+                case "Treatment Plant Capacity": {
+                    $scope.waterType = "Treatment Plant Capacity(%)";
+                    break;
+                }
+                default: {
+                    $scope.waterType = $scope.buttonVal;
+                    break;
+                }
+            };
+
             $scope.loadingStatistics = true;
-            apiService.get('./api/productions/masterSummary/' + $scope.waterType, null,
+            apiService.get('./api/productions/masterSummary/' + $scope.buttonVal, null,
             summaryLoadCompleted,
             summaryLoadFailed);
         });
