@@ -34,12 +34,14 @@
             <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Hours Loss(m&sup3)</a></p>
         </div>
         <div id="my-table" class="theme-clear">
-            <div ng-if="loadingStatistics">
-                <div class="col-xs-4"></div>
-                <div class="col-xs-4">
-                    <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Loading production data...</label>
+            <div class="panel-body">
+                <div ng-if="loadingStatistics">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4">
+                        <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Loading production data...</label>
+                    </div>
+                    <div class="col-xs-4"></div>
                 </div>
-                <div class="col-xs-4"></div>
             </div>
         </div>
     </div>
