@@ -1,27 +1,13 @@
-﻿<head>
-   
-    <script>
-        var userselection;
-        for (i = 2016 ; i < 2050; i++) {
-            if (userselection == i) {
-                $('#yearpicker').append($('<option/>').val(i).attr("selected", "selected").html(i));
-            } else {
-                $('#yearpicker').append($('<option/>').val(i).html(i));
-            }
-        }
-    </script>
-</head>
-
-<div class="row">
+﻿<div class="row">
     <div class="panel panel-primary">
         <div class="panel-heading clearfix">
             <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><strong>Production - {{waterType}}</strong></h4>
         </div>
         <div class="clearfix panel-footer">
             <div class="col-xs-3 col-sm-3 selectContainer">
-                <label class="control-label">Select Year</label>
-                <select id="yearpicker" class="form-control black"></select>
-                <input type="hidden" name="WSystemId" ng-value="" />
+                <label class="control-label">Select year</label>
+                <select ng-model="listOption.ID" class="form-control black" ng-options="yearOption.optio as yearOption.name for yearOption in yearOptions"></select>
+                <input type="hidden" name="value" ng-value="listOption.ID" />
             </div>
             <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Treated Water(m&sup3;)</a></p>
             <p style="float:left; margin-right: 2px"><a class="mymbtn btn btn-default">Raw Water(m&sup3;)</a></p>

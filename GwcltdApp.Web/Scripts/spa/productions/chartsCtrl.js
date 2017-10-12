@@ -12,6 +12,16 @@
         $scope.wSystems = [];
         $scope.Charts = [];
         $scope.waterOType = "";
+        $scope.listOption = { ID: 1000 };
+        var yearList = [];
+
+        function loadListOptions() {
+            yearList.push({ name: "All", optio: 1000 })
+            for (var i = 2016 ; i < 2050; i++) {
+                yearList.push({ name: i, optio: i })
+            }
+            $scope.yearOptions = yearList;
+        }
 
         function loadCharts() {
             $(document).on('click', '.mycbtn', function (event) {
@@ -21,7 +31,7 @@
             });
 
             $scope.loadingCharts = true;
-            apiService.get('./api/productions/charts/' + $rootScope.repository.loggedUser.stationid +'/'+$routeParams.id, null,
+            apiService.get('./api/productions/charts/' + $rootScope.repository.loggedUser.stationid + '/'  + $scope.listOption.ID +'/'+ $routeParams.id, null,
             chartsLoadCompleted,
             chartsLoadFailed);
         }
@@ -70,7 +80,6 @@
         }
         loadWsystems();
         loadCharts();
-        
+        loadListOptions();
     }
-
 })(angular.module('gwcltdApp'));

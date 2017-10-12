@@ -9,6 +9,16 @@
         $scope.loadingStatistics = false;
         $scope.waterType = "";
         $scope.buttonVal = "";
+        $scope.listOption = { ID: 1000 };
+        var yearList = [];
+
+        function loadListOptions() {
+            yearList.push({ name: "All", optio: 1000 })
+            for (var i = 2016 ; i < 2050; i++) {
+                yearList.push({ name: i, optio: i })
+            }
+            $scope.yearOptions = yearList;
+        }
 
         $(document).on('click', '.mymbtn', function (event) {
             event.preventDefault();
@@ -32,7 +42,7 @@
             };
 
             $scope.loadingStatistics = true;
-            apiService.get('./api/productions/masterSummary/' + $scope.buttonVal, null,
+            apiService.get('./api/productions/masterSummary/' + $scope.listOption.ID +'/'+ $scope.buttonVal, null,
             summaryLoadCompleted,
             summaryLoadFailed);
         });
@@ -73,6 +83,6 @@
             notificationService.displayError(response.data);
             $('.mymbtn').prop('disabled', false);
         }
+        loadListOptions();
     }
-
 })(angular.module('gwcltdApp'));

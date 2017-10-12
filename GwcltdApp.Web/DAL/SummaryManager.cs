@@ -99,32 +99,59 @@ namespace GwcltdApp.Web.DAL
             }
         }
 
-        public static double PlantLoss_percent(string itemcode, int mnth)
+        public static double PlantLoss_percent(string itemcode, int yr, int mnth)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-               
-                var raw = context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Month
-                    == mnth && x.Option.Name.Equals("Raw Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
-                
+                double raw = 0;
+                switch (yr)
+                {
+                    case 1000:
+                        {
+                            raw = context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Month
+                            == mnth && x.Option.Name.Equals("Raw Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
+                            break;
+                        }
+                    default:
+                        {
+                            raw = context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Year
+                            == yr && x.DayToRecord.Month == mnth && x.Option.Name.Equals("Raw Water"))
+                            .Select(x => x.DailyActual).DefaultIfEmpty().Sum();
+                            break;
+                        }
+                }
                 double res = 0;
                 if (raw != 0)
                 {
-                    res = (PlantLoss_metre(itemcode, mnth) / (double)raw)*100;
+                    res = (PlantLoss_metre(itemcode, yr, mnth) / (double)raw) * 100;
                 }
                 return Math.Round(res, 2, MidpointRounding.AwayFromZero);
             }
         }
-        public static double PlantLoss_metre(string itemcode, int mnth)
+        public static double PlantLoss_metre(string itemcode, int yr, int mnth)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                double ploss = context.ProductionSet
-                    .Where(x => x.WSystem.Code
-                    == itemcode && x.DayToRecord.Month
-                    == mnth && x.Option.Name.Equals("Raw Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum()
-                    - context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Month == mnth && x.Option.Name.Equals("Treated Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
-
+                double ploss = 0;
+                switch (yr)
+                {
+                    case 1000:
+                        {
+                            ploss = context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Month == mnth 
+                            && x.Option.Name.Equals("Raw Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum()
+                            - context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Month == mnth
+                            && x.Option.Name.Equals("Treated Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
+                            break;
+                        }
+                    default:
+                        {
+                            ploss = context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Year == yr 
+                            && x.DayToRecord.Month == mnth && x.Option.Name.Equals("Raw Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum()
+                            - context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Year == yr && x.DayToRecord.Month == mnth
+                            && x.Option.Name.Equals("Treated Water")).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
+                            break;
+                        }
+                }
                 return Math.Round(ploss, 2, MidpointRounding.AwayFromZero);
             }
         }
@@ -140,7 +167,30 @@ namespace GwcltdApp.Web.DAL
                 return Math.Round(wlevel, 2, MidpointRounding.AwayFromZero);
             }
         }
-        public static double getPlantCap(string itemcode, int mnth, string systm)
+        public static double getWaterTableSingle(string itemcode, int yr, int mnth, string watertype)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                double wlevel = 0;
+                switch (yr)
+                {
+                    case 1000:
+                        {
+                            wlevel = context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Month == mnth 
+                            && x.Option.Name.Equals(watertype)).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
+                            break;
+                        }
+                    default:
+                        {
+                            wlevel = context.ProductionSet.Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Year == yr
+                            && x.DayToRecord.Month == mnth && x.Option.Name.Equals(watertype)).Select(x => x.DailyActual).DefaultIfEmpty().Sum();
+                            break;
+                        }
+                }
+                return Math.Round(wlevel, 2, MidpointRounding.AwayFromZero);
+            }
+        }
+        public static double getPlantCap(string itemcode, int yr, int mnth, string systm)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
@@ -148,9 +198,20 @@ namespace GwcltdApp.Web.DAL
                 double res = 0;
                 if (syscapacity != 0)
                 {
-                    res = (getDailyAverage(itemcode, mnth) / (double)syscapacity) * 100;
+                    switch (yr)
+                    {
+                        case 1000:
+                            {
+                                res = (getDailyAverage(itemcode, mnth) / (double)syscapacity) * 100;
+                                break;
+                            }
+                        default:
+                            {
+                                res = (getDailyAverageSingle(itemcode, yr, mnth) / (double)syscapacity) * 100;
+                                break;
+                            }
+                    }
                 }
-
                 return Math.Round(res, 2, MidpointRounding.AwayFromZero);
             }
         }
@@ -175,6 +236,59 @@ namespace GwcltdApp.Web.DAL
                     {
                         returnval = totalformonth / (double)DateTime.DaysInMonth(date.Year, mnth);
                     }
+                }
+
+                return Math.Round(returnval, 2, MidpointRounding.AwayFromZero);
+            }
+        }
+        public static double getDailyAverageSingle(string itemcode, int yr, int mnth)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                double returnval = 0;
+                switch (yr)
+                {
+                    case 1000:
+                        {
+                            //checkes if there is data for a system
+                            bool systemHasValue = getWaterTable(itemcode, mnth, "Treated Water") > 0;
+
+                            if (systemHasValue)
+                            {
+                                DateTime date = context.ProductionSet
+                               .Where(x => x.WSystem.Code
+                               == itemcode && x.DayToRecord.Month
+                               == mnth && x.Option.Name.Equals("Treated Water")).FirstOrDefault().DayToRecord;
+
+                                var totalformonth = getWaterTable(itemcode, mnth, "Treated Water");
+
+                                if (totalformonth != 0)
+                                {
+                                    returnval = totalformonth / (double)DateTime.DaysInMonth(date.Year, mnth);
+                                }
+                            }
+                            break;
+                        }
+                    default:
+                        {
+                            //checkes if there is data for a system
+                            bool systemHasValue = getWaterTableSingle(itemcode, yr, mnth, "Treated Water") > 0;
+
+                            if (systemHasValue)
+                            {
+                                DateTime date = context.ProductionSet
+                               .Where(x => x.WSystem.Code == itemcode && x.DayToRecord.Year == yr && x.DayToRecord.Month == mnth 
+                               && x.Option.Name.Equals("Treated Water")).FirstOrDefault().DayToRecord;
+
+                                var totalformonth = getWaterTableSingle(itemcode, yr, mnth, "Treated Water");
+
+                                if (totalformonth != 0)
+                                {
+                                    returnval = totalformonth / (double)DateTime.DaysInMonth(date.Year, mnth);
+                                }
+                            }
+                            break;
+                        }
                 }
                 
                 return Math.Round(returnval, 2, MidpointRounding.AwayFromZero);

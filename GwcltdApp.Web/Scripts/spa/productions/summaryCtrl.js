@@ -9,13 +9,23 @@
         $scope.loadingStatistics = false;
         $scope.waterType = "";
         $scope.buttonVal = "";
+        $scope.listOption = { ID: 1000 };
+        var yearList = [];
+
+        function loadListOptions() {
+            yearList.push({ name: "All", optio: 1000 })
+            for (var i = 2016 ; i < 2050; i++) {
+                yearList.push({ name: i, optio: i })
+            }
+            $scope.yearOptions = yearList;
+        }
 
         $(document).on('click', '.mybtn', function (event) {
             event.preventDefault();
             $('.mybtn').prop('disabled', true);
             var $this = $(this);
             $scope.buttonVal = $(this).text()
-
+            
             switch ($scope.buttonVal) {
                 case "Treatment Plant Losses": {
                     $scope.waterType = "Treatment Plant Losses(%)";
@@ -32,7 +42,7 @@
             };
 
             $scope.loadingStatistics = true;
-            apiService.get('./api/productions/summary/' + $rootScope.repository.loggedUser.stationid + '/' + $scope.buttonVal, null,
+            apiService.get('./api/productions/summary/' + $rootScope.repository.loggedUser.stationid + '/' + $scope.listOption.ID + '/' + $scope.buttonVal, null,
             summaryLoadCompleted,
             summaryLoadFailed);
         });
@@ -72,6 +82,6 @@
             notificationService.displayError(response.data);
             $('.mybtn').prop('disabled', false);
         }
+        loadListOptions();
     }
-
 })(angular.module('gwcltdApp'));

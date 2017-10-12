@@ -49,9 +49,9 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        [Authorize (Roles = "Super")]
-        [Route("masterSummary/{id}")]
-        public HttpResponseMessage GetMasterTable(HttpRequestMessage request, string id)
+        [Authorize(Roles = "Super")]
+        [Route("masterSummary/{listOption:int}/{id}")]
+        public HttpResponseMessage GetMasterTable(HttpRequestMessage request, int listOption, string id)
         {
             var allsys = SummaryManager.GetAllSystems();//change underying code to get systems from the logged in user's station
             //List<GraphData> list = new List<GraphData>();
@@ -66,18 +66,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.PlantLoss_metre(item.Code, 1);
-                                var febTotal = SummaryManager.PlantLoss_metre(item.Code, 2);
-                                var marchTotal = SummaryManager.PlantLoss_metre(item.Code, 3);
-                                var aprilTotal = SummaryManager.PlantLoss_metre(item.Code, 4);
-                                var mayTotal = SummaryManager.PlantLoss_metre(item.Code, 5);
-                                var juneTotal = SummaryManager.PlantLoss_metre(item.Code, 6);
-                                var july7Total = SummaryManager.PlantLoss_metre(item.Code, 7);
-                                var augTotal = SummaryManager.PlantLoss_metre(item.Code, 8);
-                                var septTotal = SummaryManager.PlantLoss_metre(item.Code, 9);
-                                var octTotal = SummaryManager.PlantLoss_metre(item.Code, 10);
-                                var novTotal = SummaryManager.PlantLoss_metre(item.Code, 11);
-                                var decTotal = SummaryManager.PlantLoss_metre(item.Code, 12);
+                                var janTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 1);
+                                var febTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 2);
+                                var marchTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 3);
+                                var aprilTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 4);
+                                var mayTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 5);
+                                var juneTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 6);
+                                var july7Total = SummaryManager.PlantLoss_metre(item.Code, listOption, 7);
+                                var augTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 8);
+                                var septTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 9);
+                                var octTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 10);
+                                var novTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 11);
+                                var decTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -89,18 +89,18 @@ namespace GwcltdApp.Web.Controllers
                             foreach (var item in allsys)
                             {
                                 //string thismonth = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthvalue.Month);
-                                var janTotal = SummaryManager.PlantLoss_percent(item.Code, 1);
-                                var febTotal = SummaryManager.PlantLoss_percent(item.Code, 2);
-                                var marchTotal = SummaryManager.PlantLoss_percent(item.Code, 3);
-                                var aprilTotal = SummaryManager.PlantLoss_percent(item.Code, 4);
-                                var mayTotal = SummaryManager.PlantLoss_percent(item.Code, 5);
-                                var juneTotal = SummaryManager.PlantLoss_percent(item.Code, 6);
-                                var july7Total = SummaryManager.PlantLoss_percent(item.Code, 7);
-                                var augTotal = SummaryManager.PlantLoss_percent(item.Code, 8);
-                                var septTotal = SummaryManager.PlantLoss_percent(item.Code, 9);
-                                var octTotal = SummaryManager.PlantLoss_percent(item.Code, 10);
-                                var novTotal = SummaryManager.PlantLoss_percent(item.Code, 11);
-                                var decTotal = SummaryManager.PlantLoss_percent(item.Code, 12);
+                                var janTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 1);
+                                var febTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 2);
+                                var marchTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 3);
+                                var aprilTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 4);
+                                var mayTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 5);
+                                var juneTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 6);
+                                var july7Total = SummaryManager.PlantLoss_percent(item.Code, listOption, 7);
+                                var augTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 8);
+                                var septTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 9);
+                                var octTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 10);
+                                var novTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 11);
+                                var decTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -111,18 +111,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.getDailyAverage(item.Code, 1);
-                                var febTotal = SummaryManager.getDailyAverage(item.Code, 2);
-                                var marchTotal = SummaryManager.getDailyAverage(item.Code, 3);
-                                var aprilTotal = SummaryManager.getDailyAverage(item.Code, 4);
-                                var mayTotal = SummaryManager.getDailyAverage(item.Code, 5);
-                                var juneTotal = SummaryManager.getDailyAverage(item.Code, 6);
-                                var july7Total = SummaryManager.getDailyAverage(item.Code, 7);
-                                var augTotal = SummaryManager.getDailyAverage(item.Code, 8);
-                                var septTotal = SummaryManager.getDailyAverage(item.Code, 9);
-                                var octTotal = SummaryManager.getDailyAverage(item.Code, 10);
-                                var novTotal = SummaryManager.getDailyAverage(item.Code, 11);
-                                var decTotal = SummaryManager.getDailyAverage(item.Code, 12);
+                                var janTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 1);
+                                var febTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 2);
+                                var marchTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 3);
+                                var aprilTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 4);
+                                var mayTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 5);
+                                var juneTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 6);
+                                var july7Total = SummaryManager.getDailyAverageSingle(item.Code, listOption, 7);
+                                var augTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 8);
+                                var septTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 9);
+                                var octTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 10);
+                                var novTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 11);
+                                var decTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -133,18 +133,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.getPlantCap(item.Code, 1, item.Code);
-                                var febTotal = SummaryManager.getPlantCap(item.Code, 2, item.Code);
-                                var marchTotal = SummaryManager.getPlantCap(item.Code, 3, item.Code);
-                                var aprilTotal = SummaryManager.getPlantCap(item.Code, 4, item.Code);
-                                var mayTotal = SummaryManager.getPlantCap(item.Code, 5, item.Code);
-                                var juneTotal = SummaryManager.getPlantCap(item.Code, 6, item.Code);
-                                var july7Total = SummaryManager.getPlantCap(item.Code, 7, item.Code);
-                                var augTotal = SummaryManager.getPlantCap(item.Code, 8, item.Code);
-                                var septTotal = SummaryManager.getPlantCap(item.Code, 9, item.Code);
-                                var octTotal = SummaryManager.getPlantCap(item.Code, 10, item.Code);
-                                var novTotal = SummaryManager.getPlantCap(item.Code, 11, item.Code);
-                                var decTotal = SummaryManager.getPlantCap(item.Code, 12, item.Code);
+                                var janTotal = SummaryManager.getPlantCap(item.Code, listOption, 1, item.Code);
+                                var febTotal = SummaryManager.getPlantCap(item.Code, listOption, 2, item.Code);
+                                var marchTotal = SummaryManager.getPlantCap(item.Code, listOption, 3, item.Code);
+                                var aprilTotal = SummaryManager.getPlantCap(item.Code, listOption, 4, item.Code);
+                                var mayTotal = SummaryManager.getPlantCap(item.Code, listOption, 5, item.Code);
+                                var juneTotal = SummaryManager.getPlantCap(item.Code, listOption, 6, item.Code);
+                                var july7Total = SummaryManager.getPlantCap(item.Code, listOption, 7, item.Code);
+                                var augTotal = SummaryManager.getPlantCap(item.Code, listOption, 8, item.Code);
+                                var septTotal = SummaryManager.getPlantCap(item.Code, listOption, 9, item.Code);
+                                var octTotal = SummaryManager.getPlantCap(item.Code, listOption, 10, item.Code);
+                                var novTotal = SummaryManager.getPlantCap(item.Code, listOption, 11, item.Code);
+                                var decTotal = SummaryManager.getPlantCap(item.Code, listOption, 12, item.Code);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -163,18 +163,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.getWaterTable(item.Code, 1, "Treated Water");
-                                var febTotal = SummaryManager.getWaterTable(item.Code, 2, "Treated Water");
-                                var marchTotal = SummaryManager.getWaterTable(item.Code, 3, "Treated Water");
-                                var aprilTotal = SummaryManager.getWaterTable(item.Code, 4, "Treated Water");
-                                var mayTotal = SummaryManager.getWaterTable(item.Code, 5, "Treated Water");
-                                var juneTotal = SummaryManager.getWaterTable(item.Code, 6, "Treated Water");
-                                var july7Total = SummaryManager.getWaterTable(item.Code, 7, "Treated Water");
-                                var augTotal = SummaryManager.getWaterTable(item.Code, 8, "Treated Water");
-                                var septTotal = SummaryManager.getWaterTable(item.Code, 9, "Treated Water");
-                                var octTotal = SummaryManager.getWaterTable(item.Code, 10, "Treated Water");
-                                var novTotal = SummaryManager.getWaterTable(item.Code, 11, "Treated Water");
-                                var decTotal = SummaryManager.getWaterTable(item.Code, 12, "Treated Water");
+                                var janTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  1, "Treated Water");
+                                var febTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  2, "Treated Water");
+                                var marchTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  3, "Treated Water");
+                                var aprilTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  4, "Treated Water");
+                                var mayTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  5, "Treated Water");
+                                var juneTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  6, "Treated Water");
+                                var july7Total = SummaryManager.getWaterTableSingle(item.Code, listOption,  7, "Treated Water");
+                                var augTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  8, "Treated Water");
+                                var septTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  9, "Treated Water");
+                                var octTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  10, "Treated Water");
+                                var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Treated Water");
+                                var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Treated Water");
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -185,18 +185,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.getWaterTable(item.Code, 1, "Raw Water");
-                                var febTotal = SummaryManager.getWaterTable(item.Code, 2, "Raw Water");
-                                var marchTotal = SummaryManager.getWaterTable(item.Code, 3, "Raw Water");
-                                var aprilTotal = SummaryManager.getWaterTable(item.Code, 4, "Raw Water");
-                                var mayTotal = SummaryManager.getWaterTable(item.Code, 5, "Raw Water");
-                                var juneTotal = SummaryManager.getWaterTable(item.Code, 6, "Raw Water");
-                                var july7Total = SummaryManager.getWaterTable(item.Code, 7, "Raw Water");
-                                var augTotal = SummaryManager.getWaterTable(item.Code, 8, "Raw Water");
-                                var septTotal = SummaryManager.getWaterTable(item.Code, 9, "Raw Water");
-                                var octTotal = SummaryManager.getWaterTable(item.Code, 10, "Raw Water");
-                                var novTotal = SummaryManager.getWaterTable(item.Code, 11, "Raw Water");
-                                var decTotal = SummaryManager.getWaterTable(item.Code, 12, "Raw Water");
+                                var janTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  1, "Raw Water");
+                                var febTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  2, "Raw Water");
+                                var marchTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  3, "Raw Water");
+                                var aprilTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  4, "Raw Water");
+                                var mayTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  5, "Raw Water");
+                                var juneTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  6, "Raw Water");
+                                var july7Total = SummaryManager.getWaterTableSingle(item.Code, listOption,  7, "Raw Water");
+                                var augTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  8, "Raw Water");
+                                var septTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  9, "Raw Water");
+                                var octTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  10, "Raw Water");
+                                var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Raw Water");
+                                var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Raw Water");
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -215,8 +215,8 @@ namespace GwcltdApp.Web.Controllers
             });
         }
 
-        [Route("summary/{userstation:int}/{id}")]
-        public HttpResponseMessage GetTable(HttpRequestMessage request, int userstation, string id)
+        [Route("summary/{userstation:int}/{listOption:int}/{id}")]
+        public HttpResponseMessage GetTable(HttpRequestMessage request, int userstation, int listOption, string id)
         {
             var allsys = SummaryManager.GetAllUserSystems(userstation);//change underying code to get systems from the logged in user's station
             List<GraphData> list = new List<GraphData>();
@@ -231,18 +231,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.PlantLoss_metre(item.Code, 1);
-                                var febTotal = SummaryManager.PlantLoss_metre(item.Code, 2);
-                                var marchTotal = SummaryManager.PlantLoss_metre(item.Code, 3);
-                                var aprilTotal = SummaryManager.PlantLoss_metre(item.Code, 4);
-                                var mayTotal = SummaryManager.PlantLoss_metre(item.Code, 5);
-                                var juneTotal = SummaryManager.PlantLoss_metre(item.Code, 6);
-                                var july7Total = SummaryManager.PlantLoss_metre(item.Code, 7);
-                                var augTotal = SummaryManager.PlantLoss_metre(item.Code, 8);
-                                var septTotal = SummaryManager.PlantLoss_metre(item.Code, 9);
-                                var octTotal = SummaryManager.PlantLoss_metre(item.Code, 10);
-                                var novTotal = SummaryManager.PlantLoss_metre(item.Code, 11);
-                                var decTotal = SummaryManager.PlantLoss_metre(item.Code, 12);
+                                var janTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 1);
+                                var febTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 2);
+                                var marchTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 3);
+                                var aprilTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 4);
+                                var mayTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 5);
+                                var juneTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 6);
+                                var july7Total = SummaryManager.PlantLoss_metre(item.Code, listOption, 7);
+                                var augTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 8);
+                                var septTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 9);
+                                var octTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 10);
+                                var novTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 11);
+                                var decTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -254,18 +254,18 @@ namespace GwcltdApp.Web.Controllers
                             foreach (var item in allsys)
                             {
                                 //string thismonth = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(monthvalue.Month);
-                                var janTotal = SummaryManager.PlantLoss_percent(item.Code, 1);
-                                var febTotal = SummaryManager.PlantLoss_percent(item.Code, 2);
-                                var marchTotal = SummaryManager.PlantLoss_percent(item.Code, 3);
-                                var aprilTotal = SummaryManager.PlantLoss_percent(item.Code, 4);
-                                var mayTotal = SummaryManager.PlantLoss_percent(item.Code, 5);
-                                var juneTotal = SummaryManager.PlantLoss_percent(item.Code, 6);
-                                var july7Total = SummaryManager.PlantLoss_percent(item.Code, 7);
-                                var augTotal = SummaryManager.PlantLoss_percent(item.Code, 8);
-                                var septTotal = SummaryManager.PlantLoss_percent(item.Code, 9);
-                                var octTotal = SummaryManager.PlantLoss_percent(item.Code, 10);
-                                var novTotal = SummaryManager.PlantLoss_percent(item.Code, 11);
-                                var decTotal = SummaryManager.PlantLoss_percent(item.Code, 12);
+                                var janTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 1);
+                                var febTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 2);
+                                var marchTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 3);
+                                var aprilTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 4);
+                                var mayTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 5);
+                                var juneTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 6);
+                                var july7Total = SummaryManager.PlantLoss_percent(item.Code, listOption, 7);
+                                var augTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 8);
+                                var septTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 9);
+                                var octTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 10);
+                                var novTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 11);
+                                var decTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -276,18 +276,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.getDailyAverage(item.Code, 1);
-                                var febTotal = SummaryManager.getDailyAverage(item.Code, 2);
-                                var marchTotal = SummaryManager.getDailyAverage(item.Code, 3);
-                                var aprilTotal = SummaryManager.getDailyAverage(item.Code, 4);
-                                var mayTotal = SummaryManager.getDailyAverage(item.Code, 5);
-                                var juneTotal = SummaryManager.getDailyAverage(item.Code, 6);
-                                var july7Total = SummaryManager.getDailyAverage(item.Code, 7);
-                                var augTotal = SummaryManager.getDailyAverage(item.Code, 8);
-                                var septTotal = SummaryManager.getDailyAverage(item.Code, 9);
-                                var octTotal = SummaryManager.getDailyAverage(item.Code, 10);
-                                var novTotal = SummaryManager.getDailyAverage(item.Code, 11);
-                                var decTotal = SummaryManager.getDailyAverage(item.Code, 12);
+                                var janTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 1);
+                                var febTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 2);
+                                var marchTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 3);
+                                var aprilTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 4);
+                                var mayTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 5);
+                                var juneTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 6);
+                                var july7Total = SummaryManager.getDailyAverageSingle(item.Code, listOption, 7);
+                                var augTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 8);
+                                var septTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 9);
+                                var octTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 10);
+                                var novTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 11);
+                                var decTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -298,18 +298,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.getPlantCap(item.Code, 1, item.Code);
-                                var febTotal = SummaryManager.getPlantCap(item.Code, 2, item.Code);
-                                var marchTotal = SummaryManager.getPlantCap(item.Code, 3, item.Code);
-                                var aprilTotal = SummaryManager.getPlantCap(item.Code, 4, item.Code);
-                                var mayTotal = SummaryManager.getPlantCap(item.Code, 5, item.Code);
-                                var juneTotal = SummaryManager.getPlantCap(item.Code, 6, item.Code);
-                                var july7Total = SummaryManager.getPlantCap(item.Code, 7, item.Code);
-                                var augTotal = SummaryManager.getPlantCap(item.Code, 8, item.Code);
-                                var septTotal = SummaryManager.getPlantCap(item.Code, 9, item.Code);
-                                var octTotal = SummaryManager.getPlantCap(item.Code, 10, item.Code);
-                                var novTotal = SummaryManager.getPlantCap(item.Code, 11, item.Code);
-                                var decTotal = SummaryManager.getPlantCap(item.Code, 12, item.Code);
+                                var janTotal = SummaryManager.getPlantCap(item.Code, listOption, 1, item.Code);
+                                var febTotal = SummaryManager.getPlantCap(item.Code, listOption, 2, item.Code);
+                                var marchTotal = SummaryManager.getPlantCap(item.Code, listOption, 3, item.Code);
+                                var aprilTotal = SummaryManager.getPlantCap(item.Code, listOption, 4, item.Code);
+                                var mayTotal = SummaryManager.getPlantCap(item.Code, listOption, 5, item.Code);
+                                var juneTotal = SummaryManager.getPlantCap(item.Code, listOption, 6, item.Code);
+                                var july7Total = SummaryManager.getPlantCap(item.Code, listOption, 7, item.Code);
+                                var augTotal = SummaryManager.getPlantCap(item.Code, listOption, 8, item.Code);
+                                var septTotal = SummaryManager.getPlantCap(item.Code, listOption, 9, item.Code);
+                                var octTotal = SummaryManager.getPlantCap(item.Code, listOption, 10, item.Code);
+                                var novTotal = SummaryManager.getPlantCap(item.Code, listOption, 11, item.Code);
+                                var decTotal = SummaryManager.getPlantCap(item.Code, listOption, 12, item.Code);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -328,18 +328,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.getWaterTable(item.Code, 1, "Treated Water");
-                                var febTotal = SummaryManager.getWaterTable(item.Code, 2, "Treated Water");
-                                var marchTotal = SummaryManager.getWaterTable(item.Code, 3, "Treated Water");
-                                var aprilTotal = SummaryManager.getWaterTable(item.Code, 4, "Treated Water");
-                                var mayTotal = SummaryManager.getWaterTable(item.Code, 5, "Treated Water");
-                                var juneTotal = SummaryManager.getWaterTable(item.Code, 6, "Treated Water");
-                                var july7Total = SummaryManager.getWaterTable(item.Code, 7, "Treated Water");
-                                var augTotal = SummaryManager.getWaterTable(item.Code, 8, "Treated Water");
-                                var septTotal = SummaryManager.getWaterTable(item.Code, 9, "Treated Water");
-                                var octTotal = SummaryManager.getWaterTable(item.Code, 10, "Treated Water");
-                                var novTotal = SummaryManager.getWaterTable(item.Code, 11, "Treated Water");
-                                var decTotal = SummaryManager.getWaterTable(item.Code, 12, "Treated Water");
+                                var janTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  1, "Treated Water");
+                                var febTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  2, "Treated Water");
+                                var marchTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  3, "Treated Water");
+                                var aprilTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  4, "Treated Water");
+                                var mayTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  5, "Treated Water");
+                                var juneTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  6, "Treated Water");
+                                var july7Total = SummaryManager.getWaterTableSingle(item.Code, listOption,  7, "Treated Water");
+                                var augTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  8, "Treated Water");
+                                var septTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  9, "Treated Water");
+                                var octTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  10, "Treated Water");
+                                var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Treated Water");
+                                var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Treated Water");
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -350,18 +350,18 @@ namespace GwcltdApp.Web.Controllers
                         {
                             foreach (var item in allsys)
                             {
-                                var janTotal = SummaryManager.getWaterTable(item.Code, 1, "Raw Water");
-                                var febTotal = SummaryManager.getWaterTable(item.Code, 2, "Raw Water");
-                                var marchTotal = SummaryManager.getWaterTable(item.Code, 3, "Raw Water");
-                                var aprilTotal = SummaryManager.getWaterTable(item.Code, 4, "Raw Water");
-                                var mayTotal = SummaryManager.getWaterTable(item.Code, 5, "Raw Water");
-                                var juneTotal = SummaryManager.getWaterTable(item.Code, 6, "Raw Water");
-                                var july7Total = SummaryManager.getWaterTable(item.Code, 7, "Raw Water");
-                                var augTotal = SummaryManager.getWaterTable(item.Code, 8, "Raw Water");
-                                var septTotal = SummaryManager.getWaterTable(item.Code, 9, "Raw Water");
-                                var octTotal = SummaryManager.getWaterTable(item.Code, 10, "Raw Water");
-                                var novTotal = SummaryManager.getWaterTable(item.Code, 11, "Raw Water");
-                                var decTotal = SummaryManager.getWaterTable(item.Code, 12, "Raw Water");
+                                var janTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  1, "Raw Water");
+                                var febTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  2, "Raw Water");
+                                var marchTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  3, "Raw Water");
+                                var aprilTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  4, "Raw Water");
+                                var mayTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  5, "Raw Water");
+                                var juneTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  6, "Raw Water");
+                                var july7Total = SummaryManager.getWaterTableSingle(item.Code, listOption,  7, "Raw Water");
+                                var augTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  8, "Raw Water");
+                                var septTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  9, "Raw Water");
+                                var octTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  10, "Raw Water");
+                                var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Raw Water");
+                                var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Raw Water");
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                             }
 
@@ -374,23 +374,23 @@ namespace GwcltdApp.Web.Controllers
                             break;
                         }
                 }
-                
+
 
                 return response;
             });
         }
-        
-        [Route("charts/{userstation:int}/{id}")]
-        public HttpResponseMessage GetChart(HttpRequestMessage request,int userstation, string id)
+
+        [Route("charts/{userstation:int}/{listOption:int}/{id}")]
+        public HttpResponseMessage GetChart(HttpRequestMessage request, int listOption, int userstation, string id)
         {
             var allsys = SummaryManager.GetAllUserSystems(userstation);
             List<Dictionary<string, string>> returnList = new List<Dictionary<string, string>>();
-            
+
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
 
-                switch(id)
+                switch (id)
                 {
                     case "Treated Water":
                         {
@@ -404,7 +404,7 @@ namespace GwcltdApp.Web.Controllers
 
                                 foreach (var syscode in allsys)
                                 {
-                                    graph_dictionary[syscode.Code] = SummaryManager.getWaterTable(syscode.Code, i, "Treated Water").ToString();
+                                    graph_dictionary[syscode.Code] = SummaryManager.getWaterTableSingle(syscode.Code, listOption, i, "Treated Water").ToString();
                                 }
 
                                 returnList.Add(graph_dictionary);
@@ -425,7 +425,7 @@ namespace GwcltdApp.Web.Controllers
 
                                 foreach (var syscode in allsys)
                                 {
-                                    graph_dictionary[syscode.Code] = SummaryManager.PlantLoss_percent(syscode.Code, i).ToString();
+                                    graph_dictionary[syscode.Code] = SummaryManager.PlantLoss_percent(syscode.Code, listOption, i).ToString();
                                 }
 
                                 returnList.Add(graph_dictionary);
@@ -434,7 +434,7 @@ namespace GwcltdApp.Web.Controllers
                             response = request.CreateResponse(HttpStatusCode.OK, returnList);
                             break;
                         }
-                        
+
                     default:
                         {
                             response = request.CreateResponse<string>(HttpStatusCode.OK, null);
@@ -498,7 +498,7 @@ namespace GwcltdApp.Web.Controllers
                 return response;
             });
         }
-        
+
         [Route("{userstation:int}/{page:int=0}/{pageSize=3}/{filter?}")]
         public HttpResponseMessage Get(HttpRequestMessage request, int userstation, int? page, int? pageSize, DateTime? filter1 = null, DateTime? filter2 = null, string filter = null)
         {
@@ -531,7 +531,7 @@ namespace GwcltdApp.Web.Controllers
                 //        .Count();
                 //}
                 //else 
-                if (filter1.HasValue && filter2.HasValue && string.IsNullOrEmpty(filter) )
+                if (filter1.HasValue && filter2.HasValue && string.IsNullOrEmpty(filter))
                 {//change code to get systems from the logged in user's station
                     productions = _productionsRepository.GetAll()
                         .Where(m => m.GwclStationId == userstation && (DbFunctions.TruncateTime(m.DayToRecord) >= DbFunctions.TruncateTime(filter1.Value) && DbFunctions.TruncateTime(m.DayToRecord) <= DbFunctions.TruncateTime(filter2.Value)))
@@ -589,7 +589,7 @@ namespace GwcltdApp.Web.Controllers
                     Production newProduction = new Production();
                     newProduction.UpdateProduction(production);
 
-                    
+
                     _productionsRepository.Add(newProduction);
 
                     _unitOfWork.Commit();
