@@ -33,6 +33,9 @@ namespace GwcltdApp.Web.Controllers
         {
             _productionsRepository = productionsRepository;
         }
+
+        double m1Total = 0; double m2Total = 0;double m3Total = 0;double m4Total = 0;double m5Total = 0;double m6Total = 0;
+        double m7Total = 0;double m8Total = 0;double m9Total = 0;double m10Total = 0;double m11Total = 0;double m12Total = 0;
         [Route("latest/{userstation:int}")]
         public HttpResponseMessage Get(HttpRequestMessage request, int userstation)
         {
@@ -79,7 +82,12 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
+
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -102,7 +110,12 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
+
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -124,7 +137,12 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
+
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -146,7 +164,12 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.getPlantCap(item.Code, listOption, 11, item.Code);
                                 var decTotal = SummaryManager.getPlantCap(item.Code, listOption, 12, item.Code);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
+
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -176,7 +199,12 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Treated Water");
                                 var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Treated Water");
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
+
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -198,7 +226,12 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Raw Water");
                                 var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Raw Water");
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
+
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -243,8 +276,13 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 10);
                                 var novTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 12);
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal,
+                                    july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -267,7 +305,12 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
+
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -289,7 +332,11 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 12);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -311,7 +358,11 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.getPlantCap(item.Code, listOption, 11, item.Code);
                                 var decTotal = SummaryManager.getPlantCap(item.Code, listOption, 12, item.Code);
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -341,7 +392,12 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Treated Water");
                                 var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Treated Water");
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
+
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;
@@ -363,7 +419,12 @@ namespace GwcltdApp.Web.Controllers
                                 var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Raw Water");
                                 var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Raw Water");
                                 graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
+                                m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
+                                m11Total += novTotal; m12Total += decTotal;
                             }
+                            graph.Add("TOTAL", m1Total, m2Total, m3Total, m4Total, m5Total, m6Total, m7Total, m8Total, m9Total, m10Total, m11Total, m12Total);
+
 
                             response = request.CreateResponse<MyDictionary>(HttpStatusCode.OK, graph);
                             break;

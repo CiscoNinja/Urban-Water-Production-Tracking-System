@@ -71,8 +71,8 @@
                 page: 1,
                 size: 200,
                 sortBy: "systemName asc",
-                collectionName: $scope.waterType,
-                excelWorkbookName: $scope.waterType
+                collectionName: $scope.waterType + ' ' + $rootScope.repository.loggedUser.stationname + ' ' + $scope.listOption.ID,
+                excelWorkbookName: $scope.waterType + ' ' + $rootScope.repository.loggedUser.stationname + ' ' + $scope.listOption.ID
             });
             table.render();
             $('.mybtn').prop('disabled', false);

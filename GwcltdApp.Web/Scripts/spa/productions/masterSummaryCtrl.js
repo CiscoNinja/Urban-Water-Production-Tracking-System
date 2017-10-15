@@ -72,8 +72,8 @@
                 page: 1,
                 size: 200,
                 sortBy: "systemName asc",
-                collectionName: $scope.waterType,
-                excelWorkbookName: $scope.waterType
+                collectionName: $scope.waterType + ' (National ' + $scope.listOption.ID + ')',
+                excelWorkbookName: $scope.waterType + ' ' + $scope.listOption.ID
             });
             table.render();
             $('.mymbtn').prop('disabled', false);
