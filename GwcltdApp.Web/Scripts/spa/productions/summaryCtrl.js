@@ -9,6 +9,7 @@
         $scope.loadingStatistics = false;
         $scope.waterType = "";
         $scope.buttonVal = "";
+        $scope.excelName = "";
         $scope.listOption = { ID: 1000 };
         var yearList = [];
 
@@ -29,14 +30,22 @@
             switch ($scope.buttonVal) {
                 case "Treatment Plant Losses": {
                     $scope.waterType = "Treatment Plant Losses(%)";
+                    $scope.excelName = "Plant Losses(%)";
+                    break;
+                }
+                case "Treatment Plant Losses(m³m)": {
+                    $scope.waterType = $scope.buttonVal;
+                    $scope.excelName = "Plant Losses(m³m)";
                     break;
                 }
                 case "Treatment Plant Capacity": {
                     $scope.waterType = "Treatment Plant Capacity(%)";
+                    $scope.excelName = "Plant Capacity(%)";
                     break;
                 }
                 default: {
                     $scope.waterType = $scope.buttonVal;
+                    $scope.excelName = $scope.buttonVal;
                     break;
                 }
             };
@@ -72,7 +81,7 @@
                 size: 200,
                 sortBy: "systemName asc",
                 collectionName: $scope.waterType + ' ' + $rootScope.repository.loggedUser.stationname + ' ' + $scope.listOption.ID,
-                excelWorkbookName: $scope.waterType + ' ' + $rootScope.repository.loggedUser.stationname + ' ' + $scope.listOption.ID
+                excelWorkbookName: $scope.excelName + ' ' + $rootScope.repository.loggedUser.stationname + ' ' + $scope.listOption.ID
             });
             table.render();
             $('.mybtn').prop('disabled', false);
