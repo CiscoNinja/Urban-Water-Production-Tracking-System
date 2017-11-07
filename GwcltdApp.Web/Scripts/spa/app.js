@@ -107,11 +107,21 @@
                 controller: "masterSummaryCtrl",
                 resolve: { isAuthenticated: isAuthenticated }
             })
-                .when("/productions/charts/:id", {
+            .when("/productions/masterTables/:id", {
+                templateUrl: "./Scripts/spa/productions/masterTables.html",
+                controller: "masterTablesCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
+            })
+            .when("/productions/masterCharts/:id", {
+                templateUrl: "./Scripts/spa/productions/masterCharts.html",
+                controller: "masterChartsCtrl",
+                resolve: { isAuthenticated: isAuthenticated }
+            })
+            .when("/productions/charts/:id", {
                     templateUrl: "./Scripts/spa/productions/charts.html",
                     controller: "chartsCtrl",
                     resolve: { isAuthenticated: isAuthenticated }
-                })
+            })    
             .when("/productions/:id", {
                 templateUrl: "./Scripts/spa/productions/details.html",
                 controller: "productionDetailsCtrl",

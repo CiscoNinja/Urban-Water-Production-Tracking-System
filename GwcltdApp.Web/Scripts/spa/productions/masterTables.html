@@ -1,0 +1,40 @@
+﻿<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><strong>Production - {{waterType}}</strong></h4>
+        </div>
+        <div class="clearfix panel-footer">
+            <div class="col-xs-2 col-sm-2 selectContainer">
+                <label class="control-label">Year</label>
+                <select ng-model="listOption.ID" class="form-control black" ng-options="yearOption.optio as yearOption.name for yearOption in yearOptions"></select>
+                <input type="hidden" name="value" ng-value="listOption.ID" />
+            </div>
+            <div class="col-xs-2 col-sm-2 selectContainer">
+                <label class="control-label">Station</label>
+                <select ng-model="msTable.ID" class="form-control black" ng-options="wStation.ID as wStation.Name for wStation in wStations"></select>
+                <input type="hidden" name="value" ng-value="msTable.ID" />
+            </div>
+            <div class="col-xs-8 col-sm-8 selectContainer">
+                <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treated Water(m&sup3;)</a></p>
+                <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Raw Water(m&sup3;)</a></p>
+                <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Losses(m&sup3;m)</a></p>
+                <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Losses</a></p>
+                <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Daily Average(m&sup3;m)</a></p>
+                <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Treatment Plant Capacity</a></p>
+                <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Service Standard</a></p>
+                <p style="float:left; margin-right: 2px"><a class="mybtn btn btn-default">Hours Loss(m&sup3)</a></p>
+            </div>
+        </div>
+        <div id="my-table" class="theme-clear">
+            <div class="panel-body">
+                <div ng-if="loadingStatistics">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-4">
+                        <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Loading production data...</label>
+                    </div>
+                    <div class="col-xs-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

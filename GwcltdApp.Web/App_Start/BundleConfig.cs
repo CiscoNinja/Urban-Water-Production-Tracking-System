@@ -84,6 +84,8 @@ namespace GwcltdApp.Web.App_Start
                 "~/Scripts/spa/productions/productionEditCtrl.js",
                 "~/Scripts/spa/productions/summaryCtrl.js",
                 "~/Scripts/spa/productions/masterSummaryCtrl.js",
+                "~/Scripts/spa/productions/masterTablesCtrl.js",
+                "~/Scripts/spa/productions/masterChartsCtrl.js",
                 "~/Scripts/spa/productions/chartsCtrl.js",
                "~/Scripts/spa/downtimes/downtimesCtrl.js",
                 "~/Scripts/spa/downtimes/downtimeAddCtrl.js",

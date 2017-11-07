@@ -1,0 +1,39 @@
+﻿
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Production - {{waterOType}} </h4>
+        </div>
+
+        <div class="clearfix panel-footer">
+            <div class="col-xs-2 col-sm-2 selectContainer">
+                <label class="control-label">Select year</label>
+                <select ng-model="listOption.ID" class="form-control black" ng-options="yearOption.optio as yearOption.name for yearOption in yearOptions"></select>
+                <input type="hidden" name="value" ng-value="listOption.ID" />
+            </div>
+            <div class="col-xs-2 col-sm-2 selectContainer">
+                <label class="control-label">Station</label>
+                <select ng-model="msChart.ID" class="form-control black" ng-options="wStation.ID as wStation.Name for wStation in wStations"></select>
+                <input type="hidden" name="value" ng-value="msChart.ID" />
+            </div>
+            <div class="col-xs-8 col-sm-8 selectContainer">
+                <br /><br />
+                <p style="float:left; margin-right: 2px"><a class="mycbtn btn btn-default">Treated Water</a></p>
+                <p style="float:left; margin-right: 2px"><a class="mycbtn btn btn-default">Plant Loss</a></p>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div id="summary-mchat"></div>
+            <div ng-if="emptyStatistics">
+                <div class="col-xs-4">
+                    <label class="label label-primary">Select options above</label>
+                </div>
+            </div>
+            <div ng-if="loadingCharts">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4"><i class="fa fa-refresh fa-5x fa-spin"></i> <label class="label label-primary">Loading Productions..</label></div>
+                <div class="col-xs-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
