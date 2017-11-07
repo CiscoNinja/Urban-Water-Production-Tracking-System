@@ -6,7 +6,6 @@
     chartsCtrl.$inject = ['$scope', '$routeParams', 'apiService', 'notificationService', '$timeout', '$rootScope'];
 
     function chartsCtrl($scope, $routeParams, apiService, notificationService, $timeout, $rootScope) {
-        $scope.loadCharts = loadCharts;
         $scope.loadWsystems = loadWsystems;
         $scope.emptyStatistics = false;
         $scope.wSystems = [];
@@ -23,18 +22,18 @@
             $scope.yearOptions = yearList;
         }
 
-        function loadCharts() {
-            $(document).on('click', '.mycbtn', function (event) {
-                event.preventDefault();
-                var $this = $(this);
-                $scope.waterOType = $(this).text();
-            });
+
+        $(document).on('click', '.mycbtn', function (event) {
+            $("#summary-chat").empty()
+            event.preventDefault();
+            var $this = $(this);
+            $scope.waterOType = $(this).text();
 
             $scope.loadingCharts = true;
-            apiService.get('./api/productions/charts/' + $rootScope.repository.loggedUser.stationid + '/'  + $scope.listOption.ID +'/'+ $routeParams.id, null,
+            apiService.get('./api/productions/charts/' + $rootScope.repository.loggedUser.stationid + '/' + $scope.listOption.ID + '/' + $scope.waterOType, null,
             chartsLoadCompleted,
             chartsLoadFailed);
-        }
+        });
 
         function loadWsystems() {
 
@@ -53,7 +52,7 @@
 
         function chartsLoadCompleted(result) {
             var chat = result.data;
-            
+
             $scope.loadingCharts = false;
             if (!chat) {
                 $scope.loadingStatistics = false;
@@ -72,14 +71,13 @@
                     parseTime: false
                 });
             }
-            
+
         }
 
         function chartsLoadFailed(response) {
             notificationService.displayError(response.data);
         }
         loadWsystems();
-        loadCharts();
         loadListOptions();
     }
 })(angular.module('gwcltdApp'));
