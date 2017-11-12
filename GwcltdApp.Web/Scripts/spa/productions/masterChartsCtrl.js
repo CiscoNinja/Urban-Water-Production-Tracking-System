@@ -14,6 +14,7 @@
         $scope.waterOType = "";
         $scope.listOption = { ID: 1000 };
         var yearList = [];
+        var myChart;
 
         function loadListOptions() {
             yearList.push({ name: "All", optio: 1000 })
@@ -68,26 +69,26 @@
         }
 
         function chartsLoadCompleted(result) {
-            var mchat = result.data;
+            var chat = result.data;
             $scope.loadingCharts = false;
-            if (!mchat) {
+            if (!chat) {
                 $scope.loadingStatistics = false;
                 $scope.emptyStatistics = true;
             }
             else {
-                Morris.Line({
-                    element: "summary-mchat",
-                    data: mchat,
+                myChart = Morris.Line({
+                   element: "summary-chat",
+                   data: chat,
                     xkey: 'month',
                     ykeys: $scope.wSystems,
                     labels: $scope.wSystems,
                     smooth: true,
                     hideHover: "auto",
-                    resize: 'false',
+                    resize: 'true',
                     parseTime: false
                 });
             }
-
+            //myChart.destroy();
         }
 
         function chartsLoadFailed(response) {

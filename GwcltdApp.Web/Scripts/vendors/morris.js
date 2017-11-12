@@ -164,7 +164,17 @@ Licensed under the BSD-2-Clause License.
         this.postInit();
       }
     }
-
+    //Grid.prototype.destroy = function () {
+    //    this.raphael.remove();
+    //    $(this.el).find('.morris-hover').remove();
+    //    $(this.el).unbind('mouseleave');
+    //    $(this.el).unbind('mousemove');
+    //    $(this.el).unbind('touchstart touchmove touchend');
+    //    $(this.el).unbind('click');
+    //    $(this.el).unbind('mouseup');
+    //    $(this.el).unbind('mousedown');
+    //    $(this.el).unbind('resize');
+    //};
     Grid.prototype.gridDefaults = {
       dateFormat: null,
       axes: true,
