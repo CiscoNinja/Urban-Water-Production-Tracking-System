@@ -26,8 +26,8 @@
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 selectContainer">
                                 <label class="control-label">Select System</label>
-                                <select ng-model="production.WSystemId" class="form-control black" ng-options="wsystem.ID as wsystem.Name for wsystem in wsystems" required></select>
-                                <input type="hidden" name="WSystemId" ng-value="production.WSystemId" />
+                                <select ng-model="production.WSystemId" class="form-control black" ng-options="wsystem.ID as wsystem.Name for wsystem in wsystems" required required-message="'required'"></select>
+                                <input type="hidden" name="WSystemId" ng-value="production.WSystemId" required required-message="'required'"/>
                             </div>
                             <div class="col-xs-4 col-sm-4 selectContainer">
                                 <label class="control-label">Select Water Type</label>
@@ -53,7 +53,7 @@
                             <label class="control-label">Start Time</label>
                             <p class="input-group">
                                 <input id="date_picker" name="date_picker" type="text" class="form-control" ng-model="production.DateCreated"
-                                       readonly validate-on="blur" required required-message="'required'" />
+                                        validate-on="blur" required required-message="'required'" />
                                 <span class="input-group-btn">
                                     <button type="button" id="btndatetime1" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
@@ -64,7 +64,7 @@
                             <label class="control-label">End Time</label>
                             <p class="input-group">
                                 <input id="date_picker2" name="date_picker2" type="text" class="form-control" ng-model="production.DayToRecord"
-                                       readonly validate-on="blur" required required-message="'required'" />
+                                        validate-on="blur" required required-message="'required'" />
                                 <span class="input-group-btn">
                                     <button type="button" id="btndatetime2" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>

@@ -57,7 +57,6 @@
                 var filePath = $(this).val();
                 //$scope.fileName = filePath;
                 $scope.production.filePath = filePath;
-                //alert('The file "' + $scope.production.filePath + '" has been selected.');
             });
         }
         

@@ -17,6 +17,27 @@ namespace GwcltdApp.Web.DAL
                 return context.WSystemSet.OrderBy(x => x.GwclStationId).ToList();
             }
         }
+        public static List<ExcelCell> GetCells()//change code to get systems from the logged in user's station
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.ExcelCellSet.ToList();
+            }
+        }
+        public static int GetOptionIdByName(string oname)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.OptionSet.Where(s => s.Name == oname).Select(s => s.ID).Single();
+            }
+        }
+        public static int GetOptionTypeIdByName(string otname)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.OptionTypeSet.Where(s => s.Name == otname).Select(s => s.ID).Single();
+            }
+        }
         public static List<WSystem> GetAllUserSystems(int userstation)//change code to get systems from the logged in user's station
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
@@ -30,6 +51,13 @@ namespace GwcltdApp.Web.DAL
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
                 return context.WSystemSet.Where(x => x.Code == code).Select(x => x.Name).Single();
+            }
+        }
+        public static string GetSystemCode(int id)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.WSystemSet.Where(x => x.ID == id).Select(x => x.Code).Single();
             }
         }
 

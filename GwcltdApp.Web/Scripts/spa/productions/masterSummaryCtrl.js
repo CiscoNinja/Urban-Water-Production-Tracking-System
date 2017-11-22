@@ -15,7 +15,7 @@
 
         function loadListOptions() {
             yearList.push({ name: "All", optio: 1000 })
-            for (var i = 2016 ; i < 2050; i++) {
+            for (var i = 2012 ; i < 2050; i++) {
                 yearList.push({ name: i, optio: i })
             }
             $scope.yearOptions = yearList;
