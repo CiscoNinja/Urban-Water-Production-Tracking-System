@@ -17,13 +17,6 @@ namespace GwcltdApp.Web.DAL
                 return context.WSystemSet.OrderBy(x => x.GwclStationId).ToList();
             }
         }
-        public static List<ExcelCell> GetCells()//change code to get systems from the logged in user's station
-        {
-            using (GwcltdAppContext context = new GwcltdAppContext())
-            {
-                return context.ExcelCellSet.ToList();
-            }
-        }
         public static int GetOptionIdByName(string oname)
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
