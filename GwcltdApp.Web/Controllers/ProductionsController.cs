@@ -81,7 +81,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 10);
                                 var novTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 12);
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -109,7 +109,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 10);
                                 var novTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 12);
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -136,7 +136,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 10);
                                 var novTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 12);
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -163,7 +163,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getPlantCap(item.Code, listOption, 10, item.Code);
                                 var novTotal = SummaryManager.getPlantCap(item.Code, listOption, 11, item.Code);
                                 var decTotal = SummaryManager.getPlantCap(item.Code, listOption, 12, item.Code);
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -198,7 +198,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  10, "Treated Water");
                                 var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Treated Water");
                                 var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Treated Water");
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -225,7 +225,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  10, "Raw Water");
                                 var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Raw Water");
                                 var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Raw Water");
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -276,7 +276,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 10);
                                 var novTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.PlantLoss_metre(item.Code, listOption, 12);
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal,
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal,
                                     july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
@@ -304,7 +304,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 10);
                                 var novTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.PlantLoss_percent(item.Code, listOption, 12);
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -331,7 +331,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 10);
                                 var novTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 11);
                                 var decTotal = SummaryManager.getDailyAverageSingle(item.Code, listOption, 12);
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -357,7 +357,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getPlantCap(item.Code, listOption, 10, item.Code);
                                 var novTotal = SummaryManager.getPlantCap(item.Code, listOption, 11, item.Code);
                                 var decTotal = SummaryManager.getPlantCap(item.Code, listOption, 12, item.Code);
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -391,7 +391,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  10, "Treated Water");
                                 var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Treated Water");
                                 var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Treated Water");
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;
@@ -418,7 +418,7 @@ namespace GwcltdApp.Web.Controllers
                                 var octTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  10, "Raw Water");
                                 var novTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  11, "Raw Water");
                                 var decTotal = SummaryManager.getWaterTableSingle(item.Code, listOption,  12, "Raw Water");
-                                graph.Add(item.Code + " (" + item.Name + ")", janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
+                                graph.Add(item.Name, janTotal, febTotal, marchTotal, aprilTotal, mayTotal, juneTotal, july7Total, augTotal, septTotal, octTotal, novTotal, decTotal);
                                 m1Total += janTotal; m2Total += febTotal; m3Total += marchTotal; m4Total += aprilTotal; m5Total += mayTotal;
                                 m6Total += juneTotal; m7Total += july7Total; m8Total += augTotal; m9Total += septTotal; m10Total += octTotal;
                                 m11Total += novTotal; m12Total += decTotal;

@@ -220,8 +220,8 @@ namespace GwcltdApp.Web.Controllers
             Excel.Worksheet xlWorkSheet;
             var graph = new MyDictionary();
 
-            //graph.Add("Raw Water 1", "Raw Water", new string[] { "E6", "AI6", "E19", "AG19", "E32", "AI32", "E45",
-            //        "AH45", "E58", "AI58", "E71", "AH71", "E84", "AI84", "E97", "AI97", "E110", "AH110", "E123", "AI123", "E136", "AH136", "E149", "AI149"});
+            graph.Add("Raw Water 1", "Raw Water", new string[] { "E6", "AI6", "E19", "AG19", "E32", "AI32", "E45",
+                    "AH45", "E58", "AI58", "E71", "AH71", "E84", "AI84", "E97", "AI97", "E110", "AH110", "E123", "AI123", "E136", "AH136", "E149", "AI149"});
             graph.Add("Raw Water 2", "Raw Water", new string[] { "E7", "AI7", "E20", "AG20", "E33", "AI33", "E46",
                     "AH46", "E59", "AI59", "E72", "AH72", "E85", "AI85", "E98", "AI98", "E111", "AH111", "E124", "AI124", "E137", "AH137", "E150", "AI150"});
             graph.Add("Raw Water 3", "Raw Water", new string[] { "E8", "AI8", "E21", "AG21", "E34", "AI34", "E47",
@@ -229,8 +229,8 @@ namespace GwcltdApp.Web.Controllers
             graph.Add("Raw Water 4", "Raw Water", new string[] { "E9", "AI9", "E22", "AG22", "E35", "AI35", "E48",
                     "AH48", "E61", "AI61", "E74", "AH74", "E87", "AI87", "E100", "AI100", "E113", "AH113", "E126", "AI126", "E139", "AH139", "E152", "AI152"});
 
-            //graph.Add("Treated Water 1", "Treated Water", new string[] { "E12", "AI12", "E25", "AG25", "E38", "AI38",
-            //        "E51", "AH51", "E64", "AI64", "E77", "AH77","E90", "AI90", "E103", "AI103", "E116", "AH116", "E129", "AI129", "E142", "AH142", "E155", "AI155" });
+            graph.Add("Treated Water 1", "Treated Water", new string[] { "E12", "AI12", "E25", "AG25", "E38", "AI38",
+                    "E51", "AH51", "E64", "AI64", "E77", "AH77","E90", "AI90", "E103", "AI103", "E116", "AH116", "E129", "AI129", "E142", "AH142", "E155", "AI155" });
             graph.Add("Treated Water 2", "Treated Water", new string[] { "E13", "AI13", "E26", "AG26", "E39", "AI39",
                     "E52", "AH52", "E65", "AI65", "E78", "AH78","E91", "AI91", "E104", "AI104", "E117", "AH117", "E130", "AI130", "E143", "AH143", "E156", "AI156" });
             graph.Add("Treated Water 3", "Treated Water", new string[] { "E14", "AI14", "E27", "AG27", "E40", "AI40",
