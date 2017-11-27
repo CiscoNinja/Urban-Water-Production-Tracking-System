@@ -10,9 +10,9 @@
         <div class="col-xs-8 personal-info">
             <div class="alert alert-info">
                 <i class="fa fa-bell"></i>
-                Select Only the <strong>excel file </strong>,<strong>Production Date </strong>, the <strong>System</strong> and the <strong>Station</strong>
-                <p><strong>NOTE:</strong> Dates Selected should have their years equal to the year on the excel file selected</p>
-                <strong>Entry Date</strong> field can be left unchanged
+                Select Only the <strong>excel file </strong>, the <strong>Station</strong>,<strong> Production Date </strong> and the <strong>System</strong>
+                <p><strong>NOTE:</strong>Production Date Selected should have their years equal to the year on the excel file selected</p>
+                <strong>Entry Date</strong> field and other fields not mentioned above can be left unchanged
             </div>
             <form class="form-horizontal" role="form" novalidate angular-validator name="addProductionForm" angular-validator-submit="AddProduction()">
                 <div class="form-group">
@@ -27,19 +27,27 @@
                     </div>
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 selectContainer">
-                                <label class="control-label">Select System</label>
-                                <select ng-model="production.WSystemId" class="form-control black" ng-options="wsystem.ID as wsystem.Name for wsystem in wsystems" required required-message="'required'"></select>
-                                <input type="hidden" name="WSystemId" ng-value="production.WSystemId" required required-message="'required'"/>
+                                <label class="control-label">Select Station</label>
+                                <select ng-model="production.GwclStationId" class="form-control black" ng-options="station.ID as station.Name for station in stations" required></select>
+                                <input type="hidden" name="GwclStationId" ng-value="production.GwclStationId" />
                             </div>
-                            <div class="col-xs-4 col-sm-4 selectContainer">
-                                <label class="control-label">Select Water Type</label>
-                                <select ng-model="production.OptionId" class="form-control black" ng-options="option.ID as option.Name for option in options" required></select>
-                                <input type="hidden" name="OptionId" ng-value="production.OptionId" />
+                            <div class="col-xs-4">
+                                <label class="control-label">Production Date</label>
+                                <p class="input-group">
+                                    <input type="text" class="form-control" name="dtRecord" datepicker-popup="{{format}}" ng-model="production.DayToRecord" is-open="datepicker.dtRecord" datepicker-options="dateOptions" datepicker-append-to-body="true" close-text="Close" placeholder="select year to record" readonly />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="openDatePicker($event,'dtRecord')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
                             </div>
-                            <div class="col-xs-4 col-sm-4 selectContainer">
-                                <label class="control-label">Select Type</label>
-                                <select ng-model="production.OptionTypeId" class="form-control black" ng-options="optiontype.ID as optiontype.Name for optiontype in optiontypes" required></select>
-                                <input type="hidden" name="OptionTypeId" ng-value="production.OptionTypeId" />
+                            <div class="col-xs-4">
+                                <label class="control-label">Entry Date</label>
+                                <p class="input-group">
+                                    <input type="text" class="form-control" name="todayDate" datepicker-popup="{{format}}" ng-model="production.DateCreated" is-open="datepicker.todayDate" datepicker-options="dateOptions" datepicker-append-to-body="true" close-text="Close" placeholder="select year to record" readonly />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 'todayDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -47,28 +55,19 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 selectContainer">
-                            <label class="control-label">Select Station</label>
-                            <select ng-model="production.GwclStationId" class="form-control black" ng-options="station.ID as station.Name for station in stations" required></select>
-                            <input type="hidden" name="GwclStationId" ng-value="production.GwclStationId" />
+                            <label class="control-label">Select System</label>
+                            <select ng-model="production.WSystemId" class="form-control black" ng-options="wsystem.ID as wsystem.Name for wsystem in wsystems" required required-message="'required'"></select>
+                            <input type="hidden" name="WSystemId" ng-value="production.WSystemId" required required-message="'required'" />
                         </div>
-                        <div class="col-xs-4">
-                            <label class="control-label">Entry Date</label>
-                            <p class="input-group">
-                                <input type="text" class="form-control" name="todayDate" datepicker-popup="{{format}}" ng-model="production.DateCreated" is-open="datepicker.todayDate" datepicker-options="dateOptions" datepicker-append-to-body="true" close-text="Close" placeholder="select year to record" readonly/>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 'todayDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                                </span>
-                            </p>
+                        <div class="col-xs-4 col-sm-4 selectContainer">
+                            <label class="control-label">Select Water Type</label>
+                            <select ng-model="production.OptionId" class="form-control black" ng-options="option.ID as option.Name for option in options" required disabled></select>
+                            <input type="hidden" name="OptionId" ng-value="production.OptionId" />
                         </div>
-
-                        <div class="col-xs-4">
-                            <label class="control-label">Production Date</label>
-                            <p class="input-group">
-                                <input type="text" class="form-control" name="dtRecord" datepicker-popup="{{format}}" ng-model="production.DayToRecord" is-open="datepicker.dtRecord" datepicker-options="dateOptions" datepicker-append-to-body="true" close-text="Close" placeholder="select year to record" readonly/>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event,'dtRecord')"><i class="glyphicon glyphicon-calendar"></i></button>
-                                </span>
-                            </p>
+                        <div class="col-xs-4 col-sm-4 selectContainer">
+                            <label class="control-label">Select Type</label>
+                            <select ng-model="production.OptionTypeId" class="form-control black" ng-options="optiontype.ID as optiontype.Name for optiontype in optiontypes" required disabled></select>
+                            <input type="hidden" name="OptionTypeId" ng-value="production.OptionTypeId" />
                         </div>
                     </div>
                 </div>
@@ -99,7 +98,7 @@
                         <div class="col-xs-4">
                             <label class="control-label">Total Flow</label>(m&sup3)
                             <input class="form-control" type="number" ng-model="production.TFPD" name="tfpd"
-                                   validate-on="blur" required required-message="'required'">
+                                   validate-on="blur" required required-message="'required'" readonly>
                         </div>
                         <div class="col-xs-4">
                             <label class="control-label">Negative Flow</label>(m&sup3)
