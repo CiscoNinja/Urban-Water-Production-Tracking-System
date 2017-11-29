@@ -81,7 +81,7 @@
             closeModals();
             Idle.unwatch();
             $scope.started = false;
-            //$scope.userData.displayUserInfo();
+            $scope.userData.displayUserInfo();
         }
 
         $scope.userData.displayUserInfo();
