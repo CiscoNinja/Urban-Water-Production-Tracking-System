@@ -200,6 +200,8 @@
     <Content Include="Logging\AutoAudit 3.30a.sql" />
     <Content Include="Scripts\spa\account\registerCtrl.js" />
     <Content Include="Scripts\spa\account\register.html" />
+    <Content Include="Scripts\spa\home\timedout-dialog.html" />
+    <Content Include="Scripts\spa\home\warning-dialog.html" />
     <Content Include="Scripts\spa\app.js" />
     <Content Include="Scripts\spa\account\loginCtrl.js" />
     <Content Include="Scripts\spa\downtimes\add.html" />
@@ -285,6 +287,7 @@
     <Content Include="Scripts\vendors\angular-base64.js" />
     <Content Include="Scripts\vendors\angular-cookies.js" />
     <Content Include="Scripts\vendors\angular-file-upload.js" />
+    <Content Include="Scripts\vendors\angular-idle.min.js" />
     <Content Include="Scripts\vendors\angular-validator.js" />
     <Content Include="Scripts\vendors\jquery-ui-timepicker-addon.min.js" />
     <Content Include="Scripts\vendors\jquery.fancybox-media.js" />

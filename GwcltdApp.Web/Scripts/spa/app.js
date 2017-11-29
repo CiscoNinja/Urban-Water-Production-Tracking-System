@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('gwcltdApp', ['common.core', 'common.ui'])
+    angular.module('gwcltdApp', ['common.core', 'common.ui','ngIdle', 'ui.bootstrap'])
         .config(config)
         .run(run);
 

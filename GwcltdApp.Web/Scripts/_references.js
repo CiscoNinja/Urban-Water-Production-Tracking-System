@@ -50,6 +50,7 @@
 /// <reference path="vendors/angular-base64.js" />
 /// <reference path="vendors/angular-cookies.js" />
 /// <reference path="vendors/angular-file-upload.js" />
+/// <reference path="vendors/angular-idle.min.js" />
 /// <reference path="vendors/angular-route.js" />
 /// <reference path="vendors/angular-validator.js" />
 /// <reference path="vendors/bootstrap.js" />

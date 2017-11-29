@@ -53,10 +53,6 @@
                 hideHover: "auto",
                 resize: 'true'
             });
-            //.on('click', function (i, row) {
-            //    $location.path('/genres/' + row.ID);
-            //    $scope.$apply();
-            //});
 
             $scope.loadingSummary = false;
         }

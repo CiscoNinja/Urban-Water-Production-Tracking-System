@@ -23,6 +23,7 @@ namespace GwcltdApp.Web.App_Start
                  "~/Scripts/Vendors/respond.src.js",
                  "~/Scripts/Vendors/angular.js",
                  "~/Scripts/Vendors/angular-route.js",
+                 "~/Scripts/Vendors/angular-idle.min.js",
                  "~/Scripts/Vendors/angular-cookies.js",
                  "~/Scripts/Vendors/angular-validator.js",
                  "~/Scripts/Vendors/angular-base64.js",
