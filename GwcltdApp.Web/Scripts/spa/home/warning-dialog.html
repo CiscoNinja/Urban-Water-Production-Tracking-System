@@ -1,6 +1,13 @@
-﻿<div class="modal-header">
-    <h3>You're Idle. Do Something!</h3>
-</div>
-<div idle-countdown="countdown" ng-init="countdown=5" class="modal-body">
-    <uib-progressbar max="5" value="5" animate="false" class="progress-striped active">You'll be logged out in {{countdown}} second(s).</uib-progressbar>
+﻿<div ng-app="gwcltdApp">
+    <div class="modal-header">
+        <h3>Your Session will expire in {{countdown}}. Click to resume!</h3>
+    </div>
+    <div idle-countdown="countdown" ng-init="countdown=30" class="modal-body">
+        <progressbar max="30" value="30" animate="false" class="progress-striped active">You'll be logged out in {{countdown}} second(s).</progressbar>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="nav pull-right" style="display:flex; align-items:center">
+            <p><a class="btn btn-info">Resume</a></p>
+        </div>
+    </div>
 </div>

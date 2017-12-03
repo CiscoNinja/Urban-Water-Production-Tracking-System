@@ -3,8 +3,8 @@
 
     app.controller('rootCtrl', rootCtrl);
 
-    rootCtrl.$inject = ['$scope', '$location', 'membershipService', '$rootScope', 'Idle', 'Keepalive', '$modal'];
-    function rootCtrl($scope, $location, membershipService, $rootScope, Idle, Keepalive, $modal) {
+    rootCtrl.$inject = ['$scope', '$location', 'membershipService', '$rootScope', 'Idle', 'Keepalive', '$modal', '$modalStack'];
+    function rootCtrl($scope, $location, membershipService, $rootScope, Idle, Keepalive, $modal, $modalStack) {
 
         $scope.userData = {};
         $scope.userSystems = {};
@@ -57,6 +57,12 @@
             });
             logout();
         });
+
+        $(document).on('click', '.closebtn', function (event) {
+            event.preventDefault();
+            $modalStack.dismissAll(event);
+        });
+
         function displayUserInfo() {
             $scope.userData.isUserLoggedIn = membershipService.isUserLoggedIn();
             
@@ -88,7 +94,5 @@
     }
 
 })(angular.module('gwcltdApp').config(['KeepaliveProvider', 'IdleProvider', function (KeepaliveProvider, IdleProvider) {
-    IdleProvider.idle(5);
-    IdleProvider.timeout(5);
-    KeepaliveProvider.interval(10);
+    
 }]));
