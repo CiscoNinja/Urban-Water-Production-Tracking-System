@@ -15,7 +15,7 @@
 <body ng-controller="rootCtrl">
     <top-bar></top-bar>
     <div class="row-offcanvas row-offcanvas-left">
-        <side-bar></side-bar>
+        <side-bar ng-if="showSidebar()"></side-bar>
         <div id="main">
             <div class="col-md-12">
                 <p class="visible-xs">

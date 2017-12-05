@@ -3,8 +3,16 @@
 
     app.controller('rootCtrl', rootCtrl);
 
-    rootCtrl.$inject = ['$scope', '$location', 'membershipService', '$rootScope', 'Idle', 'Keepalive', '$modal', '$modalStack'];
-    function rootCtrl($scope, $location, membershipService, $rootScope, Idle, Keepalive, $modal, $modalStack) {
+    rootCtrl.$inject = ['$scope', '$location', 'membershipService', '$rootScope', '$window', 'Idle', 'Keepalive', '$modal', '$modalStack'];
+    function rootCtrl($scope, $location, membershipService, $rootScope, $window, Idle, Keepalive, $modal, $modalStack) {
+
+        $scope.showSidebar = function () {
+            if ($window.location.hash == '#/login') {
+                return false;
+            } else {
+                return true;
+            }
+        };
 
         $scope.userData = {};
         $scope.userSystems = {};
