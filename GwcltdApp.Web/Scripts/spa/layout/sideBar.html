@@ -1,9 +1,9 @@
-﻿<div id="sidebar" class="sidebar-offcanvas">
+﻿<div id="sidebar" class="sidebar-offcanvas"  style="border-right: solid thin #337ab7">
     <div class="col-md-12">
         <h3></h3>
         <ul class="nav nav-pills nav-stacked">
             <li class=""><a ng-href="#/">Home<i class="fa fa-home fa-fw pull-right"></i></a></li>
-            <li><a ng-href="#/productions/masterSummary/home">Master Summary<i class="fa fa-file-excel-o fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser"><a ng-href="#/productions/masterSummary/home">Master Summary<i class="fa fa-file-excel-o fa-fw pull-right"></i></a></li>
             <li><a ng-href="#/productions/masterTables/home">Master Tables<i class="fa fa-table fa-fw pull-right"></i></a></li>
             <li><a ng-href="#/productions/masterCharts/home">Master Charts<i class="fa fa-line-chart fa-fw pull-right"></i></a></li>
             <li class="nav-divider"></li>
@@ -16,26 +16,26 @@
             <li><a ng-href="#/downtimes/">Plant Downtime<i class="fa fa-archive fa-fw pull-right"></i></a></li>
             <li><a ng-href="#/downtimes/add">Record Downtime<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
             <li class="nav-divider"></li>
-            <li><a ng-href="#/gwclareas/">Areas<i class="fa fa-archive fa-fw pull-right"></i></a></li>
-            <li><a ng-href="#/gwclareas/add">Add Area<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
-            <li class="nav-divider"></li>
-            <li><a ng-href="#/gwclregions/">Regions<i class="fa fa-archive fa-fw pull-right"></i></a></li>
-            <li><a ng-href="#/gwclregions/add">Add Region<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
-            <li class="nav-divider"></li>
-            <li><a ng-href="#/gwclstations/">Stations<i class="fa fa-archive fa-fw pull-right"></i></a></li>
-            <li><a ng-href="#/gwclstations/add">Add Station<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
-            <li class="nav-divider"></li>
-            <li><a ng-href="#/gwclsystems/">Water Systems<i class="fa fa-archive fa-fw pull-right"></i></a></li>
-            <li><a ng-href="#/gwclsystems/add">Add System<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
-            <li class="nav-divider"></li>
-            <li><a ng-href="#/gwcloptions/">Water Types<i class="fa fa-archive fa-fw pull-right"></i></a></li>
-            <li><a ng-href="#/gwcloptions/add">Add Water Type<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
-            <li class="nav-divider"></li>
-            <li><a ng-href="#/gwclotypes/">Type Options<i class="fa fa-archive fa-fw pull-right"></i></a></li>
-            <li><a ng-href="#/gwclotypes/add">Add Option<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>            
-            <li class="nav-divider"></li>
-            <li><a ng-href="#/register/">New User<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
-            <li class="nav-divider"></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclareas/">Areas<i class="fa fa-archive fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclareas/add">Add Area<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser" class="nav-divider"></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclregions/">Regions<i class="fa fa-archive fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclregions/add">Add Region<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser" class="nav-divider"></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclstations/">Stations<i class="fa fa-archive fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclstations/add">Add Station<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser" class="nav-divider"></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclsystems/">Water Systems<i class="fa fa-archive fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclsystems/add">Add System<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser" class="nav-divider"></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwcloptions/">Water Types<i class="fa fa-archive fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwcloptions/add">Add Water Type<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser" class="nav-divider"></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclotypes/">Type Options<i class="fa fa-archive fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser"><a ng-href="#/gwclotypes/add">Add Option<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>            
+            <li ng-if="isSuperUser" class="nav-divider"></li>
+            <li ng-if="isSuperUser"><a ng-href="#/register/">New User<i class="fa fa-plus-circle fa-fw pull-right"></i></a></li>
+            <li ng-if="isSuperUser" class="nav-divider"></li>
             <!--<li><a ng-href="#/login" ng-if="!userData.isUserLoggedIn">Login<i class="fa fa-sign-in fa-fw pull-right"></i></a></li>
             <li><button type="button" class="btn btn-danger btn-sm" ng-click="logout();" ng-if="userData.isUserLoggedIn">Logout<i class="fa fa-sign-out fa-fw pull-right"></i></button></li>-->
         </ul>

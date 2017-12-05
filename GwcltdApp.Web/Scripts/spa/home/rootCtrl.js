@@ -85,6 +85,12 @@
                 closeModals();
                 Idle.watch();
                 $scope.started = true;
+                if ($scope.username == 'GWCLtd@Admin') {
+                    $scope.isSuperUser = true;
+                } else {
+                    $scope.isSuperUser = false;
+                }
+                
                 // save all user parameters here
             }
         }
