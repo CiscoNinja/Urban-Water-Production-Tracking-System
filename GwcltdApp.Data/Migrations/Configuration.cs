@@ -26,20 +26,7 @@ namespace GwcltdApp.Data.Migrations
             //context.RoleSet.AddOrUpdate(r => r.Name, GenerateRoles());
             //create productions
             //context.ProductionSet.AddOrUpdate(GenerateProductions());
-
-            // username: chsakell, password: homecinema
-            //context.UserSet.AddOrUpdate(u => u.Email, new User[]{
-            //    new User()
-            //    {
-            //        Email="chsakells.blog@gmail.com",
-            //        Username="chsakell",
-            //        HashedPassword ="XwAQoiq84p1RUzhAyPfaMDKVgSwnn80NCtsE8dNv3XI=",
-            //        Salt = "mNKLRbEFCH8y1xIyTXP4qA==",
-            //        IsLocked = false,
-            //        DateCreated = DateTime.Now,
-            //        GwclRegionID = 1
-            //    }
-            //});
+            
 
             //username: ciscomaria5, password: 3GoDsinone
             //context.UserSet.AddOrUpdate(u => u.Email, new User[]{
