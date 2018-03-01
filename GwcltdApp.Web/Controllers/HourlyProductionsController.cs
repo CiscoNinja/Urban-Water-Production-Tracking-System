@@ -30,6 +30,8 @@ namespace GwcltdApp.Web.Controllers
     {
         private readonly IEntityBaseRepository<HourlyProduction> _hrlyproductionsRepository;
         private readonly IEntityBaseRepository<Production> _newproductionsRepository;
+        private readonly IEntityBaseRepository<WSystem> _wsystemRepository;
+        private readonly IEntityBaseRepository<SystemProduction> _systemproductionRepository;
 
         public struct EccellCells
         {
@@ -52,9 +54,13 @@ namespace GwcltdApp.Web.Controllers
 
         public HourlyProductionsController(IEntityBaseRepository<HourlyProduction> hrlyproductionsRepository,
             IEntityBaseRepository<Production> newproductionsRepository,
+            IEntityBaseRepository<WSystem> wsystemRepository,
+            IEntityBaseRepository<SystemProduction> systemproductionRepository,
             IEntityBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
             : base(_errorsRepository, _unitOfWork)
         {
+            _wsystemRepository = wsystemRepository;
+            _systemproductionRepository = systemproductionRepository;
             _hrlyproductionsRepository = hrlyproductionsRepository;
             _newproductionsRepository = newproductionsRepository;
         }
@@ -179,36 +185,64 @@ namespace GwcltdApp.Web.Controllers
                 }
                 else
                 {
-                    HourlyProduction newhrlyProduction = new HourlyProduction();
-                    newhrlyProduction.UpdateHrlyProduction(hrlyproduction);
-
-
-                    _hrlyproductionsRepository.Add(newhrlyProduction);
-
-                    _unitOfWork.Commit();
-
-                    DateTime firstHour = Convert.ToDateTime("1/1/2017 1:00:00 AM");
-                    if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
+                    if (_hrlyproductionsRepository.ProductionExists(hrlyproduction.DayToRecord, hrlyproduction.WSystemId,
+                        hrlyproduction.OptionId, hrlyproduction.OptionTypeId, hrlyproduction.GwclStationId, hrlyproduction.DailyActual))
                     {
-                        Production newproduction = new Production();
-                        var currenttotal = hrlyproduction.TFPD;
-                        var prviousdate = hrlyproduction.DayToRecord.AddDays(-1);
-                        var dayActual = SummaryManager.DailyActual(currenttotal, prviousdate, hrlyproduction.WSystemId, hrlyproduction.OptionId);
-                        hrlyproduction.DailyActual = dayActual;
-                        newproduction.UpdateProduction(hrlyproduction);
+                        ModelState.AddModelError("Invalid production", "Record already exists");
+                        response = request.CreateResponse(HttpStatusCode.BadRequest,
+                        ModelState.Keys.SelectMany(k => ModelState[k].Errors)
+                              .Select(m => m.ErrorMessage).ToArray());
+                    }
+                    else
+                    {
+                        HourlyProduction newhrlyProduction = new HourlyProduction();
+                        newhrlyProduction.UpdateHrlyProduction(hrlyproduction);
 
-                        _newproductionsRepository.Add(newproduction);
+
+                        _hrlyproductionsRepository.Add(newhrlyProduction);
 
                         _unitOfWork.Commit();
+
+                        addProductioToSystem(newhrlyProduction, hrlyproduction.WSystemId);
+
+                        _unitOfWork.Commit();
+
+                        DateTime firstHour = Convert.ToDateTime("1/1/2017 1:00:00 AM");
+                        if (Convert.ToDateTime(hrlyproduction.DayToRecord).Hour.Equals(firstHour.Hour))
+                        {
+                            Production newproduction = new Production();
+                            var currenttotal = hrlyproduction.TFPD;
+                            var prviousdate = hrlyproduction.DayToRecord.AddDays(-1);
+                            var dayActual = SummaryManager.DailyActual(currenttotal, prviousdate, hrlyproduction.WSystemId, hrlyproduction.OptionId);
+                            hrlyproduction.DailyActual = dayActual;
+                            newproduction.UpdateProduction(hrlyproduction);
+
+                            _newproductionsRepository.Add(newproduction);
+
+                            _unitOfWork.Commit();
+                        }
+
+                        // Update view model
+                        hrlyproduction = Mapper.Map<HourlyProduction, ProductionViewModel>(newhrlyProduction);
+                        response = request.CreateResponse<ProductionViewModel>(HttpStatusCode.Created, hrlyproduction);
                     }
-
-                    // Update view model
-                    hrlyproduction = Mapper.Map<HourlyProduction, ProductionViewModel>(newhrlyProduction);
-                    response = request.CreateResponse<ProductionViewModel>(HttpStatusCode.Created, hrlyproduction);
                 }
-
                 return response;
             });
+        }
+
+        private void addProductioToSystem(HourlyProduction thishourprod, int systemId)
+        {
+            var gwclsystem = _wsystemRepository.GetSingle(systemId);
+            if (gwclsystem == null)
+                throw new ApplicationException("system doesn't exist.");
+
+            var systemProduction = new SystemProduction()
+            {
+                ProductionId = thishourprod.ID,
+                WSystemId = gwclsystem.ID
+            };
+            _systemproductionRepository.Add(systemProduction);
         }
 
         [HttpPost]
@@ -326,6 +360,10 @@ namespace GwcltdApp.Web.Controllers
                                 _hrlyproductionsRepository.Add(newhrlyProduction);
 
                                 _unitOfWork.Commit();
+
+                                addProductioToSystem(newhrlyProduction, hrlyproduction.WSystemId);
+
+                                _unitOfWork.Commit();
                                 }
                                 rday++;
                             }
@@ -379,6 +417,10 @@ namespace GwcltdApp.Web.Controllers
 
                                     _newproductionsRepository.Add(newproduction);
                                     _hrlyproductionsRepository.Add(newhrlyProduction);
+
+                                    _unitOfWork.Commit();
+
+                                    addProductioToSystem(newhrlyProduction, hrlyproduction.WSystemId);
 
                                     _unitOfWork.Commit();
                                 }

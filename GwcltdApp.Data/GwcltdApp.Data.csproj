@@ -75,7 +75,9 @@
     <Compile Include="Configurations\UserConfiguration.cs" />
     <Compile Include="Configurations\WSystemPlantDowntimeConfiguration.cs" />
     <Compile Include="Extensions\GwclAreaExtensions.cs" />
+    <Compile Include="Extensions\GwclDowntimeExtensions.cs" />
     <Compile Include="Extensions\GwclOptionExtensions.cs" />
+    <Compile Include="Extensions\GwclProductionExtensions.cs" />
     <Compile Include="Extensions\GwclRegionExtensions.cs" />
     <Compile Include="Extensions\GwclStationExtensions.cs" />
     <Compile Include="Extensions\GwclSystemExtensions.cs" />
@@ -87,13 +89,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />
-    <Compile Include="Migrations\201705171225080_initial_migration.cs" />
-    <Compile Include="Migrations\201705171225080_initial_migration.Designer.cs">
-      <DependentUpon>201705171225080_initial_migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707201211403_initial-migration.cs" />
-    <Compile Include="Migrations\201707201211403_initial-migration.Designer.cs">
-      <DependentUpon>201707201211403_initial-migration.cs</DependentUpon>
+    <Compile Include="Migrations\201802202247365_initial_migration.cs" />
+    <Compile Include="Migrations\201802202247365_initial_migration.Designer.cs">
+      <DependentUpon>201802202247365_initial_migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,11 +113,8 @@
     <Content Include="uk\MockData.resources.dll" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705171225080_initial_migration.resx">
-      <DependentUpon>201705171225080_initial_migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707201211403_initial-migration.resx">
-      <DependentUpon>201707201211403_initial-migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802202247365_initial_migration.resx">
+      <DependentUpon>201802202247365_initial_migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

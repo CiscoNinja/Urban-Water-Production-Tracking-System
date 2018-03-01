@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GwcltdApp.Data.Extensions;
 using GwcltdApp.Data.Infrastructure;
 using GwcltdApp.Data.Repositories;
 using GwcltdApp.Entities;
@@ -21,12 +22,18 @@ namespace GwcltdApp.Web.Controllers
     public class PlantDowntimeController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<PlantDowntime> _plantdowntimeRepository;
+        private readonly IEntityBaseRepository<WSystem> _wsystemRepository;
+        private readonly IEntityBaseRepository<WSystemPlantDowntime> _systemdowntimeRepository;
 
         public PlantDowntimeController(IEntityBaseRepository<PlantDowntime> plantdowntimeRepository,
+            IEntityBaseRepository<WSystem> wsystemRepository,
+            IEntityBaseRepository<WSystemPlantDowntime> systemdowntimeRepository,
              IEntityBaseRepository<Error> _errorsRepository, IUnitOfWork _unitOfWork)
             : base(_errorsRepository, _unitOfWork)
         {
             _plantdowntimeRepository = plantdowntimeRepository;
+            _wsystemRepository = wsystemRepository;
+            _systemdowntimeRepository = systemdowntimeRepository;
         }
 
         //[AllowAnonymous]
@@ -129,20 +136,49 @@ namespace GwcltdApp.Web.Controllers
                 }
                 else
                 {
-                    PlantDowntime newPlantDowntime = new PlantDowntime();
-                    newPlantDowntime.UpdatePlantDowntime(plantdowntime);
+                    if (_plantdowntimeRepository.DowntimeExists(plantdowntime.CurrentDate, plantdowntime.Starttime,
+                        plantdowntime.EndTime, plantdowntime.WSystemId, plantdowntime.HoursDown))
+                    {
+                        ModelState.AddModelError("Invalid downtime", "Record already exists");
+                        response = request.CreateResponse(HttpStatusCode.BadRequest,
+                        ModelState.Keys.SelectMany(k => ModelState[k].Errors)
+                              .Select(m => m.ErrorMessage).ToArray());
+                    }
+                    else
+                    {
+                        PlantDowntime newPlantDowntime = new PlantDowntime();
+                        newPlantDowntime.UpdatePlantDowntime(plantdowntime);
 
-                    _plantdowntimeRepository.Add(newPlantDowntime);
+                        _plantdowntimeRepository.Add(newPlantDowntime);
 
-                    _unitOfWork.Commit();
+                        _unitOfWork.Commit();
 
-                    // Update view model
-                    plantdowntime = Mapper.Map<PlantDowntime, PlantDowntimeViewModel>(newPlantDowntime);
-                    response = request.CreateResponse<PlantDowntimeViewModel>(HttpStatusCode.Created, plantdowntime);
+                        addDowntimeToSystem(newPlantDowntime, plantdowntime.WSystemId);
+
+                        _unitOfWork.Commit();
+
+                        // Update view model
+                        plantdowntime = Mapper.Map<PlantDowntime, PlantDowntimeViewModel>(newPlantDowntime);
+                        response = request.CreateResponse<PlantDowntimeViewModel>(HttpStatusCode.Created, plantdowntime);
+                    }
                 }
 
                 return response;
             });
+        }
+
+        private void addDowntimeToSystem(PlantDowntime downtime, int systemId)
+        {
+            var gwclsystem = _wsystemRepository.GetSingle(systemId);
+            if (gwclsystem == null)
+                throw new ApplicationException("system doesn't exist.");
+
+            var systemDowntime = new WSystemPlantDowntime()
+            {
+                PlantDowntimeId = downtime.ID,
+                WSystemId = gwclsystem.ID
+            };
+            _systemdowntimeRepository.Add(systemDowntime);
         }
 
         [HttpPost]
