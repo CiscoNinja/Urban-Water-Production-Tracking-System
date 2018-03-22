@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace GwcltdApp.Entities
 {
-    /// <summary>
-    /// GwcltdApp Rental Info
-    /// </summary>
     public class Production : IEntityBase
     {
         public int ID { get; set; }

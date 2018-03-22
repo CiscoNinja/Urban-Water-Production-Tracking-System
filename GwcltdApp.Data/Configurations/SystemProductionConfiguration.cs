@@ -11,7 +11,7 @@ namespace GwcltdApp.Data.Configurations
     {
         public SystemProductionConfiguration()
         {
-            Property(sp => sp.ProductionId).IsRequired();
+            Property(sp => sp.HourlyProductionId).IsRequired();
             Property(sp => sp.WSystemId).IsRequired();
         }
     }

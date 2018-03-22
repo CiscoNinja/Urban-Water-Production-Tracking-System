@@ -153,9 +153,9 @@ namespace GwcltdApp.Web.Controllers
 
                         _unitOfWork.Commit();
 
-                        addDowntimeToSystem(newPlantDowntime, plantdowntime.WSystemId);
+                        //addDowntimeToSystem(newPlantDowntime, plantdowntime.WSystemId);
 
-                        _unitOfWork.Commit();
+                        //_unitOfWork.Commit();
 
                         // Update view model
                         plantdowntime = Mapper.Map<PlantDowntime, PlantDowntimeViewModel>(newPlantDowntime);

@@ -10,7 +10,7 @@ namespace GwcltdApp.Entities
     {
         public int ID { get; set; }
         public int WSystemId { get; set; }
-        public int ProductionId { get; set; }
-        public virtual Production Production { get; set; }
+        public int HourlyProductionId { get; set; }
+        public virtual HourlyProduction HourlyProduction { get; set; }
     }
 }

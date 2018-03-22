@@ -14,7 +14,21 @@ namespace GwcltdApp.Web.DAL
         {
             using (GwcltdAppContext context = new GwcltdAppContext())
             {
-                return context.WSystemSet.OrderBy(x => x.GwclStationId).ToList();
+                return context.WSystemSet.OrderBy(x => x.Code).ToList();
+            }
+        }
+        public static List<GwclStation> GetAllStations()
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.GwclStationSet.OrderBy(x => x.StationCode).ToList();
+            }
+        }
+        public static List<WSystem> GetSystemByStationId(int stationId)
+        {
+            using (GwcltdAppContext context = new GwcltdAppContext())
+            {
+                return context.WSystemSet.Where(x => x.GwclStationId == stationId).OrderBy(x => x.Code).ToList();
             }
         }
         public static int GetOptionIdByName(string oname)
