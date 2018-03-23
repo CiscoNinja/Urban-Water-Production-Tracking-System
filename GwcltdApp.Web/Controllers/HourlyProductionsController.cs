@@ -305,200 +305,195 @@ namespace GwcltdApp.Web.Controllers
                  * take each station (station == fileToProcess by Open() method)
                  * handle error for stations not found in selected folder
                 **/
-                DateTime startDate = new DateTime(2013, 1, 1);
-                DateTime stopDate = new DateTime(2016, 1, 1);
                 List<GwclStation> gwclstations = SummaryManager.GetAllStations();
-                for (var dt = startDate.Year; dt <= stopDate.Year; dt++)
+                foreach (var gstations in gwclstations)
                 {
+                    var xfilePath = @"C:\Users\Cisco\Desktop\GWCLUpload\DEC" + hrlyproduction.DayToRecord.Year + @"\" + gstations.StationCode + ".xls";
 
-                    foreach (var gstations in gwclstations)
+                    if (File.Exists(xfilePath))
                     {
-                        var xfilePath = @"C:\Users\Cisco\Desktop\GWCLUpload\DEC" + dt + @"\" + gstations.StationCode + ".xls";
+                        xlApp = new Excel.Application();
+                        xlWorkBook = xlApp.Workbooks.Open(@"C:\Users\Cisco\Desktop\GWCLUpload\DEC" + hrlyproduction.DayToRecord.Year + @"\" + gstations.StationCode + ".xls", 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
 
-                        if (File.Exists(xfilePath))
+                        /**
+                         * foreach system in selected station
+                         * scode == system code
+                         * get system codes from database
+                         * handle error for systems not found in selected file
+                         **/
+                        List<WSystem> gwclsystems = SummaryManager.GetSystemByStationId(gstations.ID);
+                        foreach (var gsystem in gwclsystems)
                         {
-                            xlApp = new Excel.Application();
-                            xlWorkBook = xlApp.Workbooks.Open(@"C:\Users\Cisco\Desktop\GWCLUpload\DEC" + dt + @"\" + gstations.StationCode + ".xls", 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                            var scode = gsystem.Code;
+                            var sheetExists = xlWorkBook.Worksheets.Cast<Excel.Worksheet>().FirstOrDefault(worksheet => worksheet.Name == scode.Substring(scode.LastIndexOf('-') + 1));
 
-                            /**
-                             * foreach system in selected station
-                             * scode == system code
-                             * get system codes from database
-                             * handle error for systems not found in selected file
-                             **/
-                            List<WSystem> gwclsystems = SummaryManager.GetSystemByStationId(gstations.ID);
-                            foreach (var gsystem in gwclsystems)
+                            if (sheetExists != null)
                             {
-                                var scode = gsystem.Code;
-                                var sheetExists = xlWorkBook.Worksheets.Cast<Excel.Worksheet>().FirstOrDefault(worksheet => worksheet.Name == scode.Substring(scode.LastIndexOf('-') + 1));
+                                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(scode.Substring(scode.LastIndexOf('-') + 1));
+                            //var cellLists = SummaryManager.GetCells();
 
-                                if (sheetExists != null)
+                            foreach (var list in graph)
+                            {
+                                optionName = list.option;
+                                typeName = list.OptionType;
+                                tableCells = list.cellList;
+
+                                int cmonth = 0;
+                                int rday;
+                                int tday;
+                                double rTFPD = 0;
+                                double tTFPD = 0;
+
+                                if (optionName.Equals("Raw Water"))
                                 {
-                                    xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(scode.Substring(scode.LastIndexOf('-') + 1));
-                                    //var cellLists = SummaryManager.GetCells();
-
-                                    foreach (var list in graph)
+                                    for (int valPos = 0; valPos < 24; valPos += 2)
                                     {
-                                        optionName = list.option;
-                                        typeName = list.OptionType;
-                                        tableCells = list.cellList;
+                                        rday = 1;
+                                        tday = 1;
+                                        cmonth++;
+                                        int nextpost = valPos + 1;
+                                        int numOfDays = DateTime.DaysInMonth(hrlyproduction.DayToRecord.Year, cmonth);
+                                        Excel.Range rRange = xlWorkSheet.Range[xlWorkSheet.Range[tableCells[valPos]], xlWorkSheet.Range[tableCells[nextpost]]];
+                                        //double rangeVal = rRange.Cells.Value2;
+                                        waterRecords = rRange.Value2;
 
-                                        int cmonth = 0;
-                                        int rday;
-                                        int tday;
-                                        double rTFPD = 0;
-                                        double tTFPD = 0;
-
-                                        if (optionName.Equals("Raw Water"))
+                                        for (int i = 1; i <= numOfDays; i++)
                                         {
-                                            for (int valPos = 0; valPos < 24; valPos += 2)
+                                            thisVal = waterRecords.GetValue(1, i);
+
+                                            if (thisVal != null)
                                             {
-                                                rday = 1;
-                                                tday = 1;
-                                                cmonth++;
-                                                int nextpost = valPos + 1;
-                                                int numOfDays = DateTime.DaysInMonth(dt, cmonth);
-                                                Excel.Range rRange = xlWorkSheet.Range[xlWorkSheet.Range[tableCells[valPos]], xlWorkSheet.Range[tableCells[nextpost]]];
-                                                //double rangeVal = rRange.Cells.Value2;
-                                                waterRecords = rRange.Value2;
-
-                                                for (int i = 1; i <= numOfDays; i++)
+                                                if (thisVal.GetType() == typeof(double))
                                                 {
-                                                    thisVal = waterRecords.GetValue(1, i);
+                                                    //!double.IsNaN(Convert.ToDouble(thisVal))
+                                                    //rTFPD += 0;
+                                                    //newViewModel.Comment = "No record found on excel";
+                                                    //newViewModel.DailyActual = 0;
+                                                    rTFPD += Convert.ToDouble(thisVal);
+                                                    newViewModel.Comment = hrlyproduction.Comment;
+                                                    newViewModel.DailyActual = Convert.ToDouble(thisVal);
 
-                                                    if (thisVal != null)
-                                                    {
-                                                        if (thisVal.GetType() == typeof(double))
-                                                        {
-                                                            //!double.IsNaN(Convert.ToDouble(thisVal))
-                                                            //rTFPD += 0;
-                                                            //newViewModel.Comment = "No record found on excel";
-                                                            //newViewModel.DailyActual = 0;
-                                                            rTFPD += Convert.ToDouble(thisVal);
-                                                            newViewModel.Comment = hrlyproduction.Comment;
-                                                            newViewModel.DailyActual = Convert.ToDouble(thisVal);
+                                                    newViewModel.DateCreated = Convert.ToDateTime((cmonth + "/" + rday + "/" + hrlyproduction.DayToRecord.Year + " 01:00 am").ToString());
+                                                    newViewModel.DayToRecord = Convert.ToDateTime((cmonth + "/" + rday + "/" + hrlyproduction.DayToRecord.Year + " 01:00 am").ToString());
+                                                    newViewModel.FRPH = hrlyproduction.FRPH;
+                                                    newViewModel.FRPS = hrlyproduction.FRPS;
+                                                    newViewModel.GwclStation = gstations.Name;
+                                                    newViewModel.GwclStationId = gstations.ID;
+                                                    newViewModel.LOG = hrlyproduction.LOG;
+                                                    newViewModel.NTFPD = hrlyproduction.NTFPD;
+                                                    newViewModel.Option = "Raw Water";
+                                                    newViewModel.OptionId = SummaryManager.GetOptionIdByName("Raw Water");
+                                                    newViewModel.OptionType = typeName;
+                                                    newViewModel.OptionTypeId = SummaryManager.GetOptionTypeIdByName(typeName);
+                                                    newViewModel.StationCode = gstations.StationCode;
+                                                    newViewModel.TFPD = rTFPD;
+                                                    newViewModel.WSystem = gsystem.Name;
+                                                    newViewModel.WSystemCode = gsystem.Code;
+                                                    newViewModel.WSystemId = gsystem.ID;
 
-                                                            newViewModel.DateCreated = Convert.ToDateTime((cmonth + "/" + rday + "/" + dt + " 01:00 am").ToString());
-                                                            newViewModel.DayToRecord = Convert.ToDateTime((cmonth + "/" + rday + "/" + dt + " 01:00 am").ToString());
-                                                            newViewModel.FRPH = hrlyproduction.FRPH;
-                                                            newViewModel.FRPS = hrlyproduction.FRPS;
-                                                            newViewModel.GwclStation = gstations.Name;
-                                                            newViewModel.GwclStationId = gstations.ID;
-                                                            newViewModel.LOG = hrlyproduction.LOG;
-                                                            newViewModel.NTFPD = hrlyproduction.NTFPD;
-                                                            newViewModel.Option = "Raw Water";
-                                                            newViewModel.OptionId = SummaryManager.GetOptionIdByName("Raw Water");
-                                                            newViewModel.OptionType = typeName;
-                                                            newViewModel.OptionTypeId = SummaryManager.GetOptionTypeIdByName(typeName);
-                                                            newViewModel.StationCode = gstations.StationCode;
-                                                            newViewModel.TFPD = rTFPD;
-                                                            newViewModel.WSystem = gsystem.Name;
-                                                            newViewModel.WSystemCode = gsystem.Code;
-                                                            newViewModel.WSystemId = gsystem.ID;
+                                                    newhrlyProduction.UpdateHrlyProduction(newViewModel);
+                                                    newproduction.UpdateProduction(newViewModel);
 
-                                                            newhrlyProduction.UpdateHrlyProduction(newViewModel);
-                                                            newproduction.UpdateProduction(newViewModel);
+                                                    _newproductionsRepository.Add(newproduction);
+                                                    _hrlyproductionsRepository.Add(newhrlyProduction);
+                                                    _unitOfWork.Commit();
 
-                                                            _newproductionsRepository.Add(newproduction);
-                                                            _hrlyproductionsRepository.Add(newhrlyProduction);
-                                                            _unitOfWork.Commit();
-
-                                                            addProductioToSystem1(newhrlyProduction, newViewModel.WSystemId);
-                                                            //_unitOfWork.Commit();
-
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                    }
-                                                    rday++;
+                                                    addProductioToSystem1(newhrlyProduction, newViewModel.WSystemId);
+                                                    //_unitOfWork.Commit();
+                                                    
                                                 }
                                             }
-                                        }
-                                        else if (optionName.Equals("Treated Water"))
-                                        {
-                                            for (int valPos = 0; valPos < 24; valPos += 2)
+                                            else
                                             {
-                                                tday = 1;
-                                                cmonth++;
-                                                int nextpost = valPos + 1;
-                                                int numOfDays = DateTime.DaysInMonth(dt, cmonth);
-                                                Excel.Range rRange = xlWorkSheet.Range[xlWorkSheet.Range[tableCells[valPos]], xlWorkSheet.Range[tableCells[nextpost]]];
-                                                //double rangeVal = rRange.Cells.Value2;
-                                                waterRecords = rRange.Value2;
-                                                for (int i = 1; i <= numOfDays; i++)
-                                                {
-                                                    thisVal = waterRecords.GetValue(1, i);
-
-                                                    if (thisVal != null)
-                                                    {
-                                                        if (thisVal.GetType() == typeof(double))
-                                                        {
-                                                            //rTFPD += 0;
-                                                            //newViewModel.Comment = "No record found on excel";
-                                                            //newViewModel.DailyActual = 0;
-                                                            tTFPD += Convert.ToDouble(thisVal);
-                                                            newViewModel.Comment = hrlyproduction.Comment;
-                                                            newViewModel.DailyActual = Convert.ToDouble(thisVal);
-                                                            newViewModel.DateCreated = Convert.ToDateTime((cmonth + "/" + tday + "/" + dt + " 01:00 am").ToString());
-                                                            newViewModel.DayToRecord = Convert.ToDateTime((cmonth + "/" + tday + "/" + dt + " 01:00 am").ToString());
-                                                            newViewModel.FRPH = hrlyproduction.FRPH;
-                                                            newViewModel.FRPS = hrlyproduction.FRPS;
-                                                            newViewModel.GwclStation = gstations.Name;
-                                                            newViewModel.GwclStationId = gstations.ID;
-                                                            newViewModel.LOG = hrlyproduction.LOG;
-                                                            newViewModel.NTFPD = hrlyproduction.NTFPD;
-                                                            newViewModel.Option = "Treated Water";
-                                                            newViewModel.OptionId = SummaryManager.GetOptionIdByName("Treated Water");
-                                                            newViewModel.OptionType = typeName;
-                                                            newViewModel.OptionTypeId = SummaryManager.GetOptionTypeIdByName(typeName);
-                                                            newViewModel.StationCode = gstations.StationCode;
-                                                            newViewModel.TFPD = tTFPD;
-                                                            newViewModel.WSystem = gsystem.Name;
-                                                            newViewModel.WSystemCode = gsystem.Code;
-                                                            newViewModel.WSystemId = gsystem.ID;
-
-                                                            newproduction.UpdateProduction(newViewModel);
-                                                            newhrlyProduction.UpdateHrlyProduction(newViewModel);
-
-                                                            _newproductionsRepository.Add(newproduction);
-                                                            _hrlyproductionsRepository.Add(newhrlyProduction);
-
-                                                            _unitOfWork.Commit();
-
-                                                            addProductioToSystem1(newhrlyProduction, newViewModel.WSystemId);
-                                                            //_unitOfWork.Commit();
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                    }
-                                                    tday++;
-                                                }
                                             }
-                                        }
-                                        else
-                                        {
-
+                                            rday++;
                                         }
                                     }
+                                }
+                                else if (optionName.Equals("Treated Water"))
+                                {
+                                    for (int valPos = 0; valPos < 24; valPos += 2)
+                                    {
+                                        tday = 1;
+                                        cmonth++;
+                                        int nextpost = valPos + 1;
+                                        int numOfDays = DateTime.DaysInMonth(hrlyproduction.DayToRecord.Year, cmonth);
+                                        Excel.Range rRange = xlWorkSheet.Range[xlWorkSheet.Range[tableCells[valPos]], xlWorkSheet.Range[tableCells[nextpost]]];
+                                        //double rangeVal = rRange.Cells.Value2;
+                                        waterRecords = rRange.Value2;
+                                        for (int i = 1; i <= numOfDays; i++)
+                                        {
+                                            thisVal = waterRecords.GetValue(1, i);
 
-                                    // Update view model
-                                    newViewModel = Mapper.Map<HourlyProduction, ProductionViewModel>(newhrlyProduction);
-                                    response = request.CreateResponse(HttpStatusCode.Created, newViewModel);
-                                    Marshal.ReleaseComObject(xlWorkSheet);
+                                            if (thisVal != null)
+                                            {
+                                                if (thisVal.GetType() == typeof(double))
+                                                {
+                                                    //rTFPD += 0;
+                                                    //newViewModel.Comment = "No record found on excel";
+                                                    //newViewModel.DailyActual = 0;
+                                                    tTFPD += Convert.ToDouble(thisVal);
+                                                    newViewModel.Comment = hrlyproduction.Comment;
+                                                    newViewModel.DailyActual = Convert.ToDouble(thisVal);
+                                                    newViewModel.DateCreated = Convert.ToDateTime((cmonth + "/" + tday + "/" + hrlyproduction.DayToRecord.Year + " 01:00 am").ToString());
+                                                    newViewModel.DayToRecord = Convert.ToDateTime((cmonth + "/" + tday + "/" + hrlyproduction.DayToRecord.Year + " 01:00 am").ToString());
+                                                    newViewModel.FRPH = hrlyproduction.FRPH;
+                                                    newViewModel.FRPS = hrlyproduction.FRPS;
+                                                    newViewModel.GwclStation = gstations.Name;
+                                                    newViewModel.GwclStationId = gstations.ID;
+                                                    newViewModel.LOG = hrlyproduction.LOG;
+                                                    newViewModel.NTFPD = hrlyproduction.NTFPD;
+                                                    newViewModel.Option = "Treated Water";
+                                                    newViewModel.OptionId = SummaryManager.GetOptionIdByName("Treated Water");
+                                                    newViewModel.OptionType = typeName;
+                                                    newViewModel.OptionTypeId = SummaryManager.GetOptionTypeIdByName(typeName);
+                                                    newViewModel.StationCode = gstations.StationCode;
+                                                    newViewModel.TFPD = tTFPD;
+                                                    newViewModel.WSystem = gsystem.Name;
+                                                    newViewModel.WSystemCode = gsystem.Code;
+                                                    newViewModel.WSystemId = gsystem.ID;
+
+                                                    newproduction.UpdateProduction(newViewModel);
+                                                    newhrlyProduction.UpdateHrlyProduction(newViewModel);
+
+                                                    _newproductionsRepository.Add(newproduction);
+                                                    _hrlyproductionsRepository.Add(newhrlyProduction);
+
+                                                    _unitOfWork.Commit();
+
+                                                    addProductioToSystem1(newhrlyProduction, newViewModel.WSystemId);
+                                                    //_unitOfWork.Commit();
+                                                }
+                                            }
+                                            else
+                                            {
+                                            }
+                                            tday++;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+
                                 }
                             }
-                            xlWorkBook.Close(false, null, null);
-                            xlApp.Quit();
-
-                            Marshal.ReleaseComObject(xlWorkBook);
-                            Marshal.ReleaseComObject(xlApp);
-
+                            
+                            // Update view model
+                            newViewModel = Mapper.Map<HourlyProduction, ProductionViewModel>(newhrlyProduction);
+                            response = request.CreateResponse(HttpStatusCode.Created, newViewModel);
+                            Marshal.ReleaseComObject(xlWorkSheet);
+                            }
                         }
+                        xlWorkBook.Close(false, null, null);
+                        xlApp.Quit();
+                        
+                        Marshal.ReleaseComObject(xlWorkBook);
+                        Marshal.ReleaseComObject(xlApp);
 
                     }
+
                 }
+
                 return response;
             });
         }
