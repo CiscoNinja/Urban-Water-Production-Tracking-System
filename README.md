@@ -1,3 +1,7 @@
+**Project Description**
+
+Web app integrated with Electromagnetic Water Flow Meters. This web app receives water production data via text messages using SMS Enabler, directly from electromagnetic sensors (with SIM cards installed) into application database and also retrieves data saved in excel format into application database.
+
 **Frameworks - Libraries**
 
 * ASP.NET Web API
