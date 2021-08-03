@@ -23,3 +23,10 @@
      * update-database -verbose  this will run the seed method i created to test the app
    
 5. Run GwcltdApp.Web application
+
+<h1>Images</h1>
+<img src="Screenshot (144).png"/>
+<img src="Screenshot (143).png"/>
+<img src="Screenshot (146).png"/>
+<img src="Screenshot (147).png"/>
+<img src="Screenshot (149).png"/>
